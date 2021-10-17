@@ -120,4 +120,10 @@ can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Rp++</title>
+    <url>/project/2021/10/17/Rp/</url>
+    <content><![CDATA[<h1 id="csp-2021-rp"><span class="math inline">\(CSP 2021 Rp++\)</span></h1>
+]]></content>
+  </entry>
 </search>
