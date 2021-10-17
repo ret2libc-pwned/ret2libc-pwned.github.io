@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/project/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/project/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/project/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/project/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/project/css/main.css">
+
+
+<link rel="stylesheet" href="/project/VEN/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/project/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"truw","style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Ret2Libc">
+<meta property="og:url" content="https://ret2libc-pwned.github.io/project/index.html">
+<meta property="og:site_name" content="Ret2Libc">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ret2libc">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ret2libc-pwned.github.io/project/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ret2Libc</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/project/atom.xml" title="Ret2Libc" type="application/atom+xml">
+<link rel="stylesheet" href="/project/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/project/css/prism-line-numbers.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/project/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ret2Libc</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">真正的勇士敢于直面惨淡的人生，敢于正视淋漓的鲜血。 --鲁迅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/project/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/project/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/project/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/project/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/project/images/avatar.gif">
+      <meta itemprop="name" content="ret2libc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ret2Libc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">国庆模拟赛后总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-17 11:11:30 / 修改时间：11:40:22" itemprop="dateCreated datePublished" datetime="2021-10-17T11:11:30+08:00">2021-10-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="赛后总结">赛后总结</h1>
+<p><strong>注: 没写完, 因为有的题还没过.</strong></p>
+<h2 id="前言">前言</h2>
+<p>这个文档不一定在写精妙的算法, 有的部分甚至不是在分析满分解法, 更多的是怎么得<strong>该得的</strong>分以及怎么减少不必要的失分.</p>
+<p>即: 目标是在j组复赛中分数最大化.</p>
+<h2 id="section">2021/10/01</h2>
+<h3 id="t1">T1</h3>
+<p>在调错上浪费太多时间了, 最后才发现算法没有问题, 是<strong>switch语句</strong>的问题!!!</p>
+<p>教训: 在写代码之前推思路的时候一定要明确它的<strong>正确性</strong>! 发现运行的结果不一样时<strong>不要轻易改代码, 更不要轻易改算法!</strong></p>
+<p>调试小技巧: 输出一些东西 or 注释掉大段代码, 这些方法主要是快速定位出错的地方的, 实在不行可以下断点调试(用gdb可以的, 注意加debug symbol). 在怀疑算法出问题的时候在纸上推, <strong>不要动代码</strong>!!!</p>
+<p>这题的正解是模运算, 可以快速定位到循环运行多次后的指令, 不必一次次模拟了.</p>
+<h3 id="t2">T2</h3>
+<p>在推模拟分解质因数时浪费太多时间了, 这种考"板子"的数学题要在平时多做. 考场上要减少<strong>推板子</strong>的时间.</p>
+<p>另外还好这题没打表, "只要是数学题就打表"终究是一种"骗分"的心态. 还是要多推式子.</p>
+<p>附: 计算一个数素因数个数的代码</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fac</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= x; i ++) {</span><br><span class="line">        <span class="keyword">if</span>(x % i == <span class="number">0</span>) {</span><br><span class="line">            res ++;</span><br><span class="line">            x /= i;</span><br><span class="line">            i --;	<span class="comment">//这行推了蛮久的</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>还有就是第十个点<strong>具体的</strong>数据给我们了, 是一个很大的数据, 这个O(N*sqrt(N))的算法显然要算很久(在我电脑上算了<strong>一个半小时</strong>), 所以只能用特判. 考试的时候可以优先用暴力或正解算着这种数据, 得到特判就行.</p>
+<p>注: 这道是我两天模拟赛中唯一觉得做得还不错, 没啥太大遗憾的题.</p>
+<h3 id="t3">T3</h3>
+<p>模拟题, 字太多考试的时候懒得看了. 之后这种题要多想想! 至少把样例算算, 知道模拟的过程.</p>
+<h3 id="t4">T4</h3>
+<p>四联通问题, 把上下左右当成相邻的节点用bfs访问</p>
+<h2 id="section-1">2021/10/03</h2>
+<h3 id="t1-1">T1</h3>
+<p>一定要注意看清<strong>数据范围</strong>! 就比如这道题说了 <span class="math display">\[
+N &lt; 1,000,000
+\]</span> 就一定要开1e6, <strong>宁肯开大一点也不要开小</strong>!!! 一位数组不会因为开得跟题中一样大而MLE!!!</p>
+<p>教训: <strong>1e5的代码52分, 1e6就ac了.</strong></p>
+<p>真的是很可惜的, 明明满分算法想出来了, 思路就是正确的, 甚至代码写得都没问题. 就是因为数组没开大, 失分惨重.</p>
+<p>思路再说一下吧, 前缀和. 这种<strong>区间询问或操作一位数组问题的算法</strong>在我目前的知识范围内大多只会是<strong>前缀和, 差分, 树状数组, 线段树</strong>了, 更高级的感觉j组考不到, 现在也不是学这种东西的时候.</p>
+<blockquote>
+<p>虽然1000万个数似乎很多, 但是, 如果这些数是8字节的整数, 那么将占用大致<strong>80MB</strong>.</p>
+<p><em>Introduction to Algorithms(3rd edition)</em></p>
+</blockquote>
+<h3 id="t2-1">T2</h3>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span>;</span><br><span class="line"><span class="keyword">int</span> array[N];	<span class="comment">//大约占用4MB空间</span></span><br></pre></td></tr></tbody></table></figure>
+<p>这道题因为开了1e8的数组, 用了memset导致<strong>全部的点MLE</strong>.</p>
+<p><strong>数组不要开太大!!! (1e8个int约等于380MB)</strong></p>
+<p>本来可以得60分暴力分, 结果这题因为这个爆零了.</p>
+<p>本题的正解是<strong>离线询问</strong>, 并记录操作, 类似于<strong>化简</strong>到最后一个操作, 就不必模拟了.</p>
+<p>说到玄学优化, 在这里记录几个好用的玄学优化:</p>
+<h4 id="cin优化">cin优化</h4>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ios_base::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">cin.<span class="built_in">tie</span>(<span class="number">0</span>);	<span class="comment">//cin.tie(nullptr)在C++11及以上可用</span></span><br></pre></td></tr></tbody></table></figure>
+<p>(这两行的意思是关闭与stdio的同步, 以提升cin, cout的速度. 在IO比较多的时候很好用. <strong>注意:用了这个优化就不能用stdio内的函数如<code>printf()</code>和<code>scanf()</code></strong>. 当然printf和scanf的速度是更快的, 如果会写快读快写那更快, <code>putchar()</code>和<code>getchar()</code>的速度不是吹的. )</p>
+<h4 id="寄存器操作">寄存器操作</h4>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br></pre></td></tr></tbody></table></figure>
+<p>直接操作寄存器, 这样更快.</p>
+<p>p.s. csp用不了内联汇编, 所以不要作死, 这个用用就行了</p>
+<h4 id="行内函数inline">行内函数(inline)</h4>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">add</span>(<span class="number">1</span>, <span class="number">1</span>);	<span class="comment">//直接就地展开函数, 没有调用关系</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    相当于</span></span><br><span class="line"><span class="comment">    inline int add(int x, int y) {</span></span><br><span class="line"><span class="comment">    	return x + y;</span></span><br><span class="line"><span class="comment">	}</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>适用于代码少, 调用频繁的函数.</p>
+<p>函数调用时会将参数, 基址这些东西压栈. 最后call. 运行结束后会压入返回地址等信息(这些东西快忘了, 不对请指正). 这样调用一次无疑浪费了很多时间精力.(有空的话贴一下反汇编代码看得更清楚)</p>
+<p>用<code>inline</code>定义会在调用处就地展开, 个人觉得比较像<code>define</code>(?)</p>
+<h3 id="t3-1">T3</h3>
+<p>这里发现了两轮游戏中的单调性质, 但是竟然在纠结<strong>用哪个数据结构实现</strong>!!!</p>
+<p>最后时间<strong>全浪费了</strong>, 暴力都没写完.</p>
+<p>以后算法较为简单的题, 一定要先写暴力或者基本思路, <strong>不要先默板子或纠结该默哪个板子!!!</strong></p>
+<h3 id="t4-1">T4</h3>
+<p>这一题要采用类似图论存图的方法存能开哪里的灯, 然后<strong>bfs</strong>.</p>
+<p>题干的意思其实是要找到房间之间的 <strong>"连接"</strong> 关系. 想到这里就能知道要用类似邻接表的方式存图了.</p>
+<p>考场上我主要的问题在于只想着打暴力就用dfs, 就能拿分. 但是这个dfs在本机都肉眼可见地慢, 就放弃治疗, 也不想剪枝了.</p>
+<p>想到bfs而不是用其它方法个人理解是因为本题要先开相邻的灯, 如果dfs需要走完一个方向才能走另一个方向, 不剪枝极其浪费.</p>
+<h2 id="section-2">2021/10/05</h2>
+<h3 id="t1-2">T1</h3>
+<p>模拟赛中第一次ac.</p>
+<p>老师给的题解: 数组模拟 (可以理解为手写双端队列)</p>
+<p>自己的解法: <strong>stl大法好</strong>(使用<code>std::deque</code>, 即双端队列, 可以理解为可操作两端的<code>std::queue</code>)</p>
+<p>可能会出现的问题: 一些stl内的函数可能性能不如手写的, 例如<code>std::string</code>里面的<code>S.find(P)</code>就是暴力匹配的, 性能不如手写KMP.</p>
+<p>这是个重大的时刻, 贴个代码纪念一下, 顺便复习一下deque的用法.</p>
+<p>(另外做这题的时候好像<strong>cin忘加了</strong>, 导致浪费了亿点时间调错)</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">deque&lt;<span class="keyword">int</span>&gt; q;   <span class="comment">//需要从前后操作, 双端队列</span></span><br><span class="line"><span class="keyword">int</span> n, id;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clearq</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="keyword">while</span>(q.<span class="built_in">size</span>()) {</span><br><span class="line">		q.<span class="built_in">pop_front</span>();</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">char</span> op, <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">    <span class="comment">//op == 'L'   左边入队</span></span><br><span class="line">    <span class="comment">//op == 'R'   右边入队</span></span><br><span class="line">    <span class="comment">//cout &lt;&lt; "add()" &lt;&lt; op &lt;&lt; ' ' &lt;&lt; x;</span></span><br><span class="line">    <span class="keyword">if</span>(op == <span class="string">'L'</span>) {</span><br><span class="line">        q.<span class="built_in">push_front</span>(x);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span>(op == <span class="string">'R'</span>) {</span><br><span class="line">        q.<span class="built_in">push_back</span>(x);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">kill_people</span><span class="params">(<span class="keyword">char</span> op, <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span>(op == <span class="string">'L'</span>) {</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x; i ++) q.<span class="built_in">pop_front</span>();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span>(op == <span class="string">'R'</span>) {</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x; i ++) q.<span class="built_in">pop_back</span>();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">popq</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> res;</span><br><span class="line">    res = q.<span class="built_in">front</span>();</span><br><span class="line">    q.<span class="built_in">pop_front</span>();</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="comment">//clearq();</span></span><br><span class="line">	ios_base::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>); cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) {</span><br><span class="line">    	<span class="comment">//puts("LOOP");</span></span><br><span class="line">        <span class="keyword">char</span> op, op1;</span><br><span class="line">        <span class="keyword">int</span> k;</span><br><span class="line">        cin &gt;&gt; op &gt;&gt; op1;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; op &lt;&lt; ' ' &lt;&lt; op1;</span></span><br><span class="line">        <span class="keyword">if</span>(op == <span class="string">'A'</span>) {</span><br><span class="line">            <span class="built_in">add</span>(op1, ++ id); 	<span class="comment">//只有入队才会有新的编号, 单独记录</span></span><br><span class="line">            <span class="comment">//puts("added!!!")</span></span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            cin &gt;&gt; k;</span><br><span class="line">            <span class="built_in">kill_people</span>(op1, k);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">size</span>()) {</span><br><span class="line">    	cout &lt;&lt; q.<span class="built_in">front</span>() &lt;&lt; endl;	<span class="comment">//从队首开始pop</span></span><br><span class="line">    	q.<span class="built_in">pop_front</span>();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="t2-2">T2</h3>
+<h3 id="t3-2">T3</h3>
+<p>暴力解法是每个数跟它的左边和上面比较, 统计出符合条件的, 计算最大的面积.</p>
+<p>正解是dp.</p>
+<p>预处理<code>column[i][j</code>]和<code>can[i][j][k]</code>(用<code>can[i][j][k]</code>表示从第 i 行到第 j 行中的第 k 列能否接道第 i 行到第 j 行的 k-1 列中): <span class="math display">\[
+column[i][j]={column[i-1][j]+1(a[i][j]&gt;=a[i-
+1][j]),column[i][j]=1}
+\]</span> 其中 <span class="math display">\[
+can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k-
+1])\and(coulumn[j][k-1]&gt;=j-i+1
+\]</span></p>
+<p>贴一个70分解法(用的不是dp, 也不是我写的)</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//DP?!不过我不想用正常的方法 那就写点玄学的吧。</span></span><br><span class="line"><span class="keyword">int</span> n,m,ma[<span class="number">205</span>][<span class="number">205</span>],row[<span class="number">205</span>][<span class="number">205</span>],col[<span class="number">205</span>][<span class="number">205</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)cin&gt;&gt;ma[i][j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j){</span><br><span class="line">			row[i][j]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=j+<span class="number">1</span>;k&lt;=m;++k){</span><br><span class="line">				<span class="keyword">if</span>(ma[i][k<span class="number">-1</span>]&lt;=ma[i][k])row[i][j]++;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;++j){</span><br><span class="line">			col[j][i]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=j+<span class="number">1</span>;k&lt;=n;++k){</span><br><span class="line">				<span class="keyword">if</span>(ma[k<span class="number">-1</span>][i]&lt;=ma[k][i])col[j][i]++;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	<span class="comment">//完了完了 玄学方法开始了 </span></span><br><span class="line">	<span class="keyword">int</span> temp=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=row[i][j];++k){<span class="comment">//k就是一种长度 </span></span><br><span class="line">				<span class="keyword">int</span> len=*<span class="built_in">min_element</span>(col[i]+j,col[i]+j+k);</span><br><span class="line">				temp=k*len;</span><br><span class="line">				ans=<span class="built_in">max</span>(temp,ans);</span><br><span class="line">			}</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">} </span><br></pre></td></tr></tbody></table></figure>
+<h3 id="t4-2">T4</h3>
+<p>这题不知道为什么写的算法没问题, 比赛的时候交了是零分(赛后交了一遍完全一样的代码ac了). 就当这次ac了吧, 但是一定要明白为什么会出这种问题, 比赛的时候要是还出就叫天天不灵, 叫地地不应了.</p>
+<p>这题想了蛮久的, 主要是证明算法的正确性.</p>
+<p>要注意的就是如果这种贪心题最后推出了一个比较简单的式子不要怀疑, 只要每一步都确定是对的式子就没错, 不要在这里过于纠结, 浪费时间.</p>
+<p>思路再说一下: 要让ci * t最大, 就要让ci越大的获得更大时间差(这不是废话吗), 即把ci进行从大到小排序, 依次把最大的两个一样的放到最前面和最后面. 难点是模拟这个放在最前和最后的过程.</p>
+<p>贴一下考场上的代码, 前面是排序.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//安排位置</span></span><br><span class="line">    <span class="keyword">int</span> n1 = <span class="number">1</span>, n2 = n;</span><br><span class="line">    <span class="comment">//[1, n]</span></span><br><span class="line">    <span class="comment">//n1:   开始时间偏移量</span></span><br><span class="line">    <span class="comment">//n2:   结束时间偏移量</span></span><br><span class="line">    <span class="comment">//sigma c = (0 + n1) * c[i + 1]  + (n - n2 - n) * c[i]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k, n1 &lt;= n2; i ++, n1 ++, n2 --) {    <span class="comment">//两两一对地插入</span></span><br><span class="line">        <span class="comment">//if(c[i] == c[i + 1])</span></span><br><span class="line">            <span class="comment">//cout &lt;&lt; (c[i] == c[i + 1]) &lt;&lt; ' ' &lt;&lt; c[i] &lt;&lt; ' ' &lt;&lt; n1 &lt;&lt; ' ' &lt;&lt; c[i - 1] &lt;&lt; ' ' &lt;&lt; n2 &lt;&lt; endl;</span></span><br><span class="line">            <span class="comment">//把大(c[i])的放在最后 小的(c[i + 1])放在最前 时间差最大</span></span><br><span class="line">            <span class="comment">//第一次不得分 求时间差乘以最大的(即c[i])即可</span></span><br><span class="line">            <span class="comment">//ans += ((n2 - n1) * c[i]  + 0);</span></span><br><span class="line">            ans += (n2 - n1) * c[i];</span><br><span class="line">    }</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/project/2021/10/06/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/project/images/avatar.gif">
+      <meta itemprop="name" content="ret2libc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ret2Libc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/project/2021/10/06/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-06 14:53:59" itemprop="dateCreated datePublished" datetime="2021-10-06T14:53:59+08:00">2021-10-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ret2libc</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/project/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/project/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+      <!--网抑云-->
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=406072186&auto=0&height=66"></iframe>
+      
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ret2libc</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/project/VEN/anime.min.js"></script>
+  <script src="/project/VEN/velocity/velocity.min.js"></script>
+  <script src="/project/VEN/velocity/velocity.ui.min.js"></script>
+
+<script src="/project/js/utils.js"></script>
+
+<script src="/project/js/motion.js"></script>
+
+
+<script src="/project/js/schemes/pisces.js"></script>
+
+
+<script src="/project/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

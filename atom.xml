@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ret2Libc</title>
+  
+  <subtitle>真正的勇士敢于直面惨淡的人生，敢于正视淋漓的鲜血。 --鲁迅</subtitle>
+  <link href="https://ret2libc-pwned.github.io/project/atom.xml" rel="self"/>
+  
+  <link href="https://ret2libc-pwned.github.io/project/"/>
+  <updated>2021-10-17T03:40:22.082Z</updated>
+  <id>https://ret2libc-pwned.github.io/project/</id>
+  
+  <author>
+    <name>ret2libc</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国庆模拟赛后总结</title>
+    <link href="https://ret2libc-pwned.github.io/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    <id>https://ret2libc-pwned.github.io/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
+    <published>2021-10-17T03:11:30.000Z</published>
+    <updated>2021-10-17T03:40:22.082Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;赛后总结&quot;&gt;赛后总结&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;注: 没写完, 因为有的题还没过.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;这个文档不一定在写精妙的算法, 有的部分甚至不是在分析满分解法,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/project/tags/OI/"/>
+    
+    <category term="模拟赛" scheme="https://ret2libc-pwned.github.io/project/tags/%E6%A8%A1%E6%8B%9F%E8%B5%9B/"/>
+    
+    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/project/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://ret2libc-pwned.github.io/project/2021/10/06/hello-world/"/>
+    <id>https://ret2libc-pwned.github.io/project/2021/10/06/hello-world/</id>
+    <published>2021-10-06T06:53:59.209Z</published>
+    <updated>2021-10-06T06:53:59.209Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
