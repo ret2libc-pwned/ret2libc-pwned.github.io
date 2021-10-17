@@ -3,11 +3,11 @@
   <title>Ret2Libc</title>
   
   <subtitle>真正的勇士敢于直面惨淡的人生，敢于正视淋漓的鲜血。 --鲁迅</subtitle>
-  <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
+  <link href="https://ret2libc-pwned.github.io/project/atom.xml" rel="self"/>
   
-  <link href="https://ret2libc-pwned.github.io/"/>
+  <link href="https://ret2libc-pwned.github.io/project/"/>
   <updated>2021-10-17T03:40:22.082Z</updated>
-  <id>https://ret2libc-pwned.github.io/</id>
+  <id>https://ret2libc-pwned.github.io/project/</id>
   
   <author>
     <name>ret2libc</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>国庆模拟赛后总结</title>
-    <link href="https://ret2libc-pwned.github.io/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
-    <id>https://ret2libc-pwned.github.io/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
+    <link href="https://ret2libc-pwned.github.io/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    <id>https://ret2libc-pwned.github.io/project/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
     <published>2021-10-17T03:11:30.000Z</published>
     <updated>2021-10-17T03:40:22.082Z</updated>
     
@@ -38,18 +38,18 @@
     
     
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/project/tags/OI/"/>
     
-    <category term="模拟赛" scheme="https://ret2libc-pwned.github.io/tags/%E6%A8%A1%E6%8B%9F%E8%B5%9B/"/>
+    <category term="模拟赛" scheme="https://ret2libc-pwned.github.io/project/tags/%E6%A8%A1%E6%8B%9F%E8%B5%9B/"/>
     
-    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/project/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://ret2libc-pwned.github.io/2021/10/06/hello-world/"/>
-    <id>https://ret2libc-pwned.github.io/2021/10/06/hello-world/</id>
+    <link href="https://ret2libc-pwned.github.io/project/2021/10/06/hello-world/"/>
+    <id>https://ret2libc-pwned.github.io/project/2021/10/06/hello-world/</id>
     <published>2021-10-06T06:53:59.209Z</published>
     <updated>2021-10-06T06:53:59.209Z</updated>
     
