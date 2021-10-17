@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/ret2libc-pwned.github.io/project/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/ret2libc-pwned.github.io/project/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/ret2libc-pwned.github.io/project/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/ret2libc-pwned.github.io/project/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/project/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/project/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/project/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/project/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/ret2libc-pwned.github.io/project/css/main.css">
+<link rel="stylesheet" href="/project/css/main.css">
 
 
-<link rel="stylesheet" href="/ret2libc-pwned.github.io/project/VEN/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/project/VEN/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/ret2libc-pwned.github.io/project/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"truw","style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/project/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"truw","style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="关于我 你好, 我是Ret2libc, 正在零基础入门算法! 本网站主要是自己的一点笔记和心得, 如果你恰好找到了这里, 我很希望它们能帮助到你! 联系方式 QQ 2184016258, 欢迎和我交朋友! 至于洛谷, poj之类的. 因为我太菜了, 没过几题. 等我 为什么叫Ret2libc? 主要是之前我对安全比较感兴趣, 尤其是pwn. 这是一个栈溢出利用方法. 取这个名字主要是不想让别人找到">
@@ -81,9 +81,9 @@
 
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/ret2libc-pwned.github.io/project/atom.xml" title="Ret2Libc" type="application/atom+xml">
-<link rel="stylesheet" href="/ret2libc-pwned.github.io/project/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/ret2libc-pwned.github.io/project/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="alternate" href="/project/atom.xml" title="Ret2Libc" type="application/atom+xml">
+<link rel="stylesheet" href="/project/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/project/css/prism-line-numbers.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -101,7 +101,7 @@
 
   <div class="site-meta">
 
-    <a href="/ret2libc-pwned.github.io/project/" class="brand" rel="start">
+    <a href="/project/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">Ret2Libc</h1>
       <span class="logo-line-after"><i></i></span>
@@ -122,22 +122,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/ret2libc-pwned.github.io/project/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/project/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/ret2libc-pwned.github.io/project/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/project/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/ret2libc-pwned.github.io/project/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/project/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/ret2libc-pwned.github.io/project/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/project/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
   </ul>
@@ -267,14 +267,14 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/ret2libc-pwned.github.io/project/archives/">
+          <a href="/project/archives/">
         
           <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/ret2libc-pwned.github.io/project/tags/">
+            <a href="/project/tags/">
           
         <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
@@ -328,19 +328,19 @@
   </div>
 
   
-  <script src="/ret2libc-pwned.github.io/project/VEN/anime.min.js"></script>
-  <script src="/ret2libc-pwned.github.io/project/VEN/velocity/velocity.min.js"></script>
-  <script src="/ret2libc-pwned.github.io/project/VEN/velocity/velocity.ui.min.js"></script>
+  <script src="/project/VEN/anime.min.js"></script>
+  <script src="/project/VEN/velocity/velocity.min.js"></script>
+  <script src="/project/VEN/velocity/velocity.ui.min.js"></script>
 
-<script src="/ret2libc-pwned.github.io/project/js/utils.js"></script>
+<script src="/project/js/utils.js"></script>
 
-<script src="/ret2libc-pwned.github.io/project/js/motion.js"></script>
-
-
-<script src="/ret2libc-pwned.github.io/project/js/schemes/pisces.js"></script>
+<script src="/project/js/motion.js"></script>
 
 
-<script src="/ret2libc-pwned.github.io/project/js/next-boot.js"></script>
+<script src="/project/js/schemes/pisces.js"></script>
+
+
+<script src="/project/js/next-boot.js"></script>
 
 
 
