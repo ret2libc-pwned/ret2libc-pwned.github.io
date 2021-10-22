@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2021-10-17T13:08:44.569Z</updated>
+  <updated>2021-10-22T12:08:45.162Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OI比赛中的那些玄学优化</title>
+    <link href="https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/"/>
+    <id>https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/</id>
+    <published>2021-10-22T10:07:36.000Z</published>
+    <updated>2021-10-22T12:08:45.162Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
+&lt;p&gt;这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="常数优化" scheme="https://ret2libc-pwned.github.io/tags/%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/"/>
+    
+    <category term="笔记" scheme="https://ret2libc-pwned.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="奇技淫巧" scheme="https://ret2libc-pwned.github.io/tags/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>国庆模拟赛后总结</title>

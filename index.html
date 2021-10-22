@@ -72,11 +72,11 @@
   </style>
 </noscript>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -156,6 +156,143 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ret2libc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ret2Libc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">OI比赛中的那些玄学优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-22 18:07:36 / 修改时间：20:08:45" itemprop="dateCreated datePublished" datetime="2021-10-22T18:07:36+08:00">2021-10-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言">前言</h1>
+<p>这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, <del>也希望能借此给自己增加Rp</del>.</p>
+<p>这也是我第一次OI比赛, 希望能考好点.</p>
+<h1 id="读入优化">读入优化</h1>
+<p><strong>fread快读/快写代码来自oi-wiki</strong></p>
+<h2 id="关闭同步推荐">关闭同步(推荐)</h2>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ios_base::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>关闭iostream与stdio中输入输出流的同步. 使<code>std::cin</code>与<code>std::cout</code>接近于<code>scanf()</code>与<code>printf()</code>的速度.</p>
+<h3 id="注意事项">注意事项</h3>
+<p>这个小优化是用得最多的, cin和cout慢的要命, 在IO特别多的题中要用cin/cout一定要加.</p>
+<p><strong>注意: 加了第一行之后将无法使用<code>printf()</code>, <code>scanf()</code>等<code>stdio.h</code>中的函数, 如果作死用了会导致IO流混乱! </strong></p>
+<p><strong>注意2: cin/cout写入文件不是即时的, 所以一定要<code>endl</code>刷新缓冲区(或者<code>\n</code>之类的)</strong></p>
+<h2 id="printf和scanf推荐"><code>printf()</code>和<code>scanf()</code>(推荐)</h2>
+<p>同上, 速度嗖嗖的. 但是不能在关闭同步后使用.</p>
+<p>还能格式化字符串, 不香吗?(比如让你保留8位小数, 只需<code>printf("%.8lf", my_variable)</code>即可, cout还需借助<code>iomanip</code>)</p>
+<h2 id="快读快写">快读/快写</h2>
+<p>很好用, <code>getchar()</code>和<code>putchar()</code>快如闪电.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">0</span>, w = <span class="number">1</span>;	<span class="comment">//x是数字, w是符号位</span></span><br><span class="line">  <span class="keyword">char</span> ch = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>) {  <span class="comment">//!isdigit(ch)</span></span><br><span class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) w = <span class="number">-1</span>;        </span><br><span class="line">    ch = <span class="built_in">getchar</span>();               </span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>) {  <span class="comment">//isdigit(ch)</span></span><br><span class="line">    x = x * <span class="number">10</span> + (ch - <span class="string">'0'</span>); </span><br><span class="line">    ch = <span class="built_in">getchar</span>();</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> x * w;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//Example:</span></span><br><span class="line"><span class="comment">//int n = read();</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> sta[<span class="number">35</span>];</span><br><span class="line">  <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">do</span> {</span><br><span class="line">    sta[top++] = x % <span class="number">10</span>, x /= <span class="number">10</span>;</span><br><span class="line">  } <span class="keyword">while</span> (x);</span><br><span class="line">  <span class="keyword">while</span> (top) <span class="built_in">putchar</span>(sta[--top] + <span class="number">48</span>); <span class="comment">//(int)'0'</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//Example:</span></span><br><span class="line"><span class="comment">//int a = 5;</span></span><br><span class="line"><span class="comment">//write(a);	</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="fread较为玄学">fread(较为玄学)</h2>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">namespace IO {</span><br><span class="line">const int MAXSIZE = 1 &lt;&lt; 20;</span><br><span class="line">char buf[MAXSIZE], *p1, *p2;</span><br><span class="line">#define gc()                                                               \</span><br><span class="line">  (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \</span><br><span class="line">       ? EOF                                                               \</span><br><span class="line">       : *p1++)</span><br><span class="line">inline int rd() {</span><br><span class="line">  int x = 0, f = 1;</span><br><span class="line">  char c = gc();</span><br><span class="line">  while (!isdigit(c)) {</span><br><span class="line">    if (c == '-') f = -1;</span><br><span class="line">    c = gc();</span><br><span class="line">  }</span><br><span class="line">  while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();</span><br><span class="line">  return x * f;</span><br><span class="line">}</span><br><span class="line">char pbuf[1 &lt;&lt; 20], *pp = pbuf;</span><br><span class="line">inline void push(const char &amp;c) {</span><br><span class="line">  if (pp - pbuf == 1 &lt;&lt; 20) fwrite(pbuf, 1, 1 &lt;&lt; 20, stdout), pp = pbuf;</span><br><span class="line">  *pp++ = c;</span><br><span class="line">}</span><br><span class="line">inline void write(int x) {</span><br><span class="line">  static int sta[35];</span><br><span class="line">  int top = 0;</span><br><span class="line">  do {</span><br><span class="line">    sta[top++] = x % 10, x /= 10;</span><br><span class="line">  } while (x);</span><br><span class="line">  while (top) push(sta[--top] + '0');</span><br><span class="line">}</span><br><span class="line">}  // namespace IO</span><br></pre></td></tr></tbody></table></figure>
+<p>如上是基于<code>fread</code>实现的快读快写, 本质是利用文件的缓冲区.</p>
+<p>实现时需要将<code>getchar()</code>稍微改改, (代码中<code>\</code>表示显示不下, 写的时候从这一行接着写就行, 无需换行)</p>
+<h3 id="注意事项-1">注意事项</h3>
+<p>敲这个板子太费时间了, 还是用上面那个基于<code>putchar()</code>和<code>getchar()</code>的那个性价比最高.</p>
+<p><strong>好像这个东西很玄学, 一些情况下会使整个程序变慢(?)</strong></p>
+<h1 id="执行优化">执行优化</h1>
+<h2 id="i较为推荐"><code>++i</code>(较为推荐)</h2>
+<p>有研究表明<code>++i</code>比<code>i++</code>快, 说是<code>i++</code>用了一个临时变量.</p>
+<p><strong>注: 很多人在网上科普两者的关系, 但是只是看反编译代码, 看到<code>++i</code>比<code>i++</code>用的汇编指令少一两个, 就说<code>++i</code>更快(甚至每一句指令的意思都说一下, 即到底慢在哪了)??? 就算真的是这样这种不懂装懂的态度也不是很好</strong></p>
+<p><code>++i</code>执行完后的值跟i是一样的, 可以拿来给其它变量赋值.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> k = ++i;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="register已经死了"><code>register</code>(已经死了)</h2>
+<p><code>register</code>, 即直接操作寄存器. 在C++14逐渐被弃用.</p>
+<p>在之前的C++版本中都可以放在循环里面提升性能.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="inline内联函数推荐"><code>inline</code>内联函数(推荐)</h2>
+<p><code>inline</code>可以在调用处就地展开函数.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">114514</span>;</span><br><span class="line">	<span class="keyword">int</span> y = <span class="built_in">lowbit</span>(x);</span><br><span class="line">	<span class="comment">//相当于直接运行函数, 没有调用关系</span></span><br><span class="line">	<span class="comment">//inline int lowbit(int x) {</span></span><br><span class="line">	<span class="comment">//		return x &amp; (-x);</span></span><br><span class="line">	<span class="comment">//}</span></span><br><span class="line">    cout &lt;&lt; y &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>对于一些需要调用多次的函数, 可以使用<code>inline</code>声明他是内联的.</p>
+<p>对于inline函数, 调用时不像普通函数那样, 将地址, 参数等关键信息压入栈(一种内存布局)中, 再执行<code>call</code>指令. 返回时再操作栈, 最后<code>ret</code>. 这样不仅费时间, 还浪费栈空间.</p>
+<p>inline函数会在预处理阶段像宏(如<code>#define</code>)在调用处原地展开.</p>
+<h3 id="注意事项-2">注意事项</h3>
+<ul>
+<li>对递归函数没用(有人说递归程序用inline会爆re, 本人亲测不会, 应该是编译器优化掉了)</li>
+<li>节省了栈空间和调用开销, 但是增加了程序编译后的体积. 在比赛中没啥事, 但在实际开发中慎用.</li>
+</ul>
+<h3 id="小实验-探究inline函数的性质诚意满满-真的不看看吗">小实验: 探究inline函数的性质(诚意满满, 真的不看看吗?)</h3>
+<p>反编译工具: <code>IDA Pro 7.5 (32-bit)</code></p>
+<p>测试环境: <code>Windows 10 x64</code></p>
+<p>我们写出如下测试代码:</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">my_inline_func</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">    <span class="comment">//lowbit :)</span></span><br><span class="line">    <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="built_in">my_inline_func</span>(n));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>使用<code>g++ test.cc -O -o test.exe</code>命令(<code>-O</code>表示开启优化, 即使用内联函数)生成可执行文件.</p>
+<p>反编译之后:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">; main()</span><br><span class="line">.text:00401421 ; int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">.text:00401421                 public _main</span><br><span class="line">.text:00401421 _main           proc near               ; CODE XREF: sub_4011A0+8E↑p</span><br><span class="line">.text:00401421</span><br><span class="line">.text:00401421 argc            = dword ptr  8</span><br><span class="line">.text:00401421 argv            = dword ptr  0Ch</span><br><span class="line">.text:00401421 envp            = dword ptr  10h</span><br><span class="line">.text:00401421</span><br><span class="line">.text:00401421 ; __unwind {</span><br><span class="line">.text:00401421                 push    ebp</span><br><span class="line">.text:00401422                 mov     ebp, esp</span><br><span class="line">.text:00401424                 and     esp, 0FFFFFFF0h</span><br><span class="line">.text:00401427                 sub     esp, 20h</span><br><span class="line">.text:0040142A                 call    ___main</span><br><span class="line">.text:0040142F                 mov     dword ptr [esp+1Ch], 0</span><br><span class="line">.text:00401437                 lea     eax, [esp+1Ch]</span><br><span class="line">.text:0040143B                 mov     [esp+4], eax</span><br><span class="line">.text:0040143F                 mov     dword ptr [esp], offset Format ; "%d"</span><br><span class="line">.text:00401446                 call    _scanf</span><br><span class="line">							;这里应该就是inline函数展开后的样子了, 可以看到并没有调用的过程</span><br><span class="line">.text:0040144B                 mov     edx, [esp+1Ch]</span><br><span class="line">.text:0040144F                 mov     eax, edx</span><br><span class="line">.text:00401451                 neg     eax</span><br><span class="line">.text:00401453                 and     eax, edx</span><br><span class="line">.text:00401455                 mov     [esp+4], eax</span><br><span class="line">.text:00401459                 mov     dword ptr [esp], offset aD_0 ; "%d\n"</span><br><span class="line">.text:00401460                 call    _printf</span><br><span class="line">.text:00401465                 mov     eax, 0</span><br><span class="line">.text:0040146A                 leave</span><br><span class="line">.text:0040146B                 retn</span><br><span class="line">.text:0040146B ; } // starts at 401421</span><br><span class="line">.text:0040146B _main           endp</span><br></pre></td></tr></tbody></table></figure>
+<p>可以知道, inline函数只是就地展开, 并没有调用, 这个"调用的"过程在地址上是连续的, 没有涉及到地址和参数的push/pop操作.</p>
+<p>看得还不够清楚? 让我们点一下F5</p>
+<p>借助IDA Pro强大的Hex-rays插件, 可以清楚地看到main函数编译后变成了这个样子.</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// [esp+1Ch] [ebp-4h] BYREF</span></span><br><span class="line"></span><br><span class="line">  __main();	<span class="comment">//这个是预处理, 即程序的入口点, 不用管.</span></span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;v4);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, v4 &amp; -v4);	<span class="comment">//这就是inline函数的魅力 :)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>现在, inline函数的作用我们的理解已经很透彻了.</p>
+<h1 id="算法优化">算法优化</h1>
+<h2 id="相关stl">相关STL</h2>
+<p>据说set, map常数比较大.</p>
+<p>但是我不会手写.</p>
+<p>所以用着吧...</p>
+<p>但是<code>std::sort()</code>据说很高级, 快排, 堆排, 插入排序三管齐下, 性能很不错.</p>
+<p>基本上只要自己写写归并, 剩下交给sort就好.</p>
+<h1 id="不要作死">不要作死</h1>
+<p><strong>这是在赛前加的, 意在提醒广大选手不要为了优化而作死, 想一个更好的算法或者打暴力拿个部分分不香吗?</strong></p>
+<p>以下内容在NOI系列竞赛中<strong>不能用</strong>!!! 不包括全部, 只包括选手们可能会作死用到的(我猜的).</p>
+<p>还是以官方说明为准, 这里只是提醒一下.</p>
+<h2 id="编译命令-programa如-o2">编译命令 / programa(如<code>-O2</code>)</h2>
+<p>官方明令禁止</p>
+<h2 id="内联汇编">内联汇编</h2>
+<p>官方明令禁止.</p>
+<p>内联汇编分两种, 一种是<code>__asm__</code>, 一种是开一个数组把机器码放进去, 再<code>memcpy</code>到可执行的内存区域上</p>
+<p><strong>都不要用!!!</strong></p>
+<p>尤其是第二种, 你在自己的电脑上玩玩算了, 很可能在这台电脑上能运行, 另一台电脑上就出错. 而且这类程序需要高权限, 可执行的内存区域都不太好往里写数据.</p>
+<p>最重要的, <strong>比赛用了会爆零!!!</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -443,14 +580,14 @@ can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
