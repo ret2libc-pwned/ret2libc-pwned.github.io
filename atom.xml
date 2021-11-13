@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2021-10-22T12:19:51.143Z</updated>
+  <updated>2021-11-13T13:05:59.535Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSP-J 2021赛后总结</title>
+    <link href="https://ret2libc-pwned.github.io/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    <id>https://ret2libc-pwned.github.io/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
+    <published>2021-11-13T10:55:53.000Z</published>
+    <updated>2021-11-13T13:05:59.535Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;/h1&gt;
+&lt;h2 id=&quot;t1&quot;&gt;T1&lt;/h2&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>OI比赛中的那些玄学优化</title>
