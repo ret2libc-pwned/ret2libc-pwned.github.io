@@ -160,6 +160,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ret2libc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ret2Libc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" class="post-title-link" itemprop="url">启发式合并</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-13 21:10:18 / 修改时间：21:16:40" itemprop="dateCreated datePublished" datetime="2021-11-13T21:10:18+08:00">2021-11-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="梦幻布丁hnoi-2009">梦幻布丁(HNOI-2009)</h1>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*启发式合并，</span></span><br><span class="line"><span class="comment">时间复杂度分析：</span></span><br><span class="line"><span class="comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span></span><br><span class="line"><span class="comment">所以总复杂度O(NlogN)，每次O(logN)。</span></span><br><span class="line"><span class="comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span></span><br><span class="line"><span class="comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span></span><br><span class="line"><span class="comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span></span><br><span class="line"><span class="comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span></span><br><span class="line"><span class="comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100005</span>,maxm=<span class="number">1000005</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>{</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)){<span class="keyword">if</span> (ch==<span class="string">'-'</span>)f=-f;ch=<span class="built_in">getchar</span>();}</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="number">3</span>)+(ret&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> ret*f;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="number">-1</span>]==y)+(c[i+<span class="number">1</span>]==y);<span class="comment">//合并时需要注意细节 y x y </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="comment">//把原有的x统统变成y </span></span><br><span class="line">    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span></span><br><span class="line">    pos[x]=sta[x]=hsh[x]=<span class="number">0</span>;                         <span class="comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span></span><br><span class="line">	                                                <span class="comment">//最后把x原有的不需要的关联关系干掉 </span></span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    n=<span class="built_in">read</span>(),m=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++){</span><br><span class="line">        c[i]=<span class="built_in">read</span>(),color[c[i]]=c[i];</span><br><span class="line">        ans+=c[i]!=c[i<span class="number">-1</span>];	<span class="comment">//统计段数 </span></span><br><span class="line">        <span class="keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;</span><br><span class="line">        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">while</span> (m--){</span><br><span class="line">        <span class="keyword">int</span> opt=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">if</span> (opt==<span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);<span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">int</span> x=<span class="built_in">read</span>(),y=<span class="built_in">read</span>();</span><br><span class="line">            <span class="keyword">if</span> (x==y) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="built_in">swap</span>(color[x],color[y]);</span><br><span class="line">            <span class="keyword">if</span> (!hsh[color[x]]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">merge</span>(color[x],color[y]);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -645,14 +705,14 @@ can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

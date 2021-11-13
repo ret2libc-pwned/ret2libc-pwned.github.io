@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2021-11-13T13:05:59.535Z</updated>
+  <updated>2021-11-13T13:16:40.994Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>启发式合并</title>
+    <link href="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
+    <id>https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/</id>
+    <published>2021-11-13T13:10:18.000Z</published>
+    <updated>2021-11-13T13:16:40.994Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;梦幻布丁hnoi-2009&quot;&gt;梦幻布丁(HNOI-2009)&lt;/h1&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="算法" scheme="https://ret2libc-pwned.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>CSP-J 2021赛后总结</title>
