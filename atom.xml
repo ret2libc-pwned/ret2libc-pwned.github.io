@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-02-20T12:56:05.619Z</updated>
+  <updated>2022-03-12T13:40:06.586Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Splay</title>
+    <link href="https://ret2libc-pwned.github.io/2022/03/12/Splay/"/>
+    <id>https://ret2libc-pwned.github.io/2022/03/12/Splay/</id>
+    <published>2022-03-12T13:39:05.000Z</published>
+    <updated>2022-03-12T13:40:06.586Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;splay&quot;&gt;Splay&lt;/h1&gt;
+&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;p&gt;Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="平衡树" scheme="https://ret2libc-pwned.github.io/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/"/>
+    
+    <category term="BST" scheme="https://ret2libc-pwned.github.io/tags/BST/"/>
+    
+  </entry>
   
   <entry>
     <title>二分</title>
