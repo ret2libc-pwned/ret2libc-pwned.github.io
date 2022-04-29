@@ -1,26 +1,22 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/VEN/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="Splay 定义 Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ret2libc">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Splay 定义 Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Splay">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2022/03/12/Splay/index.html">
@@ -30,193 +26,227 @@
 <meta property="og:image" content="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">
 <meta property="article:published_time" content="2022-03-12T13:39:05.000Z">
-<meta property="article:modified_time" content="2022-03-19T13:01:04.462Z">
+<meta property="article:modified_time" content="2022-04-25T13:09:09.510Z">
 <meta property="article:author" content="ret2libc">
 <meta property="article:tag" content="OI">
 <meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="平衡树">
-<meta property="article:tag" content="BST">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg">
+  
+  
+  <title>Splay - Ret2Libc</title>
 
-<link rel="canonical" href="https://ret2libc-pwned.github.io/2022/03/12/Splay/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  <title>Splay | Ret2Libc</title>
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
+</head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Ret2Libc</h1>
-      <span class="logo-line-after"><i></i></span>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ret2Libc</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">含羞草勾腰，大雨快要到。 ——民间谚语</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
 </nav>
 
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/2022/03/12/Splay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ret2libc">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ret2Libc">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Splay
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 21:39:05" itemprop="dateCreated datePublished" datetime="2022-03-12T21:39:05+08:00">2022-03-12</time>
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Splay">
+              
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-19 21:01:04" itemprop="dateModified" datetime="2022-03-19T21:01:04+08:00">2022-03-19</time>
-              </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-12 21:39" pubdate>
+        2022年3月12日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      76 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
 
           
-
         </div>
-      </header>
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-        <h1 id="splay">Splay</h1>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Splay</h1>
+            
+            <div class="markdown-body">
+              <h1 id="splay">Splay</h1>
 <h2 id="定义">定义</h2>
 <p>Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其"平衡", <strong>基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近)</strong>.</p>
 <p><strong>本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据.</strong></p>
@@ -225,14 +255,14 @@
 <p>常见的BST有Treap、Splay、AVL等.</p>
 <h2 id="结点结构">结点结构</h2>
 <p>开结构体数组记录两个子结点及父结点的数组下标, 类似于一个<strong>链表</strong>(实际上很多树状数据结构都是数组模拟链表). 结点同时存储维护的信息.</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">1e5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> {</span></span><br><span class="line">    <span class="comment">//两个子结点及父结点数组下标, val</span></span><br><span class="line">    <span class="keyword">int</span> s[<span class="number">2</span>], p, v;</span><br><span class="line">    <span class="comment">//延迟标记及子树大小</span></span><br><span class="line">    <span class="keyword">int</span> dat, size;</span><br><span class="line">    <span class="comment">//初始化当前结点</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> _v, <span class="keyword">int</span> _p)</span> </span>{</span><br><span class="line">        v = _v, p = _p;</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//Allocate</span></span><br><span class="line">Node tr[SIZE];</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZE = <span class="hljs-number">1e5</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>    <span class="hljs-comment">//两个子结点及父结点数组下标, val</span><br>    <span class="hljs-keyword">int</span> s[<span class="hljs-number">2</span>], p, v;<br>    <span class="hljs-comment">//延迟标记及子树大小</span><br>    <span class="hljs-keyword">int</span> dat, size;<br>    <span class="hljs-comment">//初始化当前结点</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>        v = _v, p = _p;<br>        size = <span class="hljs-number">1</span>;<br>    }<br>};<br><br><span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZE = <span class="hljs-number">1e5</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>    <span class="hljs-comment">//两个子结点及父结点数组下标, val</span><br>    <span class="hljs-keyword">int</span> s[<span class="hljs-number">2</span>], p, v;<br>    <span class="hljs-comment">//延迟标记及子树大小</span><br>    <span class="hljs-keyword">int</span> dat, size;<br>    <span class="hljs-comment">//初始化当前结点</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>        v = _v, p = _p;<br>        size = <span class="hljs-number">1</span>;<br>    }<br>};<br><br><span class="hljs-comment">//Allocate</span><br>Node tr[SIZE];<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>其中规定<code>s[0]</code>为左子结点, <code>s[1]</code>为右子结点, 即: (后续代码均未使用如下define, 只是为了方便理解)</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls s[0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs s[1]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> son s[k]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> son_bro s[k ^ 1]		<span class="comment">//son's brother</span></span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ls s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rs s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son s[k]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son_bro s[k ^ 1]		<span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ls s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rs s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son s[k]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son_bro s[k ^ 1]		<span class="hljs-comment">//son's brother</span></span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="单旋操作rotate">单旋操作(rotate)</h2>
 <p>旋转需要保证BST性质; 根结点变量, 即<code>root</code>需要更新; 结点维护的信息(如延迟标记)需要更新.</p>
 <p>旋转改变了是树的形态, 本质是<strong>改变父子关系</strong>.</p>
 <figure>
-<img src="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg" alt="Splay单旋"><figcaption aria-hidden="true">Splay单旋</figcaption>
+<img src="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg" srcset="/img/loading.gif" lazyload alt="Splay单旋"><figcaption aria-hidden="true">Splay单旋</figcaption>
 </figure>
 <h4 id="右旋-即operatornamezigx操作">右旋, 即<span class="math inline">\(\operatorname{Zig}(x)\)</span>操作</h4>
 <p>顾名思义就是将<span class="math inline">\(x\)</span>的左子树绕着<span class="math inline">\(x\)</span>的父结点<span class="math inline">\(y\)</span>向右旋转.</p>
@@ -245,12 +275,12 @@
 <p>上述操作可以使用一个操作<span class="math inline">\(\operatorname{rotate}(x)\)</span>来完成, 即实现<strong>"自动判定左右"的单旋操作</strong>. <span class="math inline">\(x\)</span>是<span class="math inline">\(y\)</span>的左子树就右旋, 右子树反之.</p>
 <p>该操作的精髓就是判定<span class="math inline">\(x\)</span>是<span class="math inline">\(y\)</span>的左结点还是右结点.</p>
 <p>前面说过, "旋转"的本质是"改变父子关系". 每个结点维护了她的左右子树和父结点, 所以该过程需要"互认"父子关系, 即需要修改两个结点的信息; 同时因为树的形态被改变, 需要重新统计延迟标记维持的信息(如子树大小).</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> y = tr[x].p, z = tr[y].p;</span><br><span class="line">    <span class="keyword">int</span> k = (tr[y].s[<span class="number">1</span>] == x);</span><br><span class="line">    tr[z].s[tr[z].s[<span class="number">1</span>] == y] = x, tr[x].p = z;</span><br><span class="line">    tr[y].s[k] = tr[x].s[k ^ <span class="number">1</span>], tr[tr[x].s[k ^ <span class="number">1</span>]].p = y;</span><br><span class="line">    tr[x].s[k ^ <span class="number">1</span>] = y, tr[y].p = x;			<span class="comment">//tr[x].s[k]的含义是取处于yx直线上的x的儿子, k ^ 1是取她的兄弟</span></span><br><span class="line">    <span class="built_in">Pushup</span>(y), <span class="built_in">Pushup</span>(x);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>    <span class="hljs-keyword">int</span> k = (tr[y].s[<span class="hljs-number">1</span>] == x);<br>    tr[z].s[tr[z].s[<span class="hljs-number">1</span>] == y] = x, tr[x].p = z;<br>    tr[y].s[k] = tr[x].s[k ^ <span class="hljs-number">1</span>], tr[tr[x].s[k ^ <span class="hljs-number">1</span>]].p = y;<br>    tr[x].s[k ^ <span class="hljs-number">1</span>] = y, tr[y].p = x;			<span class="hljs-comment">//tr[x].s[k]的含义是取处于yx直线上的x的儿子, k ^ 1是取她的兄弟</span><br>    <span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>    <span class="hljs-keyword">int</span> k = (tr[y].s[<span class="hljs-number">1</span>] == x);<br>    tr[z].s[tr[z].s[<span class="hljs-number">1</span>] == y] = x, tr[x].p = z;<br>    tr[y].s[k] = tr[x].s[k ^ <span class="hljs-number">1</span>], tr[tr[x].s[k ^ <span class="hljs-number">1</span>]].p = y;<br>    tr[x].s[k ^ <span class="hljs-number">1</span>] = y, tr[y].p = x;			<span class="hljs-comment">//tr[x].s[k]的含义是取处于yx直线上的x的儿子, k ^ 1是取她的兄弟</span><br>    <span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in">Pushup</span>(x);<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>说人话就是:</p>
 <p><span class="math inline">\(k\)</span>的获取:</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">k</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *@description 返回x是y的哪个儿子, 左0右1.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="keyword">return</span> (tr[y].s[<span class="number">1</span>] == x);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">k</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     *@description 返回x是y的哪个儿子, 左0右1.</span><br><span class="hljs-comment">     */</span><br>	<span class="hljs-keyword">return</span> (tr[y].s[<span class="hljs-number"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">k</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     *@description 返回x是y的哪个儿子, 左0右1.</span><br><span class="hljs-comment">     */</span><br>	<span class="hljs-keyword">return</span> (tr[y].s[<span class="hljs-number">1</span>] == x);<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>rotate伪代码:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/* y是x的爸爸, z是x的爷爷; */</span><br><span class="line">/* 以下每一步都需要修改两个结点的值, 即互认关系 */</span><br><span class="line">用z取到y, 将x转到y的位置上, 并与z互认; /* 以下两部均需操作结点与其父结点"互认"过程, 不再赘述 */</span><br><span class="line">x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;</span><br><span class="line">让y转到原先x的兄弟的位置;</span><br><span class="line">分别更新y, x子树维护的信息;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs pseudocode"><code class="language-hljs pseudocode">/* y是x的爸爸, z是x的爷爷; */<br>/* 以下每一步都需要修改两个结点的值, 即互认关系 */<br>用z取到y, 将x转到y的位置上, 并与z互认; /* 以下两部均需操作结点与其父结点"互认"过程, 不再赘述 */<br>x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;<br>让y转到原先x的兄弟的位置;<br>分别更新y, x子树维护的信息;<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="双旋操作splay">双旋操作(splay)</h2>
 <p>通过一或两次rotate, 可以调整BST的形态, 使其更平衡.</p>
 <p>通过过程<span class="math inline">\(\operatorname{splay}(x, goal)\)</span>将结点<span class="math inline">\(x\)</span>转到<span class="math inline">\(goal\)</span>的子结点.</p>
@@ -267,14 +297,14 @@
 <li>直线yx</li>
 </ul>
 <p><strong>需要注意的是该操作是将<span class="math inline">\(x\)</span>转到<span class="math inline">\(goal\)</span>下面, 故当<span class="math inline">\(x\)</span>与<span class="math inline">\(goal\)</span>为具有父子关系的两个结点时 (即第1、2种情况)不需要操作(即不需要交换它们).</strong></p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> goal)</span> </span>{</span><br><span class="line">    <span class="comment">//把x转到goal下面</span></span><br><span class="line">    <span class="keyword">while</span>(tr[x].p != goal) {</span><br><span class="line">        <span class="keyword">int</span> y = tr[x].p, z = tr[y].p;</span><br><span class="line">        <span class="keyword">if</span>(z != goal) {</span><br><span class="line">            <span class="keyword">if</span>((tr[z].s[<span class="number">1</span>] == y) ^ (tr[y].s[<span class="number">1</span>] == x)) <span class="built_in">Rotate</span>(x);    <span class="comment">//折线先转x再转x</span></span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">Rotate</span>(y);                                         <span class="comment">//直线先转y</span></span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">Rotate</span>(x);                                                  <span class="comment">//统一转x</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span>(goal == <span class="number">0</span>) Root = x;                                         <span class="comment">//更新根结点(0为根结点下标)</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>    <span class="hljs-comment">//把x转到goal下面</span><br>    <span class="hljs-keyword">while</span>(tr[x].p != goal) {<br>        <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>        <span class="hljs-keyword">if</span>(z != goal) {<br>            <span class="hljs-keyword">if</span>((tr[z].s[<span class="hljs-number">1</span>] == y) ^ (tr[y].s[<span class="hljs-number">1</span>] == x)) <span class="hljs-built_in">Rotate</span>(x);    <span class="hljs-comment">//折线先转x再转x</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-built_in">Rotate</span>(y);                                         <span class="hljs-comment">//直线先转y</span><br>        }<br>        <span class="hljs-built_in">Rotate</span>(x);                                                  <span class="hljs-comment">//统一转x</span><br>    }<br>    <span class="hljs-keyword">if</span>(goal == <span class="hljs-number">0</span>) Root = x;                                         <span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>    <span class="hljs-comment">//把x转到goal下面</span><br>    <span class="hljs-keyword">while</span>(tr[x].p != goal) {<br>        <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>        <span class="hljs-keyword">if</span>(z != goal) {<br>            <span class="hljs-keyword">if</span>((tr[z].s[<span class="hljs-number">1</span>] == y) ^ (tr[y].s[<span class="hljs-number">1</span>] == x)) <span class="hljs-built_in">Rotate</span>(x);    <span class="hljs-comment">//折线先转x再转x</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-built_in">Rotate</span>(y);                                         <span class="hljs-comment">//直线先转y</span><br>        }<br>        <span class="hljs-built_in">Rotate</span>(x);                                                  <span class="hljs-comment">//统一转x</span><br>    }<br>    <span class="hljs-keyword">if</span>(goal == <span class="hljs-number">0</span>) Root = x;                                         <span class="hljs-comment">//更新根结点(0为根结点下标)</span><br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <hr>
 <h2 id="插入操作insert">插入操作(insert)</h2>
 <p>过程<span class="math inline">\(\operatorname{insert}(val)\)</span>将<span class="math inline">\(val\)</span>插入BST的相应位置<span class="math inline">\(x\)</span>, 将插入的数转到根结点, 即执行<span class="math inline">\(\operatorname{splay}(x, 0)\)</span>.</p>
 <p>插入时需要维护BST性质, 将插入的这个数与当前节点比较, <strong>"小插左, 大插右"</strong>.</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * @param v 要插入值的val.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> u = Root, p = <span class="number">0</span>;		<span class="comment">//从根结点开始, u为当前节点数组下标, p为她的爸爸下标</span></span><br><span class="line">    <span class="keyword">while</span>(u) {</span><br><span class="line">        p = u, u = tr[u].s[v &gt; tr[u].v];	<span class="comment">//小左大右地插下去, 方括号里的是判定左右</span></span><br><span class="line">    }</span><br><span class="line">    u = ++idx;			<span class="comment">//结点又多了一个, idx += 1;</span></span><br><span class="line">    <span class="keyword">if</span>(p) tr[p].s[v &gt; tr[p].v] = u;		<span class="comment">//将p的儿子u插入适当位置</span></span><br><span class="line">    tr[u].<span class="built_in">init</span>(v, p);	<span class="comment">//给这个点初始化爸爸下标和自身value, 并将大小设为1</span></span><br><span class="line">    <span class="built_in">splay</span>(u, <span class="number">0</span>);		<span class="comment">//转到根结点</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     * @param v 要插入值的val.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;		<span class="hljs-comment">//从根结点开始, u为当前节点数组下标, p为她的爸爸下标</span><br>    <span class="hljs-keyword">while</span>(u) {<br>        p = u, u = tr[u].s[v &gt; tr[u].v];	<span class="hljs-comment">//小左大右地插下去, 方括号里的是判定左右</span><br>    }<br>    u = ++idx;			<span class="hljs-comment">//结点又多了一个, idx += 1;</span><br>    <span class="hljs-keyword">if</span>(p) tr[p].s[v &gt; tr[p].v] = u;		<span class="hljs-comment">//将p的儿子u插入适当位置</span><br>    tr[u].<span class="hljs-built_in">init</span>(v, p);	<span class="hljs-comment">//给这个点初始化爸爸下标和自身value, 并将大小设为1</span><br>    <span class="hljs-built_in">splay</span>(u, <span class="hljs-number">0</span>);		<span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     * @param v 要插入值的val.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;		<span class="hljs-comment">//从根结点开始, u为当前节点数组下标, p为她的爸爸下标</span><br>    <span class="hljs-keyword">while</span>(u) {<br>        p = u, u = tr[u].s[v &gt; tr[u].v];	<span class="hljs-comment">//小左大右地插下去, 方括号里的是判定左右</span><br>    }<br>    u = ++idx;			<span class="hljs-comment">//结点又多了一个, idx += 1;</span><br>    <span class="hljs-keyword">if</span>(p) tr[p].s[v &gt; tr[p].v] = u;		<span class="hljs-comment">//将p的儿子u插入适当位置</span><br>    tr[u].<span class="hljs-built_in">init</span>(v, p);	<span class="hljs-comment">//给这个点初始化爸爸下标和自身value, 并将大小设为1</span><br>    <span class="hljs-built_in">splay</span>(u, <span class="hljs-number">0</span>);		<span class="hljs-comment">//转到根结点</span><br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="查询指定数的排名getrank">查询指定数的排名(getRank)</h2>
-<p>不会<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>.</p>
+<p>不会<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" srcset="/img/loading.gif" lazyload aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>.</p>
 <h2 id="查询第k小的数getvalbyrank">查询第<span class="math inline">\(k\)</span>小的数(getValByRank)</h2>
 <p><span class="math inline">\(\operatorname{getValByRank}(rank)\)</span>操作分三种情况讨论: <span class="math display">\[
 结点位于:\,
@@ -284,7 +314,7 @@
 3. 所求结点位于右子树(rank需要减去左子树大小加一的和), 左子树结点个数 \lt rank - 1
 \end{cases}
 \]</span></p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getValByRank</span><span class="params">(<span class="keyword">int</span> rk)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> u = Root;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) {</span><br><span class="line">        <span class="built_in">Pushdown</span>(u);</span><br><span class="line">        <span class="keyword">if</span>(tr[tr[u].s[<span class="number">0</span>]] &gt;= rk) u = tr[u].s[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(tr[tr[u].s[<span class="number">0</span>]] + <span class="number">1</span> == rk) <span class="keyword">return</span> u;</span><br><span class="line">        <span class="keyword">else</span> rk -= (tr[tr[u].s[<span class="number">0</span>]] + <span class="number">1</span>), u = tr[u].s[<span class="number">1</span>];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>        <span class="hljs-built_in">Pushdown</span>(u);<br>        <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]] &gt;= rk) u = tr[u].s[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span> == rk) <span class="hljs-keyword">return</span> u;<br>        <span class="hljs-keyword">else</span> rk -= (tr[tr[u].s[<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span>), u = tr[u].s[<span class="hljs-number">1</span>];<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>        <span class="hljs-built_in">Pushdown</span>(u);<br>        <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]] &gt;= rk) u = tr[u].s[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span> == rk) <span class="hljs-keyword">return</span> u;<br>        <span class="hljs-keyword">else</span> rk -= (tr[tr[u].s[<span class="hljs-number">0</span>]] + <span class="hljs-number">1</span>), u = tr[u].s[<span class="hljs-number">1</span>];<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="删除操作delete">删除操作(delete)</h2>
 <p>操作<span class="math inline">\(\operatorname{delete}(x)\)</span>从Splay中删除value为<span class="math inline">\(x\)</span>的结点.</p>
 <p>该操作首先将<span class="math inline">\(x\)</span>转到根结点, 再合并<span class="math inline">\(x\)</span>的左右子树.</p>
@@ -300,283 +330,249 @@
 <p>翻转一个区间，例如原有序序列是<span class="math inline">\(\{5, 4, 3, 2, 1\}\)</span>，翻转区间是<span class="math inline">\([2, 4]\)</span>的话，结果是<span class="math inline">\(\{5, 2, 3, 4, 1\}\)</span>.</p>
 </blockquote>
 <p>在结点上维护延迟标记<span class="math inline">\(flag\)</span>来判定翻转状态, 避免多次翻转造成性能上的浪费.</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对零基础即为友好</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> {</span></span><br><span class="line">	<span class="keyword">int</span> v, p, s[<span class="number">2</span>], siz;</span><br><span class="line">	<span class="keyword">bool</span> flag;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> _v, <span class="keyword">int</span> _p)</span> </span>{</span><br><span class="line">		v = _v, p = _p;</span><br><span class="line">		siz = <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">Node tr[N];</span><br><span class="line"><span class="keyword">int</span> n, cas, Root, idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 一些宏定义, 用法简单明了, 跟一大堆杂乱无章的中括号说再见!!!</span></span><br><span class="line"><span class="comment"> * ex. 	node(x).init(v, p)		//初始化结点x的属性v, p</span></span><br><span class="line"><span class="comment"> * 		siz(left(x))			//获取结点x的左子节点size</span></span><br><span class="line"><span class="comment"> *		siz(node(x).ls)			//另一种写法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls s[0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs s[1]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isRoot(x) (x == 0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BST_getPos(fa, val) tr[fa].s[(val) &gt; tr[(fa)].v]	<span class="comment">//在fa结点下面根据BST性质插入一个值为val的结点, 判定结点位置(即: 要插在哪里)</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> node(x) tr[(x)]										<span class="comment">//可以理解为x号结点的对象, 方便使用ls, rs</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> left(x) tr[(x)].s[0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> right(x) tr[(x)].s[1]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> val(x) tr[(x)].v</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> siz(x) tr[(x)].siz</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> flag(x) tr[(x)].flag</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pa(x) tr[(x)].p</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> son(fa, x) tr[(fa)].s[(x)]							<span class="comment">//获取结点fa的儿子, 参数x为左右, 左0右1</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LoR(fa, x) (tr[(fa)].s[1] == (x))					<span class="comment">//L or R, x是fa的哪个儿子</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pushup</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="built_in">siz</span>(x) = <span class="built_in">siz</span>(<span class="built_in">left</span>(x)) + <span class="built_in">siz</span>(<span class="built_in">right</span>(x)) + <span class="number">1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pushdown</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">flag</span>(x)) {</span><br><span class="line">		<span class="built_in">swap</span>(<span class="built_in">left</span>(x), <span class="built_in">right</span>(x));</span><br><span class="line">		<span class="built_in">flag</span>(<span class="built_in">left</span>(x)) ^= <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">flag</span>(<span class="built_in">right</span>(x)) ^= <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">flag</span>(x) = <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> y = <span class="built_in">pa</span>(x), z = <span class="built_in">pa</span>(y);</span><br><span class="line">	<span class="keyword">int</span> k = <span class="built_in">LoR</span>(y, x);</span><br><span class="line">	<span class="built_in">son</span>(z, <span class="built_in">LoR</span>(z, y)) = x, <span class="built_in">pa</span>(x) = z;</span><br><span class="line">	<span class="built_in">son</span>(y, k) = <span class="built_in">son</span>(x, k ^ <span class="number">1</span>), <span class="built_in">pa</span>(<span class="built_in">son</span>(x, k ^ <span class="number">1</span>)) = y;</span><br><span class="line">	<span class="built_in">son</span>(x, k ^ <span class="number">1</span>) = y, <span class="built_in">pa</span>(y) = x;</span><br><span class="line">	<span class="built_in">Pushup</span>(y), <span class="built_in">Pushup</span>(x);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> goal)</span> </span>{</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">pa</span>(x) != goal) {</span><br><span class="line">		<span class="keyword">int</span> y = <span class="built_in">pa</span>(x), z = <span class="built_in">pa</span>(y);</span><br><span class="line">		<span class="keyword">if</span>(z != goal) {</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">LoR</span>(z, y) ^ <span class="built_in">LoR</span>(y, x)) {</span><br><span class="line">				<span class="built_in">Rotate</span>(x);</span><br><span class="line">			} <span class="keyword">else</span> {</span><br><span class="line">				<span class="built_in">Rotate</span>(y);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="built_in">Rotate</span>(x);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">isRoot</span>(goal)) Root = x;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(<span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> u = Root, p = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(u) {</span><br><span class="line">		p = u, u = <span class="built_in">BST_getPos</span>(u, v);</span><br><span class="line">	}</span><br><span class="line">	u = ++idx;</span><br><span class="line">	<span class="keyword">if</span>(!<span class="built_in">isRoot</span>(p)) {</span><br><span class="line">		<span class="built_in">BST_getPos</span>(p, v) = u;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">node</span>(u).<span class="built_in">init</span>(v, p);</span><br><span class="line">	<span class="built_in">Splay</span>(u, <span class="number">0</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getValByRank</span><span class="params">(<span class="keyword">int</span> rk)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> u = Root;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>) {</span><br><span class="line">		<span class="built_in">Pushdown</span>(u);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">siz</span>(<span class="built_in">left</span>(u)) &gt;= rk) u = <span class="built_in">left</span>(u);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">siz</span>(<span class="built_in">left</span>(u)) == rk - <span class="number">1</span>) <span class="keyword">return</span> u;</span><br><span class="line">		<span class="keyword">else</span> rk -= <span class="built_in">siz</span>(<span class="built_in">left</span>(u)) + <span class="number">1</span>, u = <span class="built_in">right</span>(u);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Output</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="built_in">Pushdown</span>(x);</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">left</span>(x)) <span class="built_in">Output</span>(<span class="built_in">left</span>(x));</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">val</span>(x) &gt;= <span class="number">1</span> &amp;&amp; <span class="built_in">val</span>(x) &lt;= n) cout &lt;&lt; <span class="built_in">val</span>(x) &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">right</span>(x)) <span class="built_in">Output</span>(<span class="built_in">right</span>(x)); </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; cas;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n + <span class="number">1</span>; ++i) {</span><br><span class="line">		<span class="built_in">Insert</span>(i);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">while</span>(cas--) {</span><br><span class="line">		<span class="keyword">int</span> l, r;</span><br><span class="line">		cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">		l = <span class="built_in">getValByRank</span>(l), r = <span class="built_in">getValByRank</span>(r + <span class="number">2</span>);</span><br><span class="line">		<span class="built_in">Splay</span>(l, <span class="number">0</span>), <span class="built_in">Splay</span>(r, l);</span><br><span class="line">		<span class="built_in">flag</span>(<span class="built_in">left</span>(r)) ^= <span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">Output</span>(Root);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e5</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>    <span class="hljs-keyword">int</span> s[<span class="hljs-number">2</span>], p, v, siz;<br>    <span class="hljs-keyword">int</span> flag;                  <span class="hljs-comment">//flag == 1则需要翻转</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>        v = _v, p = _p;<br>        siz = <span class="hljs-number">1</span>;<br>    }<br>};<br><br>Node tr[N];<br><span class="hljs-keyword">int</span> idx, Root;<br><span class="hljs-keyword">int</span> cas, n;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    tr[x].siz = tr[tr[x].s[<span class="hljs-number">0</span>]].siz + tr[tr[x].s[<span class="hljs-number">1</span>]].siz + <span class="hljs-number">1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">if</span>(tr[x].flag) {<br>        <span class="hljs-built_in">swap</span>(tr[x].s[<span class="hljs-number">0</span>], tr[x].s[<span class="hljs-number">1</span>]);<br>        tr[tr[x].s[<span class="hljs-number">0</span>]].flag ^= <span class="hljs-number">1</span>;<br>        tr[tr[x].s[<span class="hljs-number">1</span>]].flag ^= <span class="hljs-number">1</span>;<br>        tr[x].flag = <span class="hljs-number">0</span>;<br>    }<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>    <span class="hljs-keyword">int</span> k = (tr[y].s[<span class="hljs-number">1</span>] == x);<br>    tr[z].s[tr[z].s[<span class="hljs-number">1</span>] == y] = x, tr[x].p = z;<br>    tr[y].s[k] = tr[x].s[k ^ <span class="hljs-number">1</span>], tr[tr[x].s[k ^ <span class="hljs-number">1</span>]].p = y;<br>    tr[x].s[k ^ <span class="hljs-number">1</span>] = y, tr[y].p = x;<br>    <span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in">Pushup</span>(x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>    <span class="hljs-keyword">while</span>(tr[x].p != goal) {<br>        <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>        <span class="hljs-keyword">if</span>(z != goal) {<br>            <span class="hljs-keyword">if</span>((tr[z].s[<span class="hljs-number">1</span>] == y) ^ (tr[y].s[<span class="hljs-number">1</span>] == x)) <span class="hljs-built_in">Rotate</span>(x);<br>            <span class="hljs-keyword">else</span> <span class="hljs-built_in">Rotate</span>(y);<br>        }<br>        <span class="hljs-built_in">Rotate</span>(x);<br>    }<br>    <span class="hljs-keyword">if</span>(goal == <span class="hljs-number">0</span>) Root = x;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(u) {<br>        p = u, u = tr[u].s[v &gt; tr[u].v];<br>    }<br>    u = ++idx;<br>    <span class="hljs-keyword">if</span>(p) {<br>        tr[p].s[v &gt; tr[p].v] = u;<br>    }<br>    tr[u].<span class="hljs-built_in">init</span>(v, p);<br>    <span class="hljs-built_in">Splay</span>(u, <span class="hljs-number">0</span>);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>        <span class="hljs-built_in">Pushdown</span>(u);<br>        <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]].siz &gt;= rk) u = tr[u].s[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]].siz == rk - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> u;<br>        <span class="hljs-keyword">else</span> rk -= (tr[tr[u].s[<span class="hljs-number">0</span>]].siz + <span class="hljs-number">1</span>), u = tr[u].s[<span class="hljs-number">1</span>];<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Output</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span> </span>{<br>    <span class="hljs-comment">//这一步是翻转</span><br>    <span class="hljs-built_in">Pushdown</span>(u);<br>    <span class="hljs-comment">//从u开始中序遍历</span><br>    <span class="hljs-comment">//左</span><br>    <span class="hljs-keyword">if</span>(tr[u].s[<span class="hljs-number">0</span>]) <span class="hljs-built_in">Output</span>(tr[u].s[<span class="hljs-number">0</span>]);<br>    <span class="hljs-comment">//判定哨兵, 输出当前结点</span><br>    <span class="hljs-keyword">if</span>(tr[u].v &gt;= <span class="hljs-number">1</span> &amp;&amp; tr[u].v &lt;= n) cout &lt;&lt; tr[u].v &lt;&lt; <span class="hljs-string">' '</span>;<br>    <span class="hljs-comment">//右</span><br>    <span class="hljs-keyword">if</span>(tr[u].s[<span class="hljs-number">1</span>]) <span class="hljs-built_in">Output</span>(tr[u].s[<span class="hljs-number">1</span>]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; n &gt;&gt; cas;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n + <span class="hljs-number">1</span>; ++i) {<br>        <span class="hljs-comment">//插入哨兵防止越界</span><br>        <span class="hljs-built_in">Insert</span>(i);<br>    }<br>    <span class="hljs-keyword">while</span>(cas--) {<br>        <span class="hljs-keyword">int</span> l, r;<br>        cin &gt;&gt; l &gt;&gt; r;<br>        l = <span class="hljs-built_in">getValByRank</span>(l), r = <span class="hljs-built_in">getValByRank</span>(r + <span class="hljs-number">2</span>);<br>        <span class="hljs-built_in">Splay</span>(l, <span class="hljs-number">0</span>), <span class="hljs-built_in">Splay</span>(r, l);<br>        tr[tr[r].s[<span class="hljs-number">0</span>]].flag ^= <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-built_in">Output</span>(Root);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e5</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>    <span class="hljs-keyword">int</span> s[<span class="hljs-number">2</span>], p, v, siz;<br>    <span class="hljs-keyword">int</span> flag;                  <span class="hljs-comment">//flag == 1则需要翻转</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>        v = _v, p = _p;<br>        siz = <span class="hljs-number">1</span>;<br>    }<br>};<br><br>Node tr[N];<br><span class="hljs-keyword">int</span> idx, Root;<br><span class="hljs-keyword">int</span> cas, n;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    tr[x].siz = tr[tr[x].s[<span class="hljs-number">0</span>]].siz + tr[tr[x].s[<span class="hljs-number">1</span>]].siz + <span class="hljs-number">1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">if</span>(tr[x].flag) {<br>        <span class="hljs-built_in">swap</span>(tr[x].s[<span class="hljs-number">0</span>], tr[x].s[<span class="hljs-number">1</span>]);<br>        tr[tr[x].s[<span class="hljs-number">0</span>]].flag ^= <span class="hljs-number">1</span>;<br>        tr[tr[x].s[<span class="hljs-number">1</span>]].flag ^= <span class="hljs-number">1</span>;<br>        tr[x].flag = <span class="hljs-number">0</span>;<br>    }<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>    <span class="hljs-keyword">int</span> k = (tr[y].s[<span class="hljs-number">1</span>] == x);<br>    tr[z].s[tr[z].s[<span class="hljs-number">1</span>] == y] = x, tr[x].p = z;<br>    tr[y].s[k] = tr[x].s[k ^ <span class="hljs-number">1</span>], tr[tr[x].s[k ^ <span class="hljs-number">1</span>]].p = y;<br>    tr[x].s[k ^ <span class="hljs-number">1</span>] = y, tr[y].p = x;<br>    <span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in">Pushup</span>(x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>    <span class="hljs-keyword">while</span>(tr[x].p != goal) {<br>        <span class="hljs-keyword">int</span> y = tr[x].p, z = tr[y].p;<br>        <span class="hljs-keyword">if</span>(z != goal) {<br>            <span class="hljs-keyword">if</span>((tr[z].s[<span class="hljs-number">1</span>] == y) ^ (tr[y].s[<span class="hljs-number">1</span>] == x)) <span class="hljs-built_in">Rotate</span>(x);<br>            <span class="hljs-keyword">else</span> <span class="hljs-built_in">Rotate</span>(y);<br>        }<br>        <span class="hljs-built_in">Rotate</span>(x);<br>    }<br>    <span class="hljs-keyword">if</span>(goal == <span class="hljs-number">0</span>) Root = x;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(u) {<br>        p = u, u = tr[u].s[v &gt; tr[u].v];<br>    }<br>    u = ++idx;<br>    <span class="hljs-keyword">if</span>(p) {<br>        tr[p].s[v &gt; tr[p].v] = u;<br>    }<br>    tr[u].<span class="hljs-built_in">init</span>(v, p);<br>    <span class="hljs-built_in">Splay</span>(u, <span class="hljs-number">0</span>);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>    <span class="hljs-keyword">int</span> u = Root;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>        <span class="hljs-built_in">Pushdown</span>(u);<br>        <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]].siz &gt;= rk) u = tr[u].s[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(tr[tr[u].s[<span class="hljs-number">0</span>]].siz == rk - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> u;<br>        <span class="hljs-keyword">else</span> rk -= (tr[tr[u].s[<span class="hljs-number">0</span>]].siz + <span class="hljs-number">1</span>), u = tr[u].s[<span class="hljs-number">1</span>];<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Output</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span> </span>{<br>    <span class="hljs-comment">//这一步是翻转</span><br>    <span class="hljs-built_in">Pushdown</span>(u);<br>    <span class="hljs-comment">//从u开始中序遍历</span><br>    <span class="hljs-comment">//左</span><br>    <span class="hljs-keyword">if</span>(tr[u].s[<span class="hljs-number">0</span>]) <span class="hljs-built_in">Output</span>(tr[u].s[<span class="hljs-number">0</span>]);<br>    <span class="hljs-comment">//判定哨兵, 输出当前结点</span><br>    <span class="hljs-keyword">if</span>(tr[u].v &gt;= <span class="hljs-number">1</span> &amp;&amp; tr[u].v &lt;= n) cout &lt;&lt; tr[u].v &lt;&lt; <span class="hljs-string">' '</span>;<br>    <span class="hljs-comment">//右</span><br>    <span class="hljs-keyword">if</span>(tr[u].s[<span class="hljs-number">1</span>]) <span class="hljs-built_in">Output</span>(tr[u].s[<span class="hljs-number">1</span>]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; n &gt;&gt; cas;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n + <span class="hljs-number">1</span>; ++i) {<br>        <span class="hljs-comment">//插入哨兵防止越界</span><br>        <span class="hljs-built_in">Insert</span>(i);<br>    }<br>    <span class="hljs-keyword">while</span>(cas--) {<br>        <span class="hljs-keyword">int</span> l, r;<br>        cin &gt;&gt; l &gt;&gt; r;<br>        l = <span class="hljs-built_in">getValByRank</span>(l), r = <span class="hljs-built_in">getValByRank</span>(r + <span class="hljs-number">2</span>);<br>        <span class="hljs-built_in">Splay</span>(l, <span class="hljs-number">0</span>), <span class="hljs-built_in">Splay</span>(r, l);<br>        tr[tr[r].s[<span class="hljs-number">0</span>]].flag ^= <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-built_in">Output</span>(Root);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-comment">//对零基础即为友好</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>	<span class="hljs-keyword">int</span> v, p, s[<span class="hljs-number">2</span>], siz;<br>	<span class="hljs-keyword">bool</span> flag;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>		v = _v, p = _p;<br>		siz = <span class="hljs-number">0</span>;<br>	}<br>};<br><br>Node tr[N];<br><span class="hljs-keyword">int</span> n, cas, Root, idx;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 一些宏定义, 用法简单明了, 跟一大堆杂乱无章的中括号说再见!!!</span><br><span class="hljs-comment"> * ex. 	node(x).init(v, p)		//初始化结点x的属性v, p</span><br><span class="hljs-comment"> * 		siz(left(x))			//获取结点x的左子节点size</span><br><span class="hljs-comment"> *		siz(node(x).ls)			//另一种写法</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ls s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rs s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> isRoot(x) (x == 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BST_getPos(fa, val) tr[fa].s[(val) &gt; tr[(fa)].v]	<span class="hljs-comment">//在fa结点下面根据BST性质插入一个值为val的结点, 判定结点位置(即: 要插在哪里)</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> node(x) tr[(x)]										<span class="hljs-comment">//可以理解为x号结点的对象, 方便使用ls, rs</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> left(x) tr[(x)].s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> right(x) tr[(x)].s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> val(x) tr[(x)].v</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> siz(x) tr[(x)].siz</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> flag(x) tr[(x)].flag</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> pa(x) tr[(x)].p</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son(fa, x) tr[(fa)].s[(x)]							<span class="hljs-comment">//获取结点fa的儿子, 参数x为左右, 左0右1</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LoR(fa, x) (tr[(fa)].s[1] == (x))					<span class="hljs-comment">//L or R, x是fa的哪个儿子</span></span><br><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-built_in">siz</span>(x) = <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(x)) + <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">right</span>(x)) + <span class="hljs-number">1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">flag</span>(x)) {<br>		<span class="hljs-built_in">swap</span>(<span class="hljs-built_in">left</span>(x), <span class="hljs-built_in">right</span>(x));<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">left</span>(x)) ^= <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">right</span>(x)) ^= <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">flag</span>(x) = <span class="hljs-number">0</span>;<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">pa</span>(x), z = <span class="hljs-built_in">pa</span>(y);<br>	<span class="hljs-keyword">int</span> k = <span class="hljs-built_in">LoR</span>(y, x);<br>	<span class="hljs-built_in">son</span>(z, <span class="hljs-built_in">LoR</span>(z, y)) = x, <span class="hljs-built_in">pa</span>(x) = z;<br>	<span class="hljs-built_in">son</span>(y, k) = <span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>), <span class="hljs-built_in">pa</span>(<span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>)) = y;<br>	<span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>) = y, <span class="hljs-built_in">pa</span>(y) = x;<br>	<span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in">Pushup</span>(x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">pa</span>(x) != goal) {<br>		<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">pa</span>(x), z = <span class="hljs-built_in">pa</span>(y);<br>			<span class="hljs-keyword">if</span>(z != goal) {<br>			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">LoR</span>(z, y) ^ <span class="hljs-built_in">LoR</span>(y, x)) {<br>				<span class="hljs-built_in">Rotate</span>(x);<br>			} <span class="hljs-keyword">else</span> {<br>				<span class="hljs-built_in">Rotate</span>(y);<br>			}<br>		}<br>		<span class="hljs-built_in">Rotate</span>(x);<br>	}<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">isRoot</span>(goal)) Root = x;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>	<span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(u) {<br>		p = u, u = <span class="hljs-built_in">BST_getPos</span>(u, v);<br>	}<br>	u = ++idx;<br>	<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isRoot</span>(p)) {<br>		<span class="hljs-built_in">BST_getPos</span>(p, v) = u;<br>	}<br>	<span class="hljs-built_in">node</span>(u).<span class="hljs-built_in">init</span>(v, p);<br>	<span class="hljs-built_in">Splay</span>(u, <span class="hljs-number">0</span>);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>	<span class="hljs-keyword">int</span> u = Root;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>		<span class="hljs-built_in">Pushdown</span>(u);<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) &gt;= rk) u = <span class="hljs-built_in">left</span>(u);<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) == rk - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> u;<br>		<span class="hljs-keyword">else</span> rk -= <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) + <span class="hljs-number">1</span>, u = <span class="hljs-built_in">right</span>(u);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Output</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-built_in">Pushdown</span>(x);<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">left</span>(x)) <span class="hljs-built_in">Output</span>(<span class="hljs-built_in">left</span>(x));<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">val</span>(x) &gt;= <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">val</span>(x) &lt;= n) cout &lt;&lt; <span class="hljs-built_in">val</span>(x) &lt;&lt; <span class="hljs-string">' '</span>;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">right</span>(x)) <span class="hljs-built_in">Output</span>(<span class="hljs-built_in">right</span>(x)); <br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; n &gt;&gt; cas;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n + <span class="hljs-number">1</span>; ++i) {<br>		<span class="hljs-built_in">Insert</span>(i);<br>	}<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		<span class="hljs-keyword">int</span> l, r;<br>		cin &gt;&gt; l &gt;&gt; r;<br>		l = <span class="hljs-built_in">getValByRank</span>(l), r = <span class="hljs-built_in">getValByRank</span>(r + <span class="hljs-number">2</span>);<br>		<span class="hljs-built_in">Splay</span>(l, <span class="hljs-number">0</span>), <span class="hljs-built_in">Splay</span>(r, l);<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">left</span>(r)) ^= <span class="hljs-number">1</span>;<br>	}<br>	<span class="hljs-built_in">Output</span>(Root);<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-comment">//对零基础即为友好</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span><br>	<span class="hljs-keyword">int</span> v, p, s[<span class="hljs-number">2</span>], siz;<br>	<span class="hljs-keyword">bool</span> flag;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _v, <span class="hljs-keyword">int</span> _p)</span> </span>{<br>		v = _v, p = _p;<br>		siz = <span class="hljs-number">0</span>;<br>	}<br>};<br><br>Node tr[N];<br><span class="hljs-keyword">int</span> n, cas, Root, idx;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 一些宏定义, 用法简单明了, 跟一大堆杂乱无章的中括号说再见!!!</span><br><span class="hljs-comment"> * ex. 	node(x).init(v, p)		//初始化结点x的属性v, p</span><br><span class="hljs-comment"> * 		siz(left(x))			//获取结点x的左子节点size</span><br><span class="hljs-comment"> *		siz(node(x).ls)			//另一种写法</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ls s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rs s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> isRoot(x) (x == 0)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BST_getPos(fa, val) tr[fa].s[(val) &gt; tr[(fa)].v]	<span class="hljs-comment">//在fa结点下面根据BST性质插入一个值为val的结点, 判定结点位置(即: 要插在哪里)</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> node(x) tr[(x)]										<span class="hljs-comment">//可以理解为x号结点的对象, 方便使用ls, rs</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> left(x) tr[(x)].s[0]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> right(x) tr[(x)].s[1]</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> val(x) tr[(x)].v</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> siz(x) tr[(x)].siz</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> flag(x) tr[(x)].flag</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> pa(x) tr[(x)].p</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> son(fa, x) tr[(fa)].s[(x)]							<span class="hljs-comment">//获取结点fa的儿子, 参数x为左右, 左0右1</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LoR(fa, x) (tr[(fa)].s[1] == (x))					<span class="hljs-comment">//L or R, x是fa的哪个儿子</span></span><br><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-built_in">siz</span>(x) = <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(x)) + <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">right</span>(x)) + <span class="hljs-number">1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">flag</span>(x)) {<br>		<span class="hljs-built_in">swap</span>(<span class="hljs-built_in">left</span>(x), <span class="hljs-built_in">right</span>(x));<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">left</span>(x)) ^= <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">right</span>(x)) ^= <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">flag</span>(x) = <span class="hljs-number">0</span>;<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Rotate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">pa</span>(x), z = <span class="hljs-built_in">pa</span>(y);<br>	<span class="hljs-keyword">int</span> k = <span class="hljs-built_in">LoR</span>(y, x);<br>	<span class="hljs-built_in">son</span>(z, <span class="hljs-built_in">LoR</span>(z, y)) = x, <span class="hljs-built_in">pa</span>(x) = z;<br>	<span class="hljs-built_in">son</span>(y, k) = <span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>), <span class="hljs-built_in">pa</span>(<span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>)) = y;<br>	<span class="hljs-built_in">son</span>(x, k ^ <span class="hljs-number">1</span>) = y, <span class="hljs-built_in">pa</span>(y) = x;<br>	<span class="hljs-built_in">Pushup</span>(y), <span class="hljs-built_in">Pushup</span>(x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Splay</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> goal)</span> </span>{<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">pa</span>(x) != goal) {<br>		<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">pa</span>(x), z = <span class="hljs-built_in">pa</span>(y);<br>			<span class="hljs-keyword">if</span>(z != goal) {<br>			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">LoR</span>(z, y) ^ <span class="hljs-built_in">LoR</span>(y, x)) {<br>				<span class="hljs-built_in">Rotate</span>(x);<br>			} <span class="hljs-keyword">else</span> {<br>				<span class="hljs-built_in">Rotate</span>(y);<br>			}<br>		}<br>		<span class="hljs-built_in">Rotate</span>(x);<br>	}<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">isRoot</span>(goal)) Root = x;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{<br>	<span class="hljs-keyword">int</span> u = Root, p = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(u) {<br>		p = u, u = <span class="hljs-built_in">BST_getPos</span>(u, v);<br>	}<br>	u = ++idx;<br>	<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isRoot</span>(p)) {<br>		<span class="hljs-built_in">BST_getPos</span>(p, v) = u;<br>	}<br>	<span class="hljs-built_in">node</span>(u).<span class="hljs-built_in">init</span>(v, p);<br>	<span class="hljs-built_in">Splay</span>(u, <span class="hljs-number">0</span>);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValByRank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rk)</span> </span>{<br>	<span class="hljs-keyword">int</span> u = Root;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {<br>		<span class="hljs-built_in">Pushdown</span>(u);<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) &gt;= rk) u = <span class="hljs-built_in">left</span>(u);<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) == rk - <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> u;<br>		<span class="hljs-keyword">else</span> rk -= <span class="hljs-built_in">siz</span>(<span class="hljs-built_in">left</span>(u)) + <span class="hljs-number">1</span>, u = <span class="hljs-built_in">right</span>(u);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Output</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-built_in">Pushdown</span>(x);<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">left</span>(x)) <span class="hljs-built_in">Output</span>(<span class="hljs-built_in">left</span>(x));<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">val</span>(x) &gt;= <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">val</span>(x) &lt;= n) cout &lt;&lt; <span class="hljs-built_in">val</span>(x) &lt;&lt; <span class="hljs-string">' '</span>;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">right</span>(x)) <span class="hljs-built_in">Output</span>(<span class="hljs-built_in">right</span>(x)); <br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; n &gt;&gt; cas;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n + <span class="hljs-number">1</span>; ++i) {<br>		<span class="hljs-built_in">Insert</span>(i);<br>	}<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		<span class="hljs-keyword">int</span> l, r;<br>		cin &gt;&gt; l &gt;&gt; r;<br>		l = <span class="hljs-built_in">getValByRank</span>(l), r = <span class="hljs-built_in">getValByRank</span>(r + <span class="hljs-number">2</span>);<br>		<span class="hljs-built_in">Splay</span>(l, <span class="hljs-number">0</span>), <span class="hljs-built_in">Splay</span>(r, l);<br>		<span class="hljs-built_in">flag</span>(<span class="hljs-built_in">left</span>(r)) ^= <span class="hljs-number">1</span>;<br>	}<br>	<span class="hljs-built_in">Output</span>(Root);<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<h3 id="普通平衡树luogu-p3369">普通平衡树(<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3369">Luogu P3369</a>)</h3>
+<blockquote>
+<p>实现增, 删, 查询排名与反查, 查询前驱与后继功能.</p>
+</blockquote>
+<h4 id="solution1-stdvector">Solution1: <code>std::vector</code></h4>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>vector&lt;<span class="hljs-keyword">int</span>&gt; v;<br><span class="hljs-keyword">int</span> cas;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		<span class="hljs-keyword">int</span> op, x;<br>		cin &gt;&gt; op &gt;&gt; x;<br>		<span class="hljs-built_in"><span class="hljs-keyword">switch</span></span>(op) {<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:		<span class="hljs-comment">//insert(x)</span><br>				v.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x), x);<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:		<span class="hljs-comment">//delete(x)</span><br>				v.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x));<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:		<span class="hljs-comment">//getRank(x)</span><br>				cout &lt;&lt; <span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x) - v.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span> &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:		<span class="hljs-comment">//getValueByRank(x)</span><br>				cout &lt;&lt; v[x - <span class="hljs-number">1</span>] &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:		<span class="hljs-comment">//getPre(x)</span><br>				cout &lt;&lt; *--<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x) &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:		<span class="hljs-comment">//getNxt(x)</span><br>				cout &lt;&lt; *<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x + <span class="hljs-number">1</span>) &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>		}<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>vector&lt;<span class="hljs-keyword">int</span>&gt; v;<br><span class="hljs-keyword">int</span> cas;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		<span class="hljs-keyword">int</span> op, x;<br>		cin &gt;&gt; op &gt;&gt; x;<br>		<span class="hljs-built_in"><span class="hljs-keyword">switch</span></span>(op) {<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:		<span class="hljs-comment">//insert(x)</span><br>				v.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x), x);<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:		<span class="hljs-comment">//delete(x)</span><br>				v.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x));<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:		<span class="hljs-comment">//getRank(x)</span><br>				cout &lt;&lt; <span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x) - v.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span> &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:		<span class="hljs-comment">//getValueByRank(x)</span><br>				cout &lt;&lt; v[x - <span class="hljs-number">1</span>] &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:		<span class="hljs-comment">//getPre(x)</span><br>				cout &lt;&lt; *--<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x) &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:		<span class="hljs-comment">//getNxt(x)</span><br>				cout &lt;&lt; *<span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), x + <span class="hljs-number">1</span>) &lt;&lt; endl;<br>				<span class="hljs-keyword">break</span>;<br>		}<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 
-    </div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/OI/">OI</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/20/%E4%BA%8C%E5%88%86/">
+                        <span class="hidden-mobile">二分</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    
-    
-    
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
+            
+          </article>
         </div>
+      </div>
     </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/OI/" rel="tag"># OI</a>
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
-              <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" rel="tag"># 平衡树</a>
-              <a href="/tags/BST/" rel="tag"># BST</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/02/20/%E4%BA%8C%E5%88%86/" rel="prev" title="二分">
-      <i class="fa fa-chevron-left"></i> 二分
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
     
-  </article>
-  
-  
-  
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
 
 
+    
 
-          </div>
-          
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#splay"><span class="nav-number">1.</span> <span class="nav-text">Splay</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bst%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">BST性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">结点结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E6%97%8B%E6%93%8D%E4%BD%9Crotate"><span class="nav-number">1.3.</span> <span class="nav-text">单旋操作(rotate)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%B3%E6%97%8B-%E5%8D%B3operatornamezigx%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">右旋, 即\(\operatorname{Zig}(x)\)操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E6%97%8B-%E5%8D%B3operatornamezagx%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">左旋, 即\(\operatorname{Zag}(x)\)操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC%E7%BB%93%E7%82%B9-%E5%8D%B3operatornamerotatex%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">旋转结点, 即\(\operatorname{rotate}(x)\)操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E6%97%8B%E6%93%8D%E4%BD%9Csplay"><span class="nav-number">1.4.</span> <span class="nav-text">双旋操作(splay)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9Cinsert"><span class="nav-number">1.5.</span> <span class="nav-text">插入操作(insert)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E6%95%B0%E7%9A%84%E6%8E%92%E5%90%8Dgetrank"><span class="nav-number">1.6.</span> <span class="nav-text">查询指定数的排名(getRank)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%AC%ACk%E5%B0%8F%E7%9A%84%E6%95%B0getvalbyrank"><span class="nav-number">1.7.</span> <span class="nav-text">查询第\(k\)小的数(getValByRank)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9Cdelete"><span class="nav-number">1.8.</span> <span class="nav-text">删除操作(delete)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%89%8D%E9%A9%B1%E5%90%8E%E7%BB%A7getprefixgetsuffix"><span class="nav-number">1.9.</span> <span class="nav-text">查询前驱&#x2F;后继(getPrefix&#x2F;getSuffix)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.10.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E8%89%BA%E5%B9%B3%E8%A1%A1%E6%A0%91luogu-p3391"><span class="nav-number">1.10.1.</span> <span class="nav-text">文艺平衡树(Luogu P3391)</span></a></li></ol></li></ol></li></ol></div>
+        <div class="list-group" id="local-search-result"></div>
       </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">ret2libc</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/ret2libc-pwned" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ret2libc-pwned" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:13917183712@163.com" title="E-Mail → mailto:13917183712@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-      <!--网抑云-->
-      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=406072186&auto=0&height=66"></iframe>
-      
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ret2libc</span>
+  </div>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/VEN/anime.min.js"></script>
-  <script src="/VEN/velocity/velocity.min.js"></script>
-  <script src="/VEN/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
     
 
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
   
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 </body>
 </html>

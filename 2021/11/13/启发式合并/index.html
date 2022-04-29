@@ -1,26 +1,22 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/VEN/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="梦幻布丁(HNOI-2009) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;*启发式合并，时间复杂度分析：考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，所以总复杂度O(NlogN)">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ret2libc">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="梦幻布丁(HNOI-2009) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;*启发式合并，时间复杂度分析：考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，所以总复杂度O(NlogN)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="启发式合并">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/index.html">
@@ -33,460 +29,467 @@
 <meta property="article:tag" content="OI">
 <meta property="article:tag" content="题解">
 <meta property="article:tag" content="算法">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>启发式合并 - Ret2Libc</title>
 
-<link rel="canonical" href="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  <title>启发式合并 | Ret2Libc</title>
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
+</head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Ret2Libc</h1>
-      <span class="logo-line-after"><i></i></span>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ret2Libc</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">含羞草勾腰，大雨快要到。 ——民间谚语</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
 </nav>
 
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ret2libc">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ret2Libc">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          启发式合并
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="启发式合并">
               
-
-              <time title="创建时间：2021-11-13 21:10:18 / 修改时间：22:49:27" itemprop="dateCreated datePublished" datetime="2021-11-13T21:10:18+08:00">2021-11-13</time>
             </span>
 
-          
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-13 21:10" pubdate>
+        2021年11月13日 晚上
+      </time>
+    </span>
+  
+</div>
 
-        </div>
-      </header>
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-        <h1 id="梦幻布丁hnoi-2009">梦幻布丁(HNOI-2009)</h1>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*启发式合并，</span></span><br><span class="line"><span class="comment">时间复杂度分析：</span></span><br><span class="line"><span class="comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span></span><br><span class="line"><span class="comment">所以总复杂度O(NlogN)，每次O(logN)。</span></span><br><span class="line"><span class="comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span></span><br><span class="line"><span class="comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span></span><br><span class="line"><span class="comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span></span><br><span class="line"><span class="comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span></span><br><span class="line"><span class="comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100005</span>,maxm=<span class="number">1000005</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>{</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)){<span class="keyword">if</span> (ch==<span class="string">'-'</span>)f=-f;ch=<span class="built_in">getchar</span>();}</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="number">3</span>)+(ret&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> ret*f;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="number">-1</span>]==y)+(c[i+<span class="number">1</span>]==y);<span class="comment">//合并时需要注意细节 y x y </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="comment">//把原有的x统统变成y </span></span><br><span class="line">    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span></span><br><span class="line">    pos[x]=sta[x]=hsh[x]=<span class="number">0</span>;                         <span class="comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span></span><br><span class="line">	                                                <span class="comment">//最后把x原有的不需要的关联关系干掉 </span></span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    n=<span class="built_in">read</span>(),m=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++){</span><br><span class="line">        c[i]=<span class="built_in">read</span>(),color[c[i]]=c[i];</span><br><span class="line">        ans+=c[i]!=c[i<span class="number">-1</span>];	<span class="comment">//统计段数 </span></span><br><span class="line">        <span class="keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;</span><br><span class="line">        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">while</span> (m--){</span><br><span class="line">        <span class="keyword">int</span> opt=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">if</span> (opt==<span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);<span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">int</span> x=<span class="built_in">read</span>(),y=<span class="built_in">read</span>();</span><br><span class="line">            <span class="keyword">if</span> (x==y) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="built_in">swap</span>(color[x],color[y]);</span><br><span class="line">            <span class="keyword">if</span> (!hsh[color[x]]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">merge</span>(color[x],color[y]);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];</span><br><span class="line"><span class="keyword">int</span> n, m, ans;</span><br><span class="line"><span class="comment">//int marge(int, int);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//看std看不懂, 总结出一个小技巧</span></span><br><span class="line"><span class="comment">//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解</span></span><br><span class="line"><span class="comment">//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多</span></span><br><span class="line"><span class="comment">//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">0</span>, w = <span class="number">1</span>;	<span class="comment">//x是数字, w是符号位</span></span><br><span class="line">  <span class="keyword">char</span> ch = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>) {  <span class="comment">//!isdigit(ch)</span></span><br><span class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) w = <span class="number">-1</span>;        </span><br><span class="line">    ch = <span class="built_in">getchar</span>();               </span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>) {  <span class="comment">//isdigit(ch)</span></span><br><span class="line">    x = x * <span class="number">10</span> + (ch - <span class="string">'0'</span>); </span><br><span class="line">    ch = <span class="built_in">getchar</span>();</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> x * w;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//Example:</span></span><br><span class="line"><span class="comment">//int n = read();</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">marge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">    <span class="comment">//把所有x变成y, 小优化见main函数调用的marge地方</span></span><br><span class="line">    <span class="comment">//下面这几行, 链表的遍历, 比较难懂.</span></span><br><span class="line">    <span class="comment">//注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.</span></span><br><span class="line">    <span class="comment">//这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pos[x]; i; i = nxt[i]) ans -= (raw[i - <span class="number">1</span>] == y) + (raw[i + <span class="number">1</span>] == y);    <span class="comment">//更新答案</span></span><br><span class="line">    <span class="comment">//模拟"合并"的操作</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pos[x]; i; i = nxt[i]) raw[i] = y;    <span class="comment">//修改x ---&gt; y</span></span><br><span class="line">    nxt[last[x]] = pos[y];  <span class="comment">//更新尾节点, 即每段最后一个</span></span><br><span class="line">    pos[y] = pos[x];    <span class="comment">//更新位置</span></span><br><span class="line">    cnt[y] += cnt[x];   <span class="comment">//加上个数</span></span><br><span class="line">    pos[x] = last[x] = cnt[x] = <span class="number">0</span>;    <span class="comment">//合并完之后x没了</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">//ios_base::sync_with_stdio(false); cin.tie(0);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//cin &gt;&gt; n &gt;&gt; m;</span></span><br><span class="line">    n = <span class="built_in">read</span>(); m = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) {</span><br><span class="line">        <span class="comment">//cin &gt;&gt; raw[i];</span></span><br><span class="line">        raw[i] = <span class="built_in">read</span>();</span><br><span class="line">        color[raw[i]] = raw[i]; <span class="comment">//color[x]统计第x个颜色</span></span><br><span class="line">        ans += (raw[i] != raw[i - <span class="number">1</span>]);  <span class="comment">//预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段</span></span><br><span class="line">        cnt[raw[i]] ++; <span class="comment">//cnt就是桶, 即计数数组</span></span><br><span class="line">        <span class="keyword">if</span>(!pos[i]) last[i] = raw[i];     <span class="comment">//每种布丁最后一个的位置</span></span><br><span class="line">        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(m --) {</span><br><span class="line">        <span class="keyword">int</span> op1, op2, op3;</span><br><span class="line">        <span class="comment">//cin &gt;&gt; op1;</span></span><br><span class="line">        op1 = <span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">if</span>(op1 == <span class="number">1</span>) {</span><br><span class="line">            <span class="comment">//cin &gt;&gt; op2 &gt;&gt; op3;</span></span><br><span class="line">            op2 = <span class="built_in">read</span>(); op3 = <span class="built_in">read</span>();</span><br><span class="line">            <span class="keyword">if</span>(cnt[color[op1]] &gt; cnt[color[op2]]) <span class="built_in">swap</span>(color[op1], color[op2]);     <span class="comment">//小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.</span></span><br><span class="line">            <span class="keyword">if</span>(op2 == op3 || !cnt[color[op2]]) <span class="keyword">continue</span>;    <span class="comment">//std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.</span></span><br><span class="line">            <span class="built_in">marge</span>(op2, op3);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+      
+      31 分钟
+    </span>
+  
 
-    </div>
+  
+  
+</div>
 
-    
-    
-    
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/OI/" rel="tag"># OI</a>
-              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+            
           </div>
 
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/" rel="prev" title="CSP-J 2021赛后总结">
-      <i class="fa fa-chevron-left"></i> CSP-J 2021赛后总结
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/21/POI2010-TESIntelligence-Test/" rel="next" title="POI2010 - TESIntelligence Test">
-      POI2010 - TESIntelligence Test <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
           
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A2%A6%E5%B9%BB%E5%B8%83%E4%B8%81hnoi-2009"><span class="nav-number">1.</span> <span class="nav-text">梦幻布丁(HNOI-2009)</span></a></li></ol></div>
       </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">ret2libc</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">9</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/ret2libc-pwned" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ret2libc-pwned" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:13917183712@163.com" title="E-Mail → mailto:13917183712@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-      </div>
-      <!--网抑云-->
-      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=406072186&auto=0&height=66"></iframe>
-      
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </header>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ret2libc</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/VEN/anime.min.js"></script>
-  <script src="/VEN/velocity/velocity.min.js"></script>
-  <script src="/VEN/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+  <main>
+    
       
 
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">启发式合并</h1>
+            
+            <div class="markdown-body">
+              <h1 id="梦幻布丁hnoi-2009">梦幻布丁(HNOI-2009)</h1>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-comment">/*启发式合并，</span><br><span class="hljs-comment">时间复杂度分析：</span><br><span class="hljs-comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span><br><span class="hljs-comment">所以总复杂度O(NlogN)，每次O(logN)。</span><br><span class="hljs-comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span><br><span class="hljs-comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span><br><span class="hljs-comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span><br><span class="hljs-comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span><br><span class="hljs-comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">100005</span>,maxm=<span class="hljs-number">1000005</span>;<br><span class="hljs-keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>{<br>	<span class="hljs-keyword">int</span> ret=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-keyword">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)){<span class="hljs-keyword">if</span> (ch==<span class="hljs-string">'-'</span>)f=-f;ch=<span class="hljs-built_in">getchar</span>();}<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="hljs-number">3</span>)+(ret&lt;&lt;<span class="hljs-number">1</span>)+ch-<span class="hljs-string">'0'</span>,ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> ret*f;<br>}<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="hljs-number">-1</span>]==y)+(c[i+<span class="hljs-number">1</span>]==y);<span class="hljs-comment">//合并时需要注意细节 y x y </span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="hljs-comment">//把原有的x统统变成y </span><br>    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="hljs-comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span><br>    pos[x]=sta[x]=hsh[x]=<span class="hljs-number">0</span>;                         <span class="hljs-comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span><br>	                                                <span class="hljs-comment">//最后把x原有的不需要的关联关系干掉 </span><br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>    n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){<br>        c[i]=<span class="hljs-built_in">read</span>(),color[c[i]]=c[i];<br>        ans+=c[i]!=c[i<span class="hljs-number">-1</span>];	<span class="hljs-comment">//统计段数 </span><br>        <span class="hljs-keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;<br>        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;<br>    }<br>    <span class="hljs-keyword">while</span> (m--){<br>        <span class="hljs-keyword">int</span> opt=<span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span> (opt==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);<span class="hljs-keyword">else</span>{<br>            <span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(),y=<span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span> (x==y) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="hljs-built_in">swap</span>(color[x],color[y]);<br>            <span class="hljs-keyword">if</span> (!hsh[color[x]]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">merge</span>(color[x],color[y]);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-comment">/*启发式合并，</span><br><span class="hljs-comment">时间复杂度分析：</span><br><span class="hljs-comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span><br><span class="hljs-comment">所以总复杂度O(NlogN)，每次O(logN)。</span><br><span class="hljs-comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span><br><span class="hljs-comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span><br><span class="hljs-comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span><br><span class="hljs-comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span><br><span class="hljs-comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">100005</span>,maxm=<span class="hljs-number">1000005</span>;<br><span class="hljs-keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>{<br>	<span class="hljs-keyword">int</span> ret=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-keyword">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)){<span class="hljs-keyword">if</span> (ch==<span class="hljs-string">'-'</span>)f=-f;ch=<span class="hljs-built_in">getchar</span>();}<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="hljs-number">3</span>)+(ret&lt;&lt;<span class="hljs-number">1</span>)+ch-<span class="hljs-string">'0'</span>,ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> ret*f;<br>}<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="hljs-number">-1</span>]==y)+(c[i+<span class="hljs-number">1</span>]==y);<span class="hljs-comment">//合并时需要注意细节 y x y </span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="hljs-comment">//把原有的x统统变成y </span><br>    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="hljs-comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span><br>    pos[x]=sta[x]=hsh[x]=<span class="hljs-number">0</span>;                         <span class="hljs-comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span><br>	                                                <span class="hljs-comment">//最后把x原有的不需要的关联关系干掉 </span><br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>    n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){<br>        c[i]=<span class="hljs-built_in">read</span>(),color[c[i]]=c[i];<br>        ans+=c[i]!=c[i<span class="hljs-number">-1</span>];	<span class="hljs-comment">//统计段数 </span><br>        <span class="hljs-keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;<br>        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;<br>    }<br>    <span class="hljs-keyword">while</span> (m--){<br>        <span class="hljs-keyword">int</span> opt=<span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span> (opt==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);<span class="hljs-keyword">else</span>{<br>            <span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(),y=<span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span> (x==y) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="hljs-built_in">swap</span>(color[x],color[y]);<br>            <span class="hljs-keyword">if</span> (!hsh[color[x]]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">merge</span>(color[x],color[y]);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];<br><span class="hljs-keyword">int</span> n, m, ans;<br><span class="hljs-comment">//int marge(int, int);</span><br><br><span class="hljs-comment">//看std看不懂, 总结出一个小技巧</span><br><span class="hljs-comment">//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解</span><br><span class="hljs-comment">//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多</span><br><span class="hljs-comment">//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int n = read();</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">marge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">//把所有x变成y, 小优化见main函数调用的marge地方</span><br>    <span class="hljs-comment">//下面这几行, 链表的遍历, 比较难懂.</span><br>    <span class="hljs-comment">//注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.</span><br>    <span class="hljs-comment">//这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) ans -= (raw[i - <span class="hljs-number">1</span>] == y) + (raw[i + <span class="hljs-number">1</span>] == y);    <span class="hljs-comment">//更新答案</span><br>    <span class="hljs-comment">//模拟"合并"的操作</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) raw[i] = y;    <span class="hljs-comment">//修改x ---&gt; y</span><br>    nxt[last[x]] = pos[y];  <span class="hljs-comment">//更新尾节点, 即每段最后一个</span><br>    pos[y] = pos[x];    <span class="hljs-comment">//更新位置</span><br>    cnt[y] += cnt[x];   <span class="hljs-comment">//加上个数</span><br>    pos[x] = last[x] = cnt[x] = <span class="hljs-number">0</span>;    <span class="hljs-comment">//合并完之后x没了</span><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">//ios_base::sync_with_stdio(false); cin.tie(0);</span><br><br>    <span class="hljs-comment">//cin &gt;&gt; n &gt;&gt; m;</span><br>    n = <span class="hljs-built_in">read</span>(); m = <span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>        <span class="hljs-comment">//cin &gt;&gt; raw[i];</span><br>        raw[i] = <span class="hljs-built_in">read</span>();<br>        color[raw[i]] = raw[i]; <span class="hljs-comment">//color[x]统计第x个颜色</span><br>        ans += (raw[i] != raw[i - <span class="hljs-number">1</span>]);  <span class="hljs-comment">//预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段</span><br>        cnt[raw[i]] ++; <span class="hljs-comment">//cnt就是桶, 即计数数组</span><br>        <span class="hljs-keyword">if</span>(!pos[i]) last[i] = raw[i];     <span class="hljs-comment">//每种布丁最后一个的位置</span><br>        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;<br>    }<br><br>    <span class="hljs-keyword">while</span>(m --) {<br>        <span class="hljs-keyword">int</span> op1, op2, op3;<br>        <span class="hljs-comment">//cin &gt;&gt; op1;</span><br>        op1 = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span>(op1 == <span class="hljs-number">1</span>) {<br>            <span class="hljs-comment">//cin &gt;&gt; op2 &gt;&gt; op3;</span><br>            op2 = <span class="hljs-built_in">read</span>(); op3 = <span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span>(cnt[color[op1]] &gt; cnt[color[op2]]) <span class="hljs-built_in">swap</span>(color[op1], color[op2]);     <span class="hljs-comment">//小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.</span><br>            <span class="hljs-keyword">if</span>(op2 == op3 || !cnt[color[op2]]) <span class="hljs-keyword">continue</span>;    <span class="hljs-comment">//std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.</span><br>            <span class="hljs-built_in">marge</span>(op2, op3);<br>        } <span class="hljs-keyword">else</span> {<br>            cout &lt;&lt; ans &lt;&lt; endl;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];<br><span class="hljs-keyword">int</span> n, m, ans;<br><span class="hljs-comment">//int marge(int, int);</span><br><br><span class="hljs-comment">//看std看不懂, 总结出一个小技巧</span><br><span class="hljs-comment">//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解</span><br><span class="hljs-comment">//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多</span><br><span class="hljs-comment">//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int n = read();</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">marge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">//把所有x变成y, 小优化见main函数调用的marge地方</span><br>    <span class="hljs-comment">//下面这几行, 链表的遍历, 比较难懂.</span><br>    <span class="hljs-comment">//注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.</span><br>    <span class="hljs-comment">//这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) ans -= (raw[i - <span class="hljs-number">1</span>] == y) + (raw[i + <span class="hljs-number">1</span>] == y);    <span class="hljs-comment">//更新答案</span><br>    <span class="hljs-comment">//模拟"合并"的操作</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) raw[i] = y;    <span class="hljs-comment">//修改x ---&gt; y</span><br>    nxt[last[x]] = pos[y];  <span class="hljs-comment">//更新尾节点, 即每段最后一个</span><br>    pos[y] = pos[x];    <span class="hljs-comment">//更新位置</span><br>    cnt[y] += cnt[x];   <span class="hljs-comment">//加上个数</span><br>    pos[x] = last[x] = cnt[x] = <span class="hljs-number">0</span>;    <span class="hljs-comment">//合并完之后x没了</span><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">//ios_base::sync_with_stdio(false); cin.tie(0);</span><br><br>    <span class="hljs-comment">//cin &gt;&gt; n &gt;&gt; m;</span><br>    n = <span class="hljs-built_in">read</span>(); m = <span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>        <span class="hljs-comment">//cin &gt;&gt; raw[i];</span><br>        raw[i] = <span class="hljs-built_in">read</span>();<br>        color[raw[i]] = raw[i]; <span class="hljs-comment">//color[x]统计第x个颜色</span><br>        ans += (raw[i] != raw[i - <span class="hljs-number">1</span>]);  <span class="hljs-comment">//预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段</span><br>        cnt[raw[i]] ++; <span class="hljs-comment">//cnt就是桶, 即计数数组</span><br>        <span class="hljs-keyword">if</span>(!pos[i]) last[i] = raw[i];     <span class="hljs-comment">//每种布丁最后一个的位置</span><br>        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;<br>    }<br><br>    <span class="hljs-keyword">while</span>(m --) {<br>        <span class="hljs-keyword">int</span> op1, op2, op3;<br>        <span class="hljs-comment">//cin &gt;&gt; op1;</span><br>        op1 = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span>(op1 == <span class="hljs-number">1</span>) {<br>            <span class="hljs-comment">//cin &gt;&gt; op2 &gt;&gt; op3;</span><br>            op2 = <span class="hljs-built_in">read</span>(); op3 = <span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span>(cnt[color[op1]] &gt; cnt[color[op2]]) <span class="hljs-built_in">swap</span>(color[op1], color[op2]);     <span class="hljs-comment">//小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.</span><br>            <span class="hljs-keyword">if</span>(op2 == op3 || !cnt[color[op2]]) <span class="hljs-keyword">continue</span>;    <span class="hljs-comment">//std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.</span><br>            <span class="hljs-built_in">marge</span>(op2, op3);<br>        } <span class="hljs-keyword">else</span> {<br>            cout &lt;&lt; ans &lt;&lt; endl;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/OI/">OI</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/21/POI2010-TESIntelligence-Test/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">POI2010 - TESIntelligence Test</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">CSP-J 2021赛后总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
 
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
   
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 </body>
 </html>

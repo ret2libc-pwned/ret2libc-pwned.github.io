@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ret2Libc</title>
   
-  <subtitle>含羞草勾腰，大雨快要到。 ——民间谚语</subtitle>
+  <subtitle>Hello, the cruel world.</subtitle>
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-03-19T13:01:04.462Z</updated>
+  <updated>2022-04-25T13:09:09.510Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/03/12/Splay/"/>
     <id>https://ret2libc-pwned.github.io/2022/03/12/Splay/</id>
     <published>2022-03-12T13:39:05.000Z</published>
-    <updated>2022-03-19T13:01:04.462Z</updated>
+    <updated>2022-04-25T13:09:09.510Z</updated>
     
     
       
@@ -40,10 +40,6 @@
     <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="平衡树" scheme="https://ret2libc-pwned.github.io/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/"/>
-    
-    <category term="BST" scheme="https://ret2libc-pwned.github.io/tags/BST/"/>
     
   </entry>
   
@@ -86,7 +82,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
         
       
     
@@ -111,7 +107,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
         
       
     
@@ -137,7 +133,7 @@
         
         
     <summary type="html">&lt;h1 id=&quot;梦幻布丁hnoi-2009&quot;&gt;梦幻布丁(HNOI-2009)&lt;/h1&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs</summary>
         
       
     
@@ -166,7 +162,7 @@
         
     <summary type="html">&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;/h1&gt;
 &lt;h2 id=&quot;t1&quot;&gt;T1&lt;/h2&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div</summary>
         
       
     
