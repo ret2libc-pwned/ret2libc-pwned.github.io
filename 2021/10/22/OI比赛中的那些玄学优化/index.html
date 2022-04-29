@@ -16,12 +16,12 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) ios_base::sync_with_stdio(false); cin.tie(0">
+    <meta name="description" content="前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) 12ios_base::sync_with_stdio(false);cin.tie(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OI比赛中的那些玄学优化">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) ios_base::sync_with_stdio(false); cin.tie(0">
+<meta property="og:description" content="前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) 12ios_base::sync_with_stdio(false);cin.tie(">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-22T10:07:36.000Z">
 <meta property="article:modified_time" content="2021-10-22T12:19:51.143Z">
@@ -45,17 +45,7 @@
     
     
       
-      
-        
-          
-          
-          
-        
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
-      
-      
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
-      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-dark.min.css" />
     
   
 
@@ -219,7 +209,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.2k 字
+      5k 字
     </span>
   
 
@@ -228,7 +218,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29 分钟
+      28 分钟
     </span>
   
 
@@ -274,8 +264,7 @@
 <h1 id="读入优化">读入优化</h1>
 <p><strong>fread快读/快写代码来自oi-wiki</strong></p>
 <h2 id="关闭同步推荐">关闭同步(推荐)</h2>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ios_base::sync_with_stdio(false);
-cin.tie(0);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++">ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number"><code class="language-hljs c++">ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>关闭iostream与stdio中输入输出流的同步. 使<code>std::cin</code>与<code>std::cout</code>接近于<code>scanf()</code>与<code>printf()</code>的速度.</p>
 <h3 id="注意事项">注意事项</h3>
 <p>这个小优化是用得最多的, cin和cout慢的要命, 在IO特别多的题中要用cin/cout一定要加.</p>
@@ -286,66 +275,10 @@ cin.tie(0);<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <p>还能格式化字符串, 不香吗?(比如让你保留8位小数, 只需<code>printf("%.8lf", my_variable)</code>即可, cout还需借助<code>iomanip</code>)</p>
 <h2 id="快读快写">快读/快写</h2>
 <p>很好用, <code>getchar()</code>和<code>putchar()</code>快如闪电.</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int read() {
-  int x = 0, w = 1;	//x是数字, w是符号位
-  char ch = 0;
-  while (ch &lt; '0' || ch &gt; '9') {  //!isdigit(ch)
-    if (ch == '-') w = -1;        
-    ch = getchar();               
-  }
-  while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {  //isdigit(ch)
-    x = x * 10 + (ch - '0'); 
-    ch = getchar();
-  }
-  return x * w;
-}
-
-//Example:
-//int n = read();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline void write(int x) {
-  static int sta[35];
-  int top = 0;
-  do {
-    sta[top++] = x % 10, x /= 10;
-  } while (x);
-  while (top) putchar(sta[--top] + 48); //(int)'0'
-}
-
-//Example:
-//int a = 5;
-//write(a);	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int n = read();</span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> sta[<span class="hljs-number">35</span>];<br>  <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">do</span> {<br>    sta[top++] = x % <span class="hljs-number">10</span>, x /= <span class="hljs-number">10</span>;<br>  } <span class="hljs-keyword">while</span> (x);<br>  <span class="hljs-keyword">while</span> (top) <span class="hljs-built_in">putchar</span>(sta[--top] + <span class="hljs-number">48</span>); <span class="hljs-comment">//(int)'0'</span><br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int a = 5;</span><br><span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> sta[<span class="hljs-number">35</span>];<br>  <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">do</span> {<br>    sta[top++] = x % <span class="hljs-number">10</span>, x /= <span class="hljs-number">10</span>;<br>  } <span class="hljs-keyword">while</span> (x);<br>  <span class="hljs-keyword">while</span> (top) <span class="hljs-built_in">putchar</span>(sta[--top] + <span class="hljs-number">48</span>); <span class="hljs-comment">//(int)'0'</span><br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int a = 5;</span><br><span class="hljs-comment">//write(a);	</span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="fread较为玄学">fread(较为玄学)</h2>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">namespace IO {
-const int MAXSIZE = 1 &lt;&lt; 20;
-char buf[MAXSIZE], *p1, *p2;
-#define gc()                                                               \
-  (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \
-       ? EOF                                                               \
-       : *p1++)
-inline int rd() {
-  int x = 0, f = 1;
-  char c = gc();
-  while (!isdigit(c)) {
-    if (c == '-') f = -1;
-    c = gc();
-  }
-  while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
-  return x * f;
-}
-char pbuf[1 &lt;&lt; 20], *pp = pbuf;
-inline void push(const char &amp;c) {
-  if (pp - pbuf == 1 &lt;&lt; 20) fwrite(pbuf, 1, 1 &lt;&lt; 20, stdout), pp = pbuf;
-  *pp++ = c;
-}
-inline void write(int x) {
-  static int sta[35];
-  int top = 0;
-  do {
-    sta[top++] = x % 10, x /= 10;
-  } while (x);
-  while (top) push(sta[--top] + '0');
-}
-}  // namespace IO<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">namespace</span> IO {<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXSIZE = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>;<br><span class="hljs-keyword">char</span> buf[MAXSIZE], *p1, *p2;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> gc()                                                               \</span><br><span class="hljs-meta">  (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \</span><br><span class="hljs-meta">       ? EOF                                                               \</span><br><span class="hljs-meta">       : *p1++)</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">rd</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, f = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">gc</span>();<br>  <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(c)) {<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) f = <span class="hljs-number">-1</span>;<br>    c = <span class="hljs-built_in">gc</span>();<br>  }<br>  <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(c)) x = x * <span class="hljs-number">10</span> + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">gc</span>();<br>  <span class="hljs-keyword">return</span> x * f;<br>}<br><span class="hljs-keyword">char</span> pbuf[<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>], *pp = pbuf;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> &amp;c)</span> </span>{<br>  <span class="hljs-keyword">if</span> (pp - pbuf == <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>) <span class="hljs-built_in">fwrite</span>(pbuf, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>, stdout), pp = pbuf;<br>  *pp++ = c;<br>}<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> sta[<span class="hljs-number">35</span>];<br>  <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">do</span> {<br>    sta[top++] = x % <span class="hljs-number">10</span>, x /= <span class="hljs-number">10</span>;<br>  } <span class="hljs-keyword">while</span> (x);<br>  <span class="hljs-keyword">while</span> (top) <span class="hljs-built_in">push</span>(sta[--top] + <span class="hljs-string">'0'</span>);<br>}<br>}  <span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-keyword">namespace</span> IO {<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAXSIZE = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>;<br><span class="hljs-keyword">char</span> buf[MAXSIZE], *p1, *p2;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> gc()                                                               \</span><br><span class="hljs-meta">  (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \</span><br><span class="hljs-meta">       ? EOF                                                               \</span><br><span class="hljs-meta">       : *p1++)</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">rd</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, f = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">char</span> c = <span class="hljs-built_in">gc</span>();<br>  <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(c)) {<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) f = <span class="hljs-number">-1</span>;<br>    c = <span class="hljs-built_in">gc</span>();<br>  }<br>  <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(c)) x = x * <span class="hljs-number">10</span> + (c ^ <span class="hljs-number">48</span>), c = <span class="hljs-built_in">gc</span>();<br>  <span class="hljs-keyword">return</span> x * f;<br>}<br><span class="hljs-keyword">char</span> pbuf[<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>], *pp = pbuf;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> &amp;c)</span> </span>{<br>  <span class="hljs-keyword">if</span> (pp - pbuf == <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>) <span class="hljs-built_in">fwrite</span>(pbuf, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>, stdout), pp = pbuf;<br>  *pp++ = c;<br>}<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>  <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> sta[<span class="hljs-number">35</span>];<br>  <span class="hljs-keyword">int</span> top = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">do</span> {<br>    sta[top++] = x % <span class="hljs-number">10</span>, x /= <span class="hljs-number">10</span>;<br>  } <span class="hljs-keyword">while</span> (x);<br>  <span class="hljs-keyword">while</span> (top) <span class="hljs-built_in">push</span>(sta[--top] + <span class="hljs-string">'0'</span>);<br>}<br>}  <span class="hljs-comment">// namespace IO</span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>如上是基于<code>fread</code>实现的快读快写, 本质是利用文件的缓冲区.</p>
 <p>实现时需要将<code>getchar()</code>稍微改改, (代码中<code>\</code>表示显示不下, 写的时候从这一行接着写就行, 无需换行)</p>
 <h3 id="注意事项-1">注意事项</h3>
@@ -356,29 +289,14 @@ inline void write(int x) {
 <p>有研究表明<code>++i</code>比<code>i++</code>快, 说是<code>i++</code>用了一个临时变量.</p>
 <p><strong>注: 很多人在网上科普两者的关系, 但是只是看反编译代码, 看到<code>++i</code>比<code>i++</code>用的汇编指令少一两个, 就说<code>++i</code>更快(甚至每一句指令的意思都说一下, 即到底慢在哪了)??? 就算真的是这样这种不懂装懂的态度也不是很好</strong></p>
 <p><code>++i</code>执行完后的值跟i是一样的, 可以拿来给其它变量赋值.</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int k = ++i;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword"><code class="language-hljs c++"><span class="hljs-keyword">int</span> k = ++i;<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="register已经死了"><code>register</code>(已经死了)</h2>
 <p><code>register</code>, 即直接操作寄存器. 在C++14逐渐被弃用.</p>
 <p>在之前的C++版本中都可以放在循环里面提升性能.</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(register int i = 0; i &lt; n; ++i)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i < n; ++i)<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <h2 id="inline内联函数推荐"><code>inline</code>内联函数(推荐)</h2>
 <p><code>inline</code>可以在调用处就地展开函数.</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">using namespace std;
-
-inline int lowbit(int x) {
-	return x &amp; (-x);
-}
-
-int main() {
-	int x = 114514;
-	int y = lowbit(x);
-	//相当于直接运行函数, 没有调用关系
-	//inline int lowbit(int x) {
-	//		return x &amp; (-x);
-	//}
-    cout &lt;&lt; y &lt;&lt; endl;
-	return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">return</span> x &amp; (-x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">int</span> x = <span class="hljs-number">114514</span>;<br>	<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">lowbit</span>(x);<br>	<span class="hljs-comment">//相当于直接运行函数, 没有调用关系</span><br>	<span class="hljs-comment">//inline int lowbit(int x) {</span><br>	<span class="hljs-comment">//		return x &amp; (-x);</span><br>	<span class="hljs-comment">//}</span><br>    cout &lt;&lt; y &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>	<span class="hljs-keyword">return</span> x &amp; (-x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">int</span> x = <span class="hljs-number">114514</span>;<br>	<span class="hljs-keyword">int</span> y = <span class="hljs-built_in">lowbit</span>(x);<br>	<span class="hljs-comment">//相当于直接运行函数, 没有调用关系</span><br>	<span class="hljs-comment">//inline int lowbit(int x) {</span><br>	<span class="hljs-comment">//		return x &amp; (-x);</span><br>	<span class="hljs-comment">//}</span><br>    cout &lt;&lt; y &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>对于一些需要调用多次的函数, 可以使用<code>inline</code>声明他是内联的.</p>
 <p>对于inline函数, 调用时不像普通函数那样, 将地址, 参数等关键信息压入栈(一种内存布局)中, 再执行<code>call</code>指令. 返回时再操作栈, 最后<code>ret</code>. 这样不仅费时间, 还浪费栈空间.</p>
 <p>inline函数会在预处理阶段像宏(如<code>#define</code>)在调用处原地展开.</p>
@@ -391,68 +309,14 @@ int main() {
 <p>反编译工具: <code>IDA Pro 7.5 (32-bit)</code></p>
 <p>测试环境: <code>Windows 10 x64</code></p>
 <p>我们写出如下测试代码:</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//test.cpp
-#include &lt;iostream&gt;
-
-inline int my_inline_func(int x) {
-    //lowbit :)
-    return x &amp; (-x);
-}
-
-int main() {
-    int n = 0;
-    scanf("%d", &amp;n);
-    printf("%d\n", my_inline_func(n));
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-comment">//test.cpp</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">my_inline_func</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-comment">//lowbit :)</span><br>    <span class="hljs-keyword">return</span> x &amp; (-x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, <span class="hljs-built_in">my_inline_func</span>(n));<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-comment">//test.cpp</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">my_inline_func</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-comment">//lowbit :)</span><br>    <span class="hljs-keyword">return</span> x &amp; (-x);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, <span class="hljs-built_in">my_inline_func</span>(n));<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>使用<code>g++ test.cpp -O -o test.exe</code>命令(<code>-O</code>表示开启优化, 即使用内联函数)生成可执行文件.</p>
 <p>反编译之后:</p>
-<div class="code-wrapper"><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">; main()
-.text:00401421 ; int __cdecl main(int argc, const char **argv, const char **envp)
-.text:00401421                 public _main
-.text:00401421 _main           proc near               ; CODE XREF: sub_4011A0+8E↑p
-.text:00401421
-.text:00401421 argc            = dword ptr  8
-.text:00401421 argv            = dword ptr  0Ch
-.text:00401421 envp            = dword ptr  10h
-.text:00401421
-.text:00401421 ; __unwind {
-.text:00401421                 push    ebp
-.text:00401422                 mov     ebp, esp
-.text:00401424                 and     esp, 0FFFFFFF0h
-.text:00401427                 sub     esp, 20h
-.text:0040142A                 call    ___main
-.text:0040142F                 mov     dword ptr [esp+1Ch], 0
-.text:00401437                 lea     eax, [esp+1Ch]
-.text:0040143B                 mov     [esp+4], eax
-.text:0040143F                 mov     dword ptr [esp], offset Format ; "%d"
-.text:00401446                 call    _scanf
-							;这里应该就是inline函数展开后的样子了, 可以看到并没有调用的过程
-.text:0040144B                 mov     edx, [esp+1Ch]
-.text:0040144F                 mov     eax, edx
-.text:00401451                 neg     eax
-.text:00401453                 and     eax, edx
-.text:00401455                 mov     [esp+4], eax
-.text:00401459                 mov     dword ptr [esp], offset aD_0 ; "%d\n"
-.text:00401460                 call    _printf
-.text:00401465                 mov     eax, 0
-.text:0040146A                 leave
-.text:0040146B                 retn
-.text:0040146B ; } // starts at 401421
-.text:0040146B _main           endp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs asm"><code class="language-hljs asm">; main()<br>.text:00401421 ; int __cdecl main(int argc, const char **argv, const char **envp)<br>.text:00401421                 public _main<br>.text:00401421 _main           proc near               ; CODE XREF: sub_4011A0+8E↑p<br>.text:00401421<br>.text:00401421 argc            = dword ptr  8<br>.text:00401421 argv            = dword ptr  0Ch<br>.text:00401421 envp            = dword ptr  10h<br>.text:00401421<br>.text:00401421 ; __unwind {<br>.text:00401421                 push    ebp<br>.text:00401422                 mov     ebp, esp<br>.text:00401424                 and     esp, 0FFFFFFF0h<br>.text:00401427                 sub     esp, 20h<br>.text:0040142A                 call    ___main<br>.text:0040142F                 mov     dword ptr [esp+1Ch], 0<br>.text:00401437                 lea     eax, [esp+1Ch]<br>.text:0040143B                 mov     [esp+4], eax<br>.text:0040143F                 mov     dword ptr [esp], offset Format ; "%d"<br>.text:00401446                 call    _scanf<br>							;这里应该就是inline函数展开后的样子了, 可以看到并没有调用的过程<br>.text:0040144B                 mov     edx, [esp+1Ch]<br>.text:0040144F                 mov     eax, edx<br>.text:00401451                 neg     eax<br>.text:00401453                 and     eax, edx<br>.text:00401455                 mov     [esp+4], eax<br>.text:00401459                 mov     dword ptr [esp], offset aD_0 ; "%d\n"<br>.text:00401460                 call    _printf<br>.text:00401465                 mov     eax, 0<br>.text:0040146A                 leave<br>.text:0040146B                 retn<br>.text:0040146B ; } // starts at 401421<br>.text:0040146B _main           endp<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>可以知道, inline函数只是就地展开, 并没有调用, 这个"调用的"过程在地址上是连续的, 没有涉及到地址和参数的push/pop操作.</p>
 <p>看得还不够清楚? 让我们点一下F5</p>
 <p>借助IDA Pro强大的Hex-rays插件, 可以清楚地看到main函数编译后变成了这个样子.</p>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int __cdecl main(int argc, const char **argv, const char **envp)
-{
-  int v4; // [esp+1Ch] [ebp-4h] BYREF
-
-  __main();	//这个是预处理, 即程序的入口点, 不用管.
-  v4 = 0;
-  scanf("%d", &amp;v4);
-  printf("%d\n", v4 &amp; -v4);	//这就是inline函数的魅力 :)
-  return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **envp)</span></span><br><span class="hljs-function"></span>{<br>  <span class="hljs-keyword">int</span> v4; <span class="hljs-comment">// [esp+1Ch] [ebp-4h] BYREF</span><br><br>  __main();	<span class="hljs-comment">//这个是预处理, 即程序的入口点, 不用管.</span><br>  v4 = <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;v4);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, v4 &amp; -v4);	<span class="hljs-comment">//这就是inline函数的魅力 :)</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **envp)</span></span><br><span class="hljs-function"></span>{<br>  <span class="hljs-keyword">int</span> v4; <span class="hljs-comment">// [esp+1Ch] [ebp-4h] BYREF</span><br><br>  __main();	<span class="hljs-comment">//这个是预处理, 即程序的入口点, 不用管.</span><br>  v4 = <span class="hljs-number">0</span>;<br>  <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;v4);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>, v4 &amp; -v4);	<span class="hljs-comment">//这就是inline函数的魅力 :)</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 <p>现在, inline函数的作用我们的理解已经很透彻了.</p>
 <h1 id="算法优化">算法优化</h1>
 <h2 id="相关stl">相关STL</h2>
@@ -678,8 +542,6 @@ int main() {
 
 
 
-  
-    
   
 
 

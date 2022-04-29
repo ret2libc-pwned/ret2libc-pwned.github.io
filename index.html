@@ -245,7 +245,7 @@
       <p class="index-excerpt">
         <a href="/2022/02/20/%E4%BA%8C%E5%88%86/" target="_self">
           
-          二分 二分查找 给定一个序列\(\{a\}\), 查找指定元素\(x\)位置. 代码实现 int bsearch(int* a, int x, int l, int r) {     while(l &lt; r) {         int mid &#x3D; l + (r - l &gt;&gt; 1);         if(a[mid] &gt;&#x3D; x) r &#x3D; mid;         else
+          二分 二分查找 给定一个序列\(\{a\}\), 查找指定元素\(x\)位置. 代码实现 12345678int bsearch(int* a, int x, int l, int r) {    while(l &lt; r) {        int mid &#x3D; l + (r - l &gt;&gt; 1);        if(a[mid] &gt;&#x3D; x) r &#x3D; mid;
         </a>
       </p>
 
@@ -287,7 +287,7 @@
       <p class="index-excerpt">
         <a href="/2021/12/04/FREE-Figurines/" target="_self">
           
-          #include &lt;iostream&gt;  const int N &#x3D; 1e6;  using namespace std;  &#x2F;* 两种操作: 接在后面 &#x2F; 删除最前面. 最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作. 优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可. *&#x2F;  int src[N], dest[N], len[N],
+          1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;const int N &#x3D; 1e6;using namespace std;&#x2F;*两种操作: 接在后面 &#x2F; 删除最前面.最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作.
         </a>
       </p>
 
@@ -329,7 +329,7 @@
       <p class="index-excerpt">
         <a href="/2021/11/21/POI2010-TESIntelligence-Test/" target="_self">
           
-          #include &lt;iostream&gt; #include &lt;vector&gt;  using namespace std;  const int N &#x3D; 1e6; #define YES puts(&quot;TAK&quot;) #define NO puts(&quot;NIE&quot;);  int len, tc; vector&lt;int&gt; nxt[N];  &#x2F;&#x2F;思路 开二维vector存一堆指针
+          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N &#x3D; 1e6;#define YES p
         </a>
       </p>
 
@@ -371,7 +371,7 @@
       <p class="index-excerpt">
         <a href="/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/" target="_self">
           
-          梦幻布丁(HNOI-2009) &#x2F;*启发式合并， 时间复杂度分析： 考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次， 所以总复杂度O(NlogN)，每次O(logN)。 对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力
+          梦幻布丁(HNOI-2009) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;*启发式合并，时间复杂度分析：考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，所以总复杂度O(NlogN)
         </a>
       </p>
 
@@ -415,7 +415,7 @@
       <p class="index-excerpt">
         <a href="/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/" target="_self">
           
-          Solution T1 #include &lt;iostream&gt;  using namespace std;  #define INF 0x3f3f3f3f #define int long long  int l, r, n;  inline int brute(int n ,int l, int r) {     &#x2F;&#x2F;bf: 暴力枚举k \in [l, r], 90 pts
+          Solution T1 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;iostream&gt;using namespace std;#define INF 0x3f3f3f3f#define int long longint l, r, n;inline int brute(in
         </a>
       </p>
 
@@ -459,7 +459,7 @@
       <p class="index-excerpt">
         <a href="/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/" target="_self">
           
-          前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) ios_base::sync_with_stdio(false); cin.tie(0
+          前言 这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你, 也希望能借此给自己增加Rp. 这也是我第一次OI比赛, 希望能考好点. 读入优化 fread快读&#x2F;快写代码来自oi-wiki 关闭同步(推荐) 12ios_base::sync_with_stdio(false);cin.tie(
         </a>
       </p>
 
@@ -682,8 +682,6 @@
 
 
 
-  
-    
   
 
 

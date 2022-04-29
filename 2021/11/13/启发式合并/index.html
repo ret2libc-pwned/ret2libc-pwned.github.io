@@ -16,12 +16,12 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="梦幻布丁(HNOI-2009) &#x2F;*启发式合并， 时间复杂度分析： 考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次， 所以总复杂度O(NlogN)，每次O(logN)。 对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力">
+    <meta name="description" content="梦幻布丁(HNOI-2009) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;*启发式合并，时间复杂度分析：考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，所以总复杂度O(NlogN)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="启发式合并">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="梦幻布丁(HNOI-2009) &#x2F;*启发式合并， 时间复杂度分析： 考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次， 所以总复杂度O(NlogN)，每次O(logN)。 对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力">
+<meta property="og:description" content="梦幻布丁(HNOI-2009) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;*启发式合并，时间复杂度分析：考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，所以总复杂度O(NlogN)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-13T13:10:18.000Z">
 <meta property="article:modified_time" content="2021-11-13T14:49:27.835Z">
@@ -44,17 +44,7 @@
     
     
       
-      
-        
-          
-          
-          
-        
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
-      
-      
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
-      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-dark.min.css" />
     
   
 
@@ -218,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      3.7k 字
     </span>
   
 
@@ -227,7 +217,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      21 分钟
     </span>
   
 
@@ -268,130 +258,8 @@
             
             <div class="markdown-body">
               <h1 id="梦幻布丁hnoi-2009">梦幻布丁(HNOI-2009)</h1>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">/*启发式合并，
-时间复杂度分析：
-考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，
-所以总复杂度O(NlogN)，每次O(logN)。
-对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，
-然后处理一下此次合并对答案的影响（显然答案是不增的）。
-但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），
-如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需
-要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/ 
-#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int maxn=100005,maxm=1000005;
-int n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;
-int read(){
-	int ret=0,f=1;char ch=getchar();
-	while (!isdigit(ch)){if (ch=='-')f=-f;ch=getchar();}
-	while (isdigit(ch)) ret=(ret&lt;&lt;3)+(ret&lt;&lt;1)+ch-'0',ch=getchar();
-	return ret*f;
-}
-void merge(int x,int y) {
-    for (int i=pos[x];i;i=nxt[i]) ans-=(c[i-1]==y)+(c[i+1]==y);//合并时需要注意细节 y x y 
-    for (int i=pos[x];i;i=nxt[i]) c[i]=y;//把原有的x统统变成y 
-    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 
-    pos[x]=sta[x]=hsh[x]=0;                         //先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面
-	                                                //最后把x原有的不需要的关联关系干掉 
-}
-int main(){
-    n=read(),m=read();
-    for (int i=1;i&lt;=n;i++){
-        c[i]=read(),color[c[i]]=c[i];
-        ans+=c[i]!=c[i-1];	//统计段数 
-        if (!pos[c[i]]) sta[c[i]]=i;
-        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;
-    }
-    while (m--){
-        int opt=read();
-        if (opt==2) printf("%d\n",ans);else{
-            int x=read(),y=read();
-            if (x==y) continue;
-            if (hsh[color[x]]&gt;hsh[color[y]]) swap(color[x],color[y]);
-            if (!hsh[color[x]]) continue;
-            merge(color[x],color[y]);
-        }
-    }
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-
-const int N = 1e6;
-
-using namespace std;
-
-int nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];
-int n, m, ans;
-//int marge(int, int);
-
-//看std看不懂, 总结出一个小技巧
-//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解
-//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多
-//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好
-
-inline int read() {
-  int x = 0, w = 1;	//x是数字, w是符号位
-  char ch = 0;
-  while (ch &lt; '0' || ch &gt; '9') {  //!isdigit(ch)
-    if (ch == '-') w = -1;        
-    ch = getchar();               
-  }
-  while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {  //isdigit(ch)
-    x = x * 10 + (ch - '0'); 
-    ch = getchar();
-  }
-  return x * w;
-}
-
-//Example:
-//int n = read();
-
-inline int marge(int x, int y) {
-    //把所有x变成y, 小优化见main函数调用的marge地方
-    //下面这几行, 链表的遍历, 比较难懂.
-    //注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.
-    //这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段
-    for(int i = pos[x]; i; i = nxt[i]) ans -= (raw[i - 1] == y) + (raw[i + 1] == y);    //更新答案
-    //模拟"合并"的操作
-    for(int i = pos[x]; i; i = nxt[i]) raw[i] = y;    //修改x ---&gt; y
-    nxt[last[x]] = pos[y];  //更新尾节点, 即每段最后一个
-    pos[y] = pos[x];    //更新位置
-    cnt[y] += cnt[x];   //加上个数
-    pos[x] = last[x] = cnt[x] = 0;    //合并完之后x没了
-}
-
-int main() {
-    //ios_base::sync_with_stdio(false); cin.tie(0);
-
-    //cin &gt;&gt; n &gt;&gt; m;
-    n = read(); m = read();
-    for(int i = 1; i &lt;= n; i ++) {
-        //cin &gt;&gt; raw[i];
-        raw[i] = read();
-        color[raw[i]] = raw[i]; //color[x]统计第x个颜色
-        ans += (raw[i] != raw[i - 1]);  //预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段
-        cnt[raw[i]] ++; //cnt就是桶, 即计数数组
-        if(!pos[i]) last[i] = raw[i];     //每种布丁最后一个的位置
-        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;
-    }
-
-    while(m --) {
-        int op1, op2, op3;
-        //cin &gt;&gt; op1;
-        op1 = read();
-        if(op1 == 1) {
-            //cin &gt;&gt; op2 &gt;&gt; op3;
-            op2 = read(); op3 = read();
-            if(cnt[color[op1]] &gt; cnt[color[op2]]) swap(color[op1], color[op2]);     //小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.
-            if(op2 == op3 || !cnt[color[op2]]) continue;    //std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.
-            marge(op2, op3);
-        } else {
-            cout &lt;&lt; ans &lt;&lt; endl;
-        }
-    }
-    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-comment">/*启发式合并，</span><br><span class="hljs-comment">时间复杂度分析：</span><br><span class="hljs-comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span><br><span class="hljs-comment">所以总复杂度O(NlogN)，每次O(logN)。</span><br><span class="hljs-comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span><br><span class="hljs-comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span><br><span class="hljs-comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span><br><span class="hljs-comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span><br><span class="hljs-comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">100005</span>,maxm=<span class="hljs-number">1000005</span>;<br><span class="hljs-keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>{<br>	<span class="hljs-keyword">int</span> ret=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-keyword">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)){<span class="hljs-keyword">if</span> (ch==<span class="hljs-string">'-'</span>)f=-f;ch=<span class="hljs-built_in">getchar</span>();}<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="hljs-number">3</span>)+(ret&lt;&lt;<span class="hljs-number">1</span>)+ch-<span class="hljs-string">'0'</span>,ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> ret*f;<br>}<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="hljs-number">-1</span>]==y)+(c[i+<span class="hljs-number">1</span>]==y);<span class="hljs-comment">//合并时需要注意细节 y x y </span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="hljs-comment">//把原有的x统统变成y </span><br>    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="hljs-comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span><br>    pos[x]=sta[x]=hsh[x]=<span class="hljs-number">0</span>;                         <span class="hljs-comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span><br>	                                                <span class="hljs-comment">//最后把x原有的不需要的关联关系干掉 </span><br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>    n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){<br>        c[i]=<span class="hljs-built_in">read</span>(),color[c[i]]=c[i];<br>        ans+=c[i]!=c[i<span class="hljs-number">-1</span>];	<span class="hljs-comment">//统计段数 </span><br>        <span class="hljs-keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;<br>        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;<br>    }<br>    <span class="hljs-keyword">while</span> (m--){<br>        <span class="hljs-keyword">int</span> opt=<span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span> (opt==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);<span class="hljs-keyword">else</span>{<br>            <span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(),y=<span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span> (x==y) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="hljs-built_in">swap</span>(color[x],color[y]);<br>            <span class="hljs-keyword">if</span> (!hsh[color[x]]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">merge</span>(color[x],color[y]);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-comment">/*启发式合并，</span><br><span class="hljs-comment">时间复杂度分析：</span><br><span class="hljs-comment">考虑用贡献法来分析，每次合并后，队列长度一定大于等于原来短的长度的两倍，这样相当于每次合并都会让短的长度扩大一倍以上，最多扩大 logN 次，</span><br><span class="hljs-comment">所以总复杂度O(NlogN)，每次O(logN)。</span><br><span class="hljs-comment">对于这道题目，我们先求出原序列的答案，对于每一种颜色都用类似链表的数据结构串起来，并记录下尾节点。每次修改，都根据启发式合并的方法来暴力合并，</span><br><span class="hljs-comment">然后处理一下此次合并对答案的影响（显然答案是不增的）。</span><br><span class="hljs-comment">但是如果我们把 1 染成 2 并且 hsh[1]&gt;hsh[2]，那么我们应该把 2 接到 1 的后面。这样会有一个问题：本次修改后这个链的颜色是 1（颜色为 2 的链被删除了），</span><br><span class="hljs-comment">如果接下来修改颜色 2（显然这是合法的），会使得找不到颜色 2 而只能找到颜色 1 了。所以我们需要使用一个 f 数组，表示当我们要寻找颜色 x 时，实际上需</span><br><span class="hljs-comment">要寻找颜色为 color[x] 的链。如果遇到上面这种情况就要交换交换 color[x] 和 color[y]*/</span> <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">100005</span>,maxm=<span class="hljs-number">1000005</span>;<br><span class="hljs-keyword">int</span> n,m,c[maxn],hsh[maxm],sta[maxm],color[maxm],pos[maxm],nxt[maxn],ans;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>{<br>	<span class="hljs-keyword">int</span> ret=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-keyword">char</span> ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">isdigit</span>(ch)){<span class="hljs-keyword">if</span> (ch==<span class="hljs-string">'-'</span>)f=-f;ch=<span class="hljs-built_in">getchar</span>();}<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(ch)) ret=(ret&lt;&lt;<span class="hljs-number">3</span>)+(ret&lt;&lt;<span class="hljs-number">1</span>)+ch-<span class="hljs-string">'0'</span>,ch=<span class="hljs-built_in">getchar</span>();<br>	<span class="hljs-keyword">return</span> ret*f;<br>}<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) ans-=(c[i<span class="hljs-number">-1</span>]==y)+(c[i+<span class="hljs-number">1</span>]==y);<span class="hljs-comment">//合并时需要注意细节 y x y </span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=pos[x];i;i=nxt[i]) c[i]=y;<span class="hljs-comment">//把原有的x统统变成y </span><br>    nxt[sta[x]]=pos[y],pos[y]=pos[x],hsh[y]+=hsh[x];<span class="hljs-comment">//实质就是再不重新建立关系的同时，依旧利用已有的关联关系。换一个解释就是下次处理颜色y时 </span><br>    pos[x]=sta[x]=hsh[x]=<span class="hljs-number">0</span>;                         <span class="hljs-comment">//先把原有的x处理掉(刚刚改变成的y的x)，然后再来解决原有的y，等价于把x接到y的屁股后面</span><br>	                                                <span class="hljs-comment">//最后把x原有的不需要的关联关系干掉 </span><br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>    n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++){<br>        c[i]=<span class="hljs-built_in">read</span>(),color[c[i]]=c[i];<br>        ans+=c[i]!=c[i<span class="hljs-number">-1</span>];	<span class="hljs-comment">//统计段数 </span><br>        <span class="hljs-keyword">if</span> (!pos[c[i]]) sta[c[i]]=i;<br>        hsh[c[i]]++,nxt[i]=pos[c[i]],pos[c[i]]=i;<br>    }<br>    <span class="hljs-keyword">while</span> (m--){<br>        <span class="hljs-keyword">int</span> opt=<span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span> (opt==<span class="hljs-number">2</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d\n"</span>,ans);<span class="hljs-keyword">else</span>{<br>            <span class="hljs-keyword">int</span> x=<span class="hljs-built_in">read</span>(),y=<span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span> (x==y) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (hsh[color[x]]&gt;hsh[color[y]]) <span class="hljs-built_in">swap</span>(color[x],color[y]);<br>            <span class="hljs-keyword">if</span> (!hsh[color[x]]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">merge</span>(color[x],color[y]);<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];<br><span class="hljs-keyword">int</span> n, m, ans;<br><span class="hljs-comment">//int marge(int, int);</span><br><br><span class="hljs-comment">//看std看不懂, 总结出一个小技巧</span><br><span class="hljs-comment">//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解</span><br><span class="hljs-comment">//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多</span><br><span class="hljs-comment">//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int n = read();</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">marge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">//把所有x变成y, 小优化见main函数调用的marge地方</span><br>    <span class="hljs-comment">//下面这几行, 链表的遍历, 比较难懂.</span><br>    <span class="hljs-comment">//注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.</span><br>    <span class="hljs-comment">//这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) ans -= (raw[i - <span class="hljs-number">1</span>] == y) + (raw[i + <span class="hljs-number">1</span>] == y);    <span class="hljs-comment">//更新答案</span><br>    <span class="hljs-comment">//模拟"合并"的操作</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) raw[i] = y;    <span class="hljs-comment">//修改x ---&gt; y</span><br>    nxt[last[x]] = pos[y];  <span class="hljs-comment">//更新尾节点, 即每段最后一个</span><br>    pos[y] = pos[x];    <span class="hljs-comment">//更新位置</span><br>    cnt[y] += cnt[x];   <span class="hljs-comment">//加上个数</span><br>    pos[x] = last[x] = cnt[x] = <span class="hljs-number">0</span>;    <span class="hljs-comment">//合并完之后x没了</span><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">//ios_base::sync_with_stdio(false); cin.tie(0);</span><br><br>    <span class="hljs-comment">//cin &gt;&gt; n &gt;&gt; m;</span><br>    n = <span class="hljs-built_in">read</span>(); m = <span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>        <span class="hljs-comment">//cin &gt;&gt; raw[i];</span><br>        raw[i] = <span class="hljs-built_in">read</span>();<br>        color[raw[i]] = raw[i]; <span class="hljs-comment">//color[x]统计第x个颜色</span><br>        ans += (raw[i] != raw[i - <span class="hljs-number">1</span>]);  <span class="hljs-comment">//预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段</span><br>        cnt[raw[i]] ++; <span class="hljs-comment">//cnt就是桶, 即计数数组</span><br>        <span class="hljs-keyword">if</span>(!pos[i]) last[i] = raw[i];     <span class="hljs-comment">//每种布丁最后一个的位置</span><br>        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;<br>    }<br><br>    <span class="hljs-keyword">while</span>(m --) {<br>        <span class="hljs-keyword">int</span> op1, op2, op3;<br>        <span class="hljs-comment">//cin &gt;&gt; op1;</span><br>        op1 = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span>(op1 == <span class="hljs-number">1</span>) {<br>            <span class="hljs-comment">//cin &gt;&gt; op2 &gt;&gt; op3;</span><br>            op2 = <span class="hljs-built_in">read</span>(); op3 = <span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span>(cnt[color[op1]] &gt; cnt[color[op2]]) <span class="hljs-built_in">swap</span>(color[op1], color[op2]);     <span class="hljs-comment">//小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.</span><br>            <span class="hljs-keyword">if</span>(op2 == op3 || !cnt[color[op2]]) <span class="hljs-keyword">continue</span>;    <span class="hljs-comment">//std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.</span><br>            <span class="hljs-built_in">marge</span>(op2, op3);<br>        } <span class="hljs-keyword">else</span> {<br>            cout &lt;&lt; ans &lt;&lt; endl;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> nxt[N], pos[N], raw[N], a[N], last[N], color[N], cnt[N];<br><span class="hljs-keyword">int</span> n, m, ans;<br><span class="hljs-comment">//int marge(int, int);</span><br><br><span class="hljs-comment">//看std看不懂, 总结出一个小技巧</span><br><span class="hljs-comment">//嵌套的数组一个个模拟太难, 可以用一下OOP的思想方便理解</span><br><span class="hljs-comment">//就比如桶排的时候把cnt[a[i]]理解为a[i].cnt就舒服很多</span><br><span class="hljs-comment">//阅读这个代码时需要经常这样思考. 例如color[raw[i]]可以理解为raw[i].color, 把包在中括号里边的东西看成object就好</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//x是数字, w是符号位</span><br>  <span class="hljs-keyword">char</span> ch = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (ch &lt; <span class="hljs-string">'0'</span> || ch &gt; <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//!isdigit(ch)</span><br>    <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) w = <span class="hljs-number">-1</span>;        <br>    ch = <span class="hljs-built_in">getchar</span>();               <br>  }<br>  <span class="hljs-keyword">while</span> (ch &gt;= <span class="hljs-string">'0'</span> &amp;&amp; ch &lt;= <span class="hljs-string">'9'</span>) {  <span class="hljs-comment">//isdigit(ch)</span><br>    x = x * <span class="hljs-number">10</span> + (ch - <span class="hljs-string">'0'</span>); <br>    ch = <span class="hljs-built_in">getchar</span>();<br>  }<br>  <span class="hljs-keyword">return</span> x * w;<br>}<br><br><span class="hljs-comment">//Example:</span><br><span class="hljs-comment">//int n = read();</span><br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">marge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-comment">//把所有x变成y, 小优化见main函数调用的marge地方</span><br>    <span class="hljs-comment">//下面这几行, 链表的遍历, 比较难懂.</span><br>    <span class="hljs-comment">//注意到答案应该是只减不增的, 因为修改的本质是"合并", "段数"越合并越少. 这也是这题最难想的地方, 不是一个个修改再统计段数, 是用链表存储后再模拟"合并"更新答案.</span><br>    <span class="hljs-comment">//这个加法用得很好, 因为跟前面的一样意味着少了一段 跟后面的不一样意味着有少了一段</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) ans -= (raw[i - <span class="hljs-number">1</span>] == y) + (raw[i + <span class="hljs-number">1</span>] == y);    <span class="hljs-comment">//更新答案</span><br>    <span class="hljs-comment">//模拟"合并"的操作</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = pos[x]; i; i = nxt[i]) raw[i] = y;    <span class="hljs-comment">//修改x ---&gt; y</span><br>    nxt[last[x]] = pos[y];  <span class="hljs-comment">//更新尾节点, 即每段最后一个</span><br>    pos[y] = pos[x];    <span class="hljs-comment">//更新位置</span><br>    cnt[y] += cnt[x];   <span class="hljs-comment">//加上个数</span><br>    pos[x] = last[x] = cnt[x] = <span class="hljs-number">0</span>;    <span class="hljs-comment">//合并完之后x没了</span><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">//ios_base::sync_with_stdio(false); cin.tie(0);</span><br><br>    <span class="hljs-comment">//cin &gt;&gt; n &gt;&gt; m;</span><br>    n = <span class="hljs-built_in">read</span>(); m = <span class="hljs-built_in">read</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>        <span class="hljs-comment">//cin &gt;&gt; raw[i];</span><br>        raw[i] = <span class="hljs-built_in">read</span>();<br>        color[raw[i]] = raw[i]; <span class="hljs-comment">//color[x]统计第x个颜色</span><br>        ans += (raw[i] != raw[i - <span class="hljs-number">1</span>]);  <span class="hljs-comment">//预处理一下"段数", 这个方法很巧妙, 读入的时候只要跟前面的不一样就表示又有一段</span><br>        cnt[raw[i]] ++; <span class="hljs-comment">//cnt就是桶, 即计数数组</span><br>        <span class="hljs-keyword">if</span>(!pos[i]) last[i] = raw[i];     <span class="hljs-comment">//每种布丁最后一个的位置</span><br>        nxt[i] = pos[raw[i]]; pos[raw[i]] = i;<br>    }<br><br>    <span class="hljs-keyword">while</span>(m --) {<br>        <span class="hljs-keyword">int</span> op1, op2, op3;<br>        <span class="hljs-comment">//cin &gt;&gt; op1;</span><br>        op1 = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">if</span>(op1 == <span class="hljs-number">1</span>) {<br>            <span class="hljs-comment">//cin &gt;&gt; op2 &gt;&gt; op3;</span><br>            op2 = <span class="hljs-built_in">read</span>(); op3 = <span class="hljs-built_in">read</span>();<br>            <span class="hljs-keyword">if</span>(cnt[color[op1]] &gt; cnt[color[op2]]) <span class="hljs-built_in">swap</span>(color[op1], color[op2]);     <span class="hljs-comment">//小优化, 把x变成y和把y变成x, 之后的答案是不受影响的, 所以改操作次数少的.</span><br>            <span class="hljs-keyword">if</span>(op2 == op3 || !cnt[color[op2]]) <span class="hljs-keyword">continue</span>;    <span class="hljs-comment">//std考虑得很周全, 舍去修改没有的元素和"修改个寂寞", 防止被卡.</span><br>            <span class="hljs-built_in">marge</span>(op2, op3);<br>        } <span class="hljs-keyword">else</span> {<br>            cout &lt;&lt; ans &lt;&lt; endl;<br>        }<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 
             </div>
             <hr>
@@ -594,8 +462,6 @@ int main() {
 
 
 
-  
-    
   
 
 
