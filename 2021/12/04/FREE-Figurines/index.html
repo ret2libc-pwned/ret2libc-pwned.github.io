@@ -16,12 +16,12 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;const int N &#x3D; 1e6;using namespace std;&#x2F;*两种操作: 接在后面 &#x2F; 删除最前面.最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作.">
+    <meta name="description" content="#include &lt;iostream&gt;  const int N &#x3D; 1e6;  using namespace std;  &#x2F;* 两种操作: 接在后面 &#x2F; 删除最前面. 最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作. 优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可. *&#x2F;  int src[N], dest[N], len[N],">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FREE-Figurines">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2021/12/04/FREE-Figurines/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;const int N &#x3D; 1e6;using namespace std;&#x2F;*两种操作: 接在后面 &#x2F; 删除最前面.最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作.">
+<meta property="og:description" content="#include &lt;iostream&gt;  const int N &#x3D; 1e6;  using namespace std;  &#x2F;* 两种操作: 接在后面 &#x2F; 删除最前面. 最差情况: &quot;重组&quot;, 即全部删了再拼起来. 需要2n次操作. 优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可. *&#x2F;  int src[N], dest[N], len[N],">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-04T14:18:52.000Z">
 <meta property="article:modified_time" content="2021-12-04T14:20:43.140Z">
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      790 字
+      815 字
     </span>
   
 
@@ -265,7 +265,53 @@
             <h1 style="display: none">FREE-Figurines</h1>
             
             <div class="markdown-body">
-              <figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">两种操作: 接在后面 / 删除最前面.</span><br><span class="hljs-comment">最差情况: "重组", 即全部删了再拼起来. 需要2n次操作.</span><br><span class="hljs-comment">优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可.</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">int</span> src[N], dest[N], len[N], n, ans;<br><span class="hljs-keyword">bool</span> vis[N];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">debug</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ans = %d\n"</span>, ans);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; n;<br>    <span class="hljs-comment">/*预处理, 统计最坏情况ans*/</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        cin &gt;&gt; src[i];<br>        vis[src[i]] = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>(src[i]) ans++;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        cin &gt;&gt; dest[i];<br>        vis[dest[i]] = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>(dest[i]) ans++;<br>    }<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        <span class="hljs-keyword">if</span>(!vis[i]) {<br>            <span class="hljs-keyword">int</span> tmpi = i;<br>            <span class="hljs-keyword">while</span>(src[tmpi] * dest[tmpi] &amp;&amp; src[tmpi] == dest[tmpi]) {   <span class="hljs-comment">//不为自由的 &amp;&amp; 相等就是不用断开的链</span><br>                ans -= <span class="hljs-number">2</span>;<br>                tmpi = src[tmpi];<br>            }<br>        }<br>    }<br><br>    cout &lt;&lt; ans &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">两种操作: 接在后面 / 删除最前面.</span><br><span class="hljs-comment">最差情况: "重组", 即全部删了再拼起来. 需要2n次操作.</span><br><span class="hljs-comment">优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可.</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">int</span> src[N], dest[N], len[N], n, ans;<br><span class="hljs-keyword">bool</span> vis[N];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">debug</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ans = %d\n"</span>, ans);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; n;<br>    <span class="hljs-comment">/*预处理, 统计最坏情况ans*/</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        cin &gt;&gt; src[i];<br>        vis[src[i]] = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>(src[i]) ans++;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        cin &gt;&gt; dest[i];<br>        vis[dest[i]] = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>(dest[i]) ans++;<br>    }<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {<br>        <span class="hljs-keyword">if</span>(!vis[i]) {<br>            <span class="hljs-keyword">int</span> tmpi = i;<br>            <span class="hljs-keyword">while</span>(src[tmpi] * dest[tmpi] &amp;&amp; src[tmpi] == dest[tmpi]) {   <span class="hljs-comment">//不为自由的 &amp;&amp; 相等就是不用断开的链</span><br>                ans -= <span class="hljs-number">2</span>;<br>                tmpi = src[tmpi];<br>            }<br>        }<br>    }<br><br>    cout &lt;&lt; ans &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+              <div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+const int N = 1e6;
+
+using namespace std;
+
+/*
+两种操作: 接在后面 / 删除最前面.
+最差情况: "重组", 即全部删了再拼起来. 需要2n次操作.
+优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可.
+*/
+
+int src[N], dest[N], len[N], n, ans;
+bool vis[N];
+
+inline void debug() {
+    printf("ans = %d\n", ans);
+}
+
+int main() {
+    cin &gt;&gt; n;
+    /*预处理, 统计最坏情况ans*/
+    for(int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; src[i];
+        vis[src[i]] = true;
+        if(src[i]) ans++;
+    }
+    for(int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; dest[i];
+        vis[dest[i]] = true;
+        if(dest[i]) ans++;
+    }
+
+    for(int i = 1; i &lt;= n; i++) {
+        if(!vis[i]) {
+            int tmpi = i;
+            while(src[tmpi] * dest[tmpi] &amp;&amp; src[tmpi] == dest[tmpi]) {   //不为自由的 &amp;&amp; 相等就是不用断开的链
+                ans -= 2;
+                tmpi = src[tmpi];
+            }
+        }
+    }
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
             </div>
             <hr>
@@ -400,7 +446,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <i class="iconfont icon-love"></i> <span>ret2libc</span> 
   </div>
   
   <div class="statistics">

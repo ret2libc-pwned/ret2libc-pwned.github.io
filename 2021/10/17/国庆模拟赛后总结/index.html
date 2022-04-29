@@ -218,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7k 字
+      7.5k 字
     </span>
   
 
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      39 分钟
+      42 分钟
     </span>
   
 
@@ -280,12 +280,71 @@
 <p>这题的正解是模运算, 可以快速定位到循环运行多次后的指令, 不必一次次模拟了.</p>
 <p>(考场上写的是直接模拟, 拿指针一个一个走的那种, 拿了60分已经很不错了)</p>
 <p>正解:</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dx[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>};<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dy[<span class="hljs-number">4</span>] = {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>};<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> cmd[<span class="hljs-number">4</span>] = {<span class="hljs-string">'E'</span>, <span class="hljs-string">'S'</span>, <span class="hljs-string">'W'</span>, <span class="hljs-string">'N'</span>};<br><br>string ops;<br><span class="hljs-keyword">int</span> t, currx, curry, cnt[<span class="hljs-number">4</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">go</span><span class="hljs-params">(<span class="hljs-keyword">int</span> op)</span> </span>{<br>    currx += dx[op]; curry += dy[op];<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; ops &gt;&gt; t;<br>    <span class="hljs-comment">//先运行一遍命令串</span><br>    <span class="hljs-keyword">int</span> oplen = ops.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; oplen; i ++) {<br>        <span class="hljs-keyword">char</span> ch = ops[i];<br>        <span class="hljs-comment">//不知道为什么switch会出问题, 比赛就是在这里卡了半小时</span><br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'E'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'S'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'W'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'N'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">3</span>);<br>    }<br><br>    <span class="hljs-keyword">int</span> cishu = t / oplen;  <span class="hljs-comment">//每个操作执行cishu遍, 但还可能有多余</span><br>    <span class="hljs-keyword">int</span> pos = t % oplen;    <span class="hljs-comment">//最后一个操作的位置</span><br><br>    <span class="hljs-comment">//判断条件</span><br>    <span class="hljs-keyword">if</span>(cishu == <span class="hljs-number">0</span>) <span class="hljs-keyword">goto</span> OUTPUT; <span class="hljs-comment">//指令数 &gt;= t --&gt; 已经走完了, 直接输出就行</span><br><br>    <span class="hljs-comment">//第二种情况, 即len &lt; t, 要循环多次</span><br>    currx *= cishu; curry *= cishu;  <span class="hljs-comment">//走一次走到了当前的(x, y), 走cishu次就意味着每个点都走了cishu次, 对结果的影响求积即可</span><br>    <span class="hljs-comment">//好现在还剩几步, 走完它</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pos; i ++) {<br>        <span class="hljs-keyword">char</span> ch = ops[i];<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'E'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'S'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'W'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'N'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">3</span>);<br>    }<br><br>OUTPUT: cout &lt;&lt; currx &lt;&lt; <span class="hljs-string">' '</span> &lt;&lt; curry &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dx[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>};<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dy[<span class="hljs-number">4</span>] = {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>};<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> cmd[<span class="hljs-number">4</span>] = {<span class="hljs-string">'E'</span>, <span class="hljs-string">'S'</span>, <span class="hljs-string">'W'</span>, <span class="hljs-string">'N'</span>};<br><br>string ops;<br><span class="hljs-keyword">int</span> t, currx, curry, cnt[<span class="hljs-number">4</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">go</span><span class="hljs-params">(<span class="hljs-keyword">int</span> op)</span> </span>{<br>    currx += dx[op]; curry += dy[op];<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    cin &gt;&gt; ops &gt;&gt; t;<br>    <span class="hljs-comment">//先运行一遍命令串</span><br>    <span class="hljs-keyword">int</span> oplen = ops.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; oplen; i ++) {<br>        <span class="hljs-keyword">char</span> ch = ops[i];<br>        <span class="hljs-comment">//不知道为什么switch会出问题, 比赛就是在这里卡了半小时</span><br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'E'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'S'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'W'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'N'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">3</span>);<br>    }<br><br>    <span class="hljs-keyword">int</span> cishu = t / oplen;  <span class="hljs-comment">//每个操作执行cishu遍, 但还可能有多余</span><br>    <span class="hljs-keyword">int</span> pos = t % oplen;    <span class="hljs-comment">//最后一个操作的位置</span><br><br>    <span class="hljs-comment">//判断条件</span><br>    <span class="hljs-keyword">if</span>(cishu == <span class="hljs-number">0</span>) <span class="hljs-keyword">goto</span> OUTPUT; <span class="hljs-comment">//指令数 &gt;= t --&gt; 已经走完了, 直接输出就行</span><br><br>    <span class="hljs-comment">//第二种情况, 即len &lt; t, 要循环多次</span><br>    currx *= cishu; curry *= cishu;  <span class="hljs-comment">//走一次走到了当前的(x, y), 走cishu次就意味着每个点都走了cishu次, 对结果的影响求积即可</span><br>    <span class="hljs-comment">//好现在还剩几步, 走完它</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pos; i ++) {<br>        <span class="hljs-keyword">char</span> ch = ops[i];<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'E'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'S'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'W'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">if</span>(ch == <span class="hljs-string">'N'</span>) <span class="hljs-built_in">go</span>(<span class="hljs-number">3</span>);<br>    }<br><br>OUTPUT: cout &lt;&lt; currx &lt;&lt; <span class="hljs-string">' '</span> &lt;&lt; curry &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, -1, 0, 1};
+const char cmd[4] = {'E', 'S', 'W', 'N'};
+
+string ops;
+int t, currx, curry, cnt[4];
+
+inline void go(int op) {
+    currx += dx[op]; curry += dy[op];
+}
+
+int main() {
+    cin &gt;&gt; ops &gt;&gt; t;
+    //先运行一遍命令串
+    int oplen = ops.length();
+    for(int i = 0; i &lt; oplen; i ++) {
+        char ch = ops[i];
+        //不知道为什么switch会出问题, 比赛就是在这里卡了半小时
+        if(ch == 'E') go(0);
+        if(ch == 'S') go(1);
+        if(ch == 'W') go(2);
+        if(ch == 'N') go(3);
+    }
+
+    int cishu = t / oplen;  //每个操作执行cishu遍, 但还可能有多余
+    int pos = t % oplen;    //最后一个操作的位置
+
+    //判断条件
+    if(cishu == 0) goto OUTPUT; //指令数 &gt;= t --&gt; 已经走完了, 直接输出就行
+
+    //第二种情况, 即len &lt; t, 要循环多次
+    currx *= cishu; curry *= cishu;  //走一次走到了当前的(x, y), 走cishu次就意味着每个点都走了cishu次, 对结果的影响求积即可
+    //好现在还剩几步, 走完它
+    for(int i = 0; i &lt; pos; i ++) {
+        char ch = ops[i];
+        if(ch == 'E') go(0);
+        if(ch == 'S') go(1);
+        if(ch == 'W') go(2);
+        if(ch == 'N') go(3);
+    }
+
+OUTPUT: cout &lt;&lt; currx &lt;&lt; ' ' &lt;&lt; curry &lt;&lt; endl;
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="t2">T2</h3>
 <p>在推模拟分解质因数时浪费太多时间了, 这种考"板子"的数学题要在平时多做. 考场上要减少<strong>推板子</strong>的时间.</p>
 <p>另外还好这题没打表, "只要是数学题就打表"终究是一种"骗分"的心态. 还是要多推式子.</p>
 <p>附: 计算一个数素因数个数的代码</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fac</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= x; i ++) {<br>        <span class="hljs-keyword">if</span>(x % i == <span class="hljs-number">0</span>) {<br>            res ++;<br>            x /= i;<br>            i --;	<span class="hljs-comment">//这行是尝试再拿这个数除一遍, 因为一个数可能有多个相同的质因子.</span><br>        }<br>    }<br>    <span class="hljs-keyword"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fac</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= x; i ++) {<br>        <span class="hljs-keyword">if</span>(x % i == <span class="hljs-number">0</span>) {<br>            res ++;<br>            x /= i;<br>            i --;	<span class="hljs-comment">//这行是尝试再拿这个数除一遍, 因为一个数可能有多个相同的质因子.</span><br>        }<br>    }<br>    <span class="hljs-keyword">return</span> res;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int fac(int x) {
+    int res = 0;
+    for(int i = 2; i &lt;= x; i ++) {
+        if(x % i == 0) {
+            res ++;
+            x /= i;
+            i --;	//这行是尝试再拿这个数除一遍, 因为一个数可能有多个相同的质因子.
+        }
+    }
+    return res;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>还有就是第十个点<strong>具体的</strong>数据给我们了, 是一个很大的数据, 这个O(N*sqrt(N))的算法显然要算很久(在我电脑上算了<strong>一个半小时</strong>), 所以只能用特判. 考试的时候可以优先用暴力或正解算着这种数据, 得到特判就行.</p>
 <p>注: 这道是我两天模拟赛中唯一觉得做得还不错, 没啥太大遗憾的题.</p>
 <p>注2: 我的电脑算了<strong>一个半小时</strong>, 终于算出最后一个点的特判是<code>564714</code>!!! 但是为什么第八个点还没过??? 最后是90分.</p>
@@ -307,7 +366,8 @@ N &lt; 1,000,000
 <p><em>Introduction to Algorithms(3rd edition)</em></p>
 </blockquote>
 <h3 id="t2-1">T2</h3>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-keyword">int</span> array[N];	<span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-keyword">int</span> array[N];	<span class="hljs-comment">//大约占用4MB空间</span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int N = 1e6;
+int array[N];	//大约占用4MB空间<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 <p>这道题因为开了1e8的数组, 用了memset导致<strong>全部的点MLE</strong>.</p>
 <p><strong>数组不要开太大!!! (1e8个int约等于380MB)</strong></p>
 <p>本来可以得60分暴力分, 结果这题因为这个爆零了.</p>
@@ -315,14 +375,28 @@ N &lt; 1,000,000
 <p>赛后还以为是用了几个玄学优化导致的问题.</p>
 <p>说到玄学优化, 在这里记录几个好用的玄学优化:(好像扯得有点远了)</p>
 <h4 id="cin优化">cin优化</h4>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++">ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);	<span class="hljs-comment"><code class="language-hljs c++">ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);	<span class="hljs-comment">//cin.tie(nullptr)在C++11及以上可用</span><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">ios_base::sync_with_stdio(false);
+cin.tie(0);	//cin.tie(nullptr)在C++11及以上可用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 <p>(这两行的意思是关闭与stdio的同步, 以提升cin, cout的速度. 在IO比较多的时候很好用. <strong>注意:用了这个优化就不能用stdio内的函数如<code>printf()</code>和<code>scanf()</code></strong>. 当然printf和scanf的速度是更快的, 如果会写快读快写那更快, <code>putchar()</code>和<code>getchar()</code>的速度不是吹的. )</p>
 <h4 id="寄存器操作">寄存器操作</h4>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i < n; i ++)<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">for(register int i = 0; i &lt; n; i ++)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p>直接操作寄存器, 这样更快.</p>
 <p>p.s. csp用不了内联汇编, 所以不要作死, 这个用用就行了</p>
 <h4 id="行内函数inline">行内函数(inline)</h4>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">return</span> x + y;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);	<span class="hljs-comment">//直接就地展开函数, 没有调用关系</span><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    相当于</span><br><span class="hljs-comment">    inline int add(int x, int y) {</span><br><span class="hljs-comment">    	return x + y;</span><br><span class="hljs-comment">	}</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>{<br>    <span class="hljs-keyword">return</span> x + y;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);	<span class="hljs-comment">//直接就地展开函数, 没有调用关系</span><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    相当于</span><br><span class="hljs-comment">    inline int add(int x, int y) {</span><br><span class="hljs-comment">    	return x + y;</span><br><span class="hljs-comment">	}</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline int add(int x, int y) {
+    return x + y;
+}
+
+int main() {
+    add(1, 1);	//直接就地展开函数, 没有调用关系
+    /*
+    相当于
+    inline int add(int x, int y) {
+    	return x + y;
+	}
+    */
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>适用于代码少, 调用频繁的函数.</p>
 <p>函数调用时会将参数, 基址这些东西压栈. 最后call. 运行结束后会压入返回地址等信息(这些东西快忘了, 不对请指正). 这样调用一次无疑浪费了很多时间精力.(有空的话贴一下反汇编代码看得更清楚)</p>
 <p>用<code>inline</code>定义会在调用处就地展开, 个人觉得比较像<code>#define</code>(?)</p>
@@ -344,7 +418,76 @@ N &lt; 1,000,000
 <p>可能会出现的问题: 一些stl内的函数可能性能不如手写的, 例如<code>std::string</code>里面的<code>S.find(P)</code>就是暴力匹配的, 性能不如手写KMP.</p>
 <p>这是个重大的时刻, 贴个代码纪念一下, 顺便复习一下deque的用法.</p>
 <p>(另外做这题的时候好像<strong>cin忘加了</strong>, 导致浪费了亿点时间调错)</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;deque&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>deque&lt;<span class="hljs-keyword">int</span>&gt; q;   <span class="hljs-comment">//需要从前后操作, 双端队列</span><br><span class="hljs-keyword">int</span> n, id;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clearq</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) {<br>		q.<span class="hljs-built_in">pop_front</span>();<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">char</span> op, <span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-comment">//op == 'L'   左边入队</span><br>    <span class="hljs-comment">//op == 'R'   右边入队</span><br>    <span class="hljs-comment">//cout &lt;&lt; "add()" &lt;&lt; op &lt;&lt; ' ' &lt;&lt; x;</span><br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'L'</span>) {<br>        q.<span class="hljs-built_in">push_front</span>(x);<br>    }<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'R'</span>) {<br>        q.<span class="hljs-built_in">push_back</span>(x);<br>    }<br><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">kill_people</span><span class="hljs-params">(<span class="hljs-keyword">char</span> op, <span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'L'</span>) {<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; x; i ++) q.<span class="hljs-built_in">pop_front</span>();<br>    }<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'R'</span>) {<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; x; i ++) q.<span class="hljs-built_in">pop_back</span>();<br>    }<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">popq</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-keyword">int</span> res;<br>    res = q.<span class="hljs-built_in">front</span>();<br>    q.<span class="hljs-built_in">pop_front</span>();<br>    <span class="hljs-keyword">return</span> res;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-comment">//clearq();</span><br>	ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>    	<span class="hljs-comment">//puts("LOOP");</span><br>        <span class="hljs-keyword">char</span> op, op1;<br>        <span class="hljs-keyword">int</span> k;<br>        cin &gt;&gt; op &gt;&gt; op1;<br>        <span class="hljs-comment">//cout &lt;&lt; op &lt;&lt; ' ' &lt;&lt; op1;</span><br>        <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'A'</span>) {<br>            <span class="hljs-built_in">add</span>(op1, ++ id); 	<span class="hljs-comment">//只有入队才会有新的编号, 单独记录</span><br>            <span class="hljs-comment">//puts("added!!!")</span><br>        } <span class="hljs-keyword">else</span> {<br>            cin &gt;&gt; k;<br>            <span class="hljs-built_in">kill_people</span>(op1, k);<br>        }<br>    }<br><br>    <span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) {<br>    	cout &lt;&lt; q.<span class="hljs-built_in">front</span>() &lt;&lt; endl;	<span class="hljs-comment">//从队首开始pop</span><br>    	q.<span class="hljs-built_in">pop_front</span>();<br>    }<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;deque&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>deque&lt;<span class="hljs-keyword">int</span>&gt; q;   <span class="hljs-comment">//需要从前后操作, 双端队列</span><br><span class="hljs-keyword">int</span> n, id;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clearq</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) {<br>		q.<span class="hljs-built_in">pop_front</span>();<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">char</span> op, <span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-comment">//op == 'L'   左边入队</span><br>    <span class="hljs-comment">//op == 'R'   右边入队</span><br>    <span class="hljs-comment">//cout &lt;&lt; "add()" &lt;&lt; op &lt;&lt; ' ' &lt;&lt; x;</span><br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'L'</span>) {<br>        q.<span class="hljs-built_in">push_front</span>(x);<br>    }<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'R'</span>) {<br>        q.<span class="hljs-built_in">push_back</span>(x);<br>    }<br><br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">kill_people</span><span class="hljs-params">(<span class="hljs-keyword">char</span> op, <span class="hljs-keyword">int</span> x)</span> </span>{<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'L'</span>) {<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; x; i ++) q.<span class="hljs-built_in">pop_front</span>();<br>    }<br>    <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'R'</span>) {<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; x; i ++) q.<span class="hljs-built_in">pop_back</span>();<br>    }<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span> <span class="hljs-title">popq</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-keyword">int</span> res;<br>    res = q.<span class="hljs-built_in">front</span>();<br>    q.<span class="hljs-built_in">pop_front</span>();<br>    <span class="hljs-keyword">return</span> res;<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-comment">//clearq();</span><br>	ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i ++) {<br>    	<span class="hljs-comment">//puts("LOOP");</span><br>        <span class="hljs-keyword">char</span> op, op1;<br>        <span class="hljs-keyword">int</span> k;<br>        cin &gt;&gt; op &gt;&gt; op1;<br>        <span class="hljs-comment">//cout &lt;&lt; op &lt;&lt; ' ' &lt;&lt; op1;</span><br>        <span class="hljs-keyword">if</span>(op == <span class="hljs-string">'A'</span>) {<br>            <span class="hljs-built_in">add</span>(op1, ++ id); 	<span class="hljs-comment">//只有入队才会有新的编号, 单独记录</span><br>            <span class="hljs-comment">//puts("added!!!")</span><br>        } <span class="hljs-keyword">else</span> {<br>            cin &gt;&gt; k;<br>            <span class="hljs-built_in">kill_people</span>(op1, k);<br>        }<br>    }<br><br>    <span class="hljs-keyword">while</span>(q.<span class="hljs-built_in">size</span>()) {<br>    	cout &lt;&lt; q.<span class="hljs-built_in">front</span>() &lt;&lt; endl;	<span class="hljs-comment">//从队首开始pop</span><br>    	q.<span class="hljs-built_in">pop_front</span>();<br>    }<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;deque&gt;
+
+using namespace std;
+
+deque&lt;int&gt; q;   //需要从前后操作, 双端队列
+int n, id;
+
+inline void clearq() {
+	while(q.size()) {
+		q.pop_front();
+	}
+}
+
+inline void add(char op, int x) {
+    //op == 'L'   左边入队
+    //op == 'R'   右边入队
+    //cout &lt;&lt; "add()" &lt;&lt; op &lt;&lt; ' ' &lt;&lt; x;
+    if(op == 'L') {
+        q.push_front(x);
+    }
+    if(op == 'R') {
+        q.push_back(x);
+    }
+
+}
+
+inline void kill_people(char op, int x) {
+    if(op == 'L') {
+        for(int i = 0; i &lt; x; i ++) q.pop_front();
+    }
+    if(op == 'R') {
+        for(int i = 0; i &lt; x; i ++) q.pop_back();
+    }
+}
+
+inline int popq() {
+    int res;
+    res = q.front();
+    q.pop_front();
+    return res;
+}
+
+int main() {
+	//clearq();
+	ios_base::sync_with_stdio(false); cin.tie(0);
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; i ++) {
+    	//puts("LOOP");
+        char op, op1;
+        int k;
+        cin &gt;&gt; op &gt;&gt; op1;
+        //cout &lt;&lt; op &lt;&lt; ' ' &lt;&lt; op1;
+        if(op == 'A') {
+            add(op1, ++ id); 	//只有入队才会有新的编号, 单独记录
+            //puts("added!!!")
+        } else {
+            cin &gt;&gt; k;
+            kill_people(op1, k);
+        }
+    }
+
+    while(q.size()) {
+    	cout &lt;&lt; q.front() &lt;&lt; endl;	//从队首开始pop
+    	q.pop_front();
+    }
+
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="t2-2">T2</h3>
 <h3 id="t3-2">T3</h3>
 <p>暴力解法是每个数跟它的左边和上面比较, 统计出符合条件的, 计算最大的面积.</p>
@@ -357,14 +500,63 @@ can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k
 1])\and(coulumn[j][k-1]&gt;=j-i+1
 \]</span></p>
 <p>贴一个70分解法(用的不是dp, 也不是我写的)</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-comment">//DP?!不过我不想用正常的方法 那就写点玄学的吧。</span><br><span class="hljs-keyword">int</span> n,m,ma[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>],row[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>],col[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>	cin&gt;&gt;n&gt;&gt;m;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j)cin&gt;&gt;ma[i][j];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j){<br>			row[i][j]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=j+<span class="hljs-number">1</span>;k&lt;=m;++k){<br>				<span class="hljs-keyword">if</span>(ma[i][k<span class="hljs-number">-1</span>]&lt;=ma[i][k])row[i][j]++;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>			}<br>		}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j){<br>			col[j][i]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=j+<span class="hljs-number">1</span>;k&lt;=n;++k){<br>				<span class="hljs-keyword">if</span>(ma[k<span class="hljs-number">-1</span>][i]&lt;=ma[k][i])col[j][i]++;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>			}<br>		}<br>	<span class="hljs-comment">//完了完了 玄学方法开始了 </span><br>	<span class="hljs-keyword">int</span> temp=<span class="hljs-number">0</span>,ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j)<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=row[i][j];++k){<span class="hljs-comment">//k就是一种长度 </span><br>				<span class="hljs-keyword">int</span> len=*<span class="hljs-built_in">min_element</span>(col[i]+j,col[i]+j+k);<br>				temp=k*len;<br>				ans=<span class="hljs-built_in">max</span>(temp,ans);<br>			}<br>	cout&lt;&lt;ans&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-comment">//DP?!不过我不想用正常的方法 那就写点玄学的吧。</span><br><span class="hljs-keyword">int</span> n,m,ma[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>],row[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>],col[<span class="hljs-number">205</span>][<span class="hljs-number">205</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<br>	cin&gt;&gt;n&gt;&gt;m;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j)cin&gt;&gt;ma[i][j];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j){<br>			row[i][j]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=j+<span class="hljs-number">1</span>;k&lt;=m;++k){<br>				<span class="hljs-keyword">if</span>(ma[i][k<span class="hljs-number">-1</span>]&lt;=ma[i][k])row[i][j]++;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>			}<br>		}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j){<br>			col[j][i]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=j+<span class="hljs-number">1</span>;k&lt;=n;++k){<br>				<span class="hljs-keyword">if</span>(ma[k<span class="hljs-number">-1</span>][i]&lt;=ma[k][i])col[j][i]++;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>			}<br>		}<br>	<span class="hljs-comment">//完了完了 玄学方法开始了 </span><br>	<span class="hljs-keyword">int</span> temp=<span class="hljs-number">0</span>,ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;++j)<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=row[i][j];++k){<span class="hljs-comment">//k就是一种长度 </span><br>				<span class="hljs-keyword">int</span> len=*<span class="hljs-built_in">min_element</span>(col[i]+j,col[i]+j+k);<br>				temp=k*len;<br>				ans=<span class="hljs-built_in">max</span>(temp,ans);<br>			}<br>	cout&lt;&lt;ans&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>} <br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+//DP?!不过我不想用正常的方法 那就写点玄学的吧。
+int n,m,ma[205][205],row[205][205],col[205][205];
+int main(){
+	cin&gt;&gt;n&gt;&gt;m;
+	for(int i=1;i&lt;=n;++i)
+		for(int j=1;j&lt;=m;++j)cin&gt;&gt;ma[i][j];
+	for(int i=1;i&lt;=n;++i)
+		for(int j=1;j&lt;=m;++j){
+			row[i][j]=1;
+			for(int k=j+1;k&lt;=m;++k){
+				if(ma[i][k-1]&lt;=ma[i][k])row[i][j]++;
+				else break;
+			}
+		}
+	for(int i=1;i&lt;=m;++i)
+		for(int j=1;j&lt;=n;++j){
+			col[j][i]=1;
+			for(int k=j+1;k&lt;=n;++k){
+				if(ma[k-1][i]&lt;=ma[k][i])col[j][i]++;
+				else break;
+			}
+		}
+	//完了完了 玄学方法开始了 
+	int temp=0,ans=0;
+	for(int i=1;i&lt;=n;++i)
+		for(int j=1;j&lt;=m;++j)
+			for(int k=1;k&lt;=row[i][j];++k){//k就是一种长度 
+				int len=*min_element(col[i]+j,col[i]+j+k);
+				temp=k*len;
+				ans=max(temp,ans);
+			}
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+} <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="t4-2">T4</h3>
 <p>这题不知道为什么写的算法没问题, 比赛的时候交了是零分(赛后交了一遍完全一样的代码ac了). 就当这次ac了吧, 但是一定要明白为什么会出这种问题, 比赛的时候要是还出就叫天天不灵, 叫地地不应了.</p>
 <p>这题想了蛮久的, 主要是证明算法的正确性.</p>
 <p>要注意的就是如果这种贪心题最后推出了一个比较简单的式子不要怀疑, 只要每一步都确定是对的式子就没错, 不要在这里过于纠结, 浪费时间.</p>
 <p>思路再说一下: 要让ci * t最大, 就要让ci越大的获得更大时间差(这不是废话吗), 即把ci进行从大到小排序, 依次把最大的两个一样的放到最前面和最后面. 难点是模拟这个放在最前和最后的过程.</p>
 <p>贴一下考场上的代码, 前面是排序.</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-comment">//安排位置</span><br>    <span class="hljs-keyword">int</span> n1 = <span class="hljs-number">1</span>, n2 = n;<br>    <span class="hljs-comment">//[1, n]</span><br>    <span class="hljs-comment">//n1:   开始时间偏移量</span><br>    <span class="hljs-comment">//n2:   结束时间偏移量</span><br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= k, n1 &lt;= n2; i ++, n1 ++, n2 --) {    <span class="hljs-comment">//两两一对地插入</span><br>        <span class="hljs-comment">//if(c[i] == c[i + 1])</span><br>            <span class="hljs-comment">//cout &lt;&lt; (c[i] == c[i + 1]) &lt;&lt; ' ' &lt;&lt; c[i] &lt;&lt; ' ' &lt;&lt; n1 &lt;&lt; ' ' &lt;&lt; c[i - 1] &lt;&lt; ' ' &lt;&lt; n2 &lt;&lt; endl;</span><br>            <span class="hljs-comment">//把大(c[i])的放在最后 小的(c[i + 1])放在最前 时间差最大</span><br>            <span class="hljs-comment">//第一次不得分 求时间差乘以最大的(即c[i])即可</span><br>            <span class="hljs-comment"><code class="language-hljs c++"><span class="hljs-comment">//安排位置</span><br>    <span class="hljs-keyword">int</span> n1 = <span class="hljs-number">1</span>, n2 = n;<br>    <span class="hljs-comment">//[1, n]</span><br>    <span class="hljs-comment">//n1:   开始时间偏移量</span><br>    <span class="hljs-comment">//n2:   结束时间偏移量</span><br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= k, n1 &lt;= n2; i ++, n1 ++, n2 --) {    <span class="hljs-comment">//两两一对地插入</span><br>        <span class="hljs-comment">//if(c[i] == c[i + 1])</span><br>            <span class="hljs-comment">//cout &lt;&lt; (c[i] == c[i + 1]) &lt;&lt; ' ' &lt;&lt; c[i] &lt;&lt; ' ' &lt;&lt; n1 &lt;&lt; ' ' &lt;&lt; c[i - 1] &lt;&lt; ' ' &lt;&lt; n2 &lt;&lt; endl;</span><br>            <span class="hljs-comment">//把大(c[i])的放在最后 小的(c[i + 1])放在最前 时间差最大</span><br>            <span class="hljs-comment">//第一次不得分 求时间差乘以最大的(即c[i])即可</span><br>            <span class="hljs-comment">//ans += ((n2 - n1) * c[i]  + 0);</span><br>            ans += (n2 - n1) * c[i];<br>    }<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//安排位置
+    int n1 = 1, n2 = n;
+    //[1, n]
+    //n1:   开始时间偏移量
+    //n2:   结束时间偏移量
+
+    for(int i = 1; i &lt;= k, n1 &lt;= n2; i ++, n1 ++, n2 --) {    //两两一对地插入
+        //if(c[i] == c[i + 1])
+            //cout &lt;&lt; (c[i] == c[i + 1]) &lt;&lt; ' ' &lt;&lt; c[i] &lt;&lt; ' ' &lt;&lt; n1 &lt;&lt; ' ' &lt;&lt; c[i - 1] &lt;&lt; ' ' &lt;&lt; n2 &lt;&lt; endl;
+            //把大(c[i])的放在最后 小的(c[i + 1])放在最前 时间差最大
+            //第一次不得分 求时间差乘以最大的(即c[i])即可
+            //ans += ((n2 - n1) * c[i]  + 0);
+            ans += (n2 - n1) * c[i];
+    }
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
             </div>
             <hr>
@@ -503,7 +695,7 @@ can[i][j][k]=(can[i][j-1][k])\and(column[j][k]&gt;=j-i+1)\and(a[j][k]&gt;=a[j][k
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <i class="iconfont icon-love"></i> <span>ret2libc</span> 
   </div>
   
   <div class="statistics">

@@ -82,7 +82,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     
@@ -107,7 +107,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     
@@ -133,7 +133,7 @@
         
         
     <summary type="html">&lt;h1 id=&quot;梦幻布丁hnoi-2009&quot;&gt;梦幻布丁(HNOI-2009)&lt;/h1&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs</summary>
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code</summary>
         
       
     
@@ -162,7 +162,7 @@
         
     <summary type="html">&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;/h1&gt;
 &lt;h2 id=&quot;t1&quot;&gt;T1&lt;/h2&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div</summary>
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot;</summary>
         
       
     
