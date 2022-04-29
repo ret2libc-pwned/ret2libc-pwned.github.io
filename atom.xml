@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-04-25T13:09:09.510Z</updated>
+  <updated>2022-04-29T12:25:00.999Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字典树</title>
+    <link href="https://ret2libc-pwned.github.io/2022/04/18/trie/"/>
+    <id>https://ret2libc-pwned.github.io/2022/04/18/trie/</id>
+    <published>2022-04-18T13:21:23.987Z</published>
+    <updated>2022-04-29T12:25:00.999Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;字典树&quot;&gt;字典树&lt;/h1&gt;
+&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;
+&lt;h3 id=&quot;像查字典一样检索字符串&quot;&gt;像查字典一样&quot;检索&quot;字符串&lt;/h3&gt;
+&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>Splay</title>
@@ -117,125 +146,6 @@
     <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
     <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>启发式合并</title>
-    <link href="https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/"/>
-    <id>https://ret2libc-pwned.github.io/2021/11/13/%E5%90%AF%E5%8F%91%E5%BC%8F%E5%90%88%E5%B9%B6/</id>
-    <published>2021-11-13T13:10:18.000Z</published>
-    <updated>2021-11-13T14:49:27.835Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;梦幻布丁hnoi-2009&quot;&gt;梦幻布丁(HNOI-2009)&lt;/h1&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs</summary>
-        
-      
-    
-    
-    
-    
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
-    
-    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="算法" scheme="https://ret2libc-pwned.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSP-J 2021赛后总结</title>
-    <link href="https://ret2libc-pwned.github.io/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
-    <id>https://ret2libc-pwned.github.io/2021/11/13/CSP-J-2021%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
-    <published>2021-11-13T10:55:53.000Z</published>
-    <updated>2021-11-13T13:05:59.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;/h1&gt;
-&lt;h2 id=&quot;t1&quot;&gt;T1&lt;/h2&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div</summary>
-        
-      
-    
-    
-    
-    
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
-    
-    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
-    
-    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OI比赛中的那些玄学优化</title>
-    <link href="https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/"/>
-    <id>https://ret2libc-pwned.github.io/2021/10/22/OI%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E7%8E%84%E5%AD%A6%E4%BC%98%E5%8C%96/</id>
-    <published>2021-10-22T10:07:36.000Z</published>
-    <updated>2021-10-22T12:19:51.143Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;这是我暑假零基础入门C++的时候整理的小技巧. 现在到了CSP-2021赛前, 我在看笔记的时候发现了这个, 就把它发在我的网站上, 希望能帮到即将参加OI的你,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
-    
-    <category term="常数优化" scheme="https://ret2libc-pwned.github.io/tags/%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/"/>
-    
-    <category term="笔记" scheme="https://ret2libc-pwned.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="奇技淫巧" scheme="https://ret2libc-pwned.github.io/tags/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国庆模拟赛后总结</title>
-    <link href="https://ret2libc-pwned.github.io/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
-    <id>https://ret2libc-pwned.github.io/2021/10/17/%E5%9B%BD%E5%BA%86%E6%A8%A1%E6%8B%9F%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</id>
-    <published>2021-10-17T03:11:30.000Z</published>
-    <updated>2021-10-17T13:08:44.569Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;赛后总结&quot;&gt;赛后总结&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;注: 没写完, 因为有的题还没过.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;这个文档不一定在写精妙的算法, 有的部分甚至不是在分析满分解法,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
-    
-    <category term="赛后总结" scheme="https://ret2libc-pwned.github.io/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/"/>
-    
-    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="模拟赛" scheme="https://ret2libc-pwned.github.io/tags/%E6%A8%A1%E6%8B%9F%E8%B5%9B/"/>
     
   </entry>
   
