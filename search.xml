@@ -3,7 +3,7 @@
   <entry>
     <title>FREE-Figurines</title>
     <url>/2021/12/04/FREE-Figurines/</url>
-    <content><![CDATA[<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+    <content><![CDATA[<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 const int N = 1e6;
 
@@ -49,7 +49,7 @@ int main() {
     cout &lt;&lt; ans &lt;&lt; endl;
 
     return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -59,7 +59,7 @@ int main() {
   <entry>
     <title>POI2010 - TESIntelligence Test</title>
     <url>/2021/11/21/POI2010-TESIntelligence-Test/</url>
-    <content><![CDATA[<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+    <content><![CDATA[<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 
 using namespace std;
@@ -113,7 +113,7 @@ int main() {
     }
     return 0;
 }
-</code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -132,7 +132,7 @@ int main() {
 <p>常见的BST有Treap、Splay、AVL等.</p>
 <h2 id="结点结构">结点结构</h2>
 <p>开结构体数组记录两个子结点及父结点的数组下标, 类似于一个<strong>链表</strong>(实际上很多树状数据结构都是数组模拟链表). 结点同时存储维护的信息.</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">const int SIZE = 1e5;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int SIZE = 1e5;
 
 struct Node {
     //两个子结点及父结点数组下标, val
@@ -147,12 +147,12 @@ struct Node {
 };
 
 //Allocate
-Node tr[SIZE];</code></pre></div>
+Node tr[SIZE];<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>其中规定<code>s[0]</code>为左子结点, <code>s[1]</code>为右子结点, 即: (后续代码均未使用如下define, 只是为了方便理解)</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#define ls s[0]
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#define ls s[0]
 #define rs s[1]
 #define son s[k]
-#define son_bro s[k ^ 1]		//son's brother</code></pre></div>
+#define son_bro s[k ^ 1]		//son's brother<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="单旋操作rotate">单旋操作(rotate)</h2>
 <p>旋转需要保证BST性质; 根结点变量, 即<code>root</code>需要更新; 结点维护的信息(如延迟标记)需要更新.</p>
 <p>旋转改变了是树的形态, 本质是<strong>改变父子关系</strong>.</p>
@@ -170,29 +170,29 @@ Node tr[SIZE];</code></pre></div>
 <p>上述操作可以使用一个操作<span class="math inline">\(\operatorname{rotate}(x)\)</span>来完成, 即实现<strong>"自动判定左右"的单旋操作</strong>. <span class="math inline">\(x\)</span>是<span class="math inline">\(y\)</span>的左子树就右旋, 右子树反之.</p>
 <p>该操作的精髓就是判定<span class="math inline">\(x\)</span>是<span class="math inline">\(y\)</span>的左结点还是右结点.</p>
 <p>前面说过, "旋转"的本质是"改变父子关系". 每个结点维护了她的左右子树和父结点, 所以该过程需要"互认"父子关系, 即需要修改两个结点的信息; 同时因为树的形态被改变, 需要重新统计延迟标记维持的信息(如子树大小).</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">void Rotate(int x) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void Rotate(int x) {
 	int y = tr[x].p, z = tr[y].p;
     int k = (tr[y].s[1] == x);
     tr[z].s[tr[z].s[1] == y] = x, tr[x].p = z;
     tr[y].s[k] = tr[x].s[k ^ 1], tr[tr[x].s[k ^ 1]].p = y;
     tr[x].s[k ^ 1] = y, tr[y].p = x;			//tr[x].s[k]的含义是取处于yx直线上的x的儿子, k ^ 1是取她的兄弟
     Pushup(y), Pushup(x);
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>说人话就是:</p>
 <p><span class="math inline">\(k\)</span>的获取:</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">inline int k(int x, int y) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">inline int k(int x, int y) {
     /*
      *@description 返回x是y的哪个儿子, 左0右1.
      */
 	return (tr[y].s[1] == x);
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>rotate伪代码:</p>
-<div class="code-wrapper"><pre class="language-pseudocode" data-language="pseudocode"><code class="language-pseudocode">/* y是x的爸爸, z是x的爷爷; */
+<div class="code-wrapper"><pre class="line-numbers language-pseudocode" data-language="pseudocode"><code class="language-pseudocode">/* y是x的爸爸, z是x的爷爷; */
 /* 以下每一步都需要修改两个结点的值, 即互认关系 */
 用z取到y, 将x转到y的位置上, 并与z互认; /* 以下两部均需操作结点与其父结点"互认"过程, 不再赘述 */
 x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
 让y转到原先x的兄弟的位置;
-分别更新y, x子树维护的信息;</code></pre></div>
+分别更新y, x子树维护的信息;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="双旋操作splay">双旋操作(splay)</h2>
 <p>通过一或两次rotate, 可以调整BST的形态, 使其更平衡.</p>
 <p>通过过程<span class="math inline">\(\operatorname{splay}(x, goal)\)</span>将结点<span class="math inline">\(x\)</span>转到<span class="math inline">\(goal\)</span>的子结点.</p>
@@ -209,7 +209,7 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
 <li>直线yx</li>
 </ul>
 <p><strong>需要注意的是该操作是将<span class="math inline">\(x\)</span>转到<span class="math inline">\(goal\)</span>下面, 故当<span class="math inline">\(x\)</span>与<span class="math inline">\(goal\)</span>为具有父子关系的两个结点时 (即第1、2种情况)不需要操作(即不需要交换它们).</strong></p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">void Splay(int x, int goal) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void Splay(int x, int goal) {
     //把x转到goal下面
     while(tr[x].p != goal) {
         int y = tr[x].p, z = tr[y].p;
@@ -220,12 +220,12 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
         Rotate(x);                                                  //统一转x
     }
     if(goal == 0) Root = x;                                         //更新根结点(0为根结点下标)
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <hr>
 <h2 id="插入操作insert">插入操作(insert)</h2>
 <p>过程<span class="math inline">\(\operatorname{insert}(val)\)</span>将<span class="math inline">\(val\)</span>插入BST的相应位置<span class="math inline">\(x\)</span>, 将插入的数转到根结点, 即执行<span class="math inline">\(\operatorname{splay}(x, 0)\)</span>.</p>
 <p>插入时需要维护BST性质, 将插入的这个数与当前节点比较, <strong>"小插左, 大插右"</strong>.</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">void Insert(int v) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void Insert(int v) {
     /*
      * @param v 要插入值的val.
      */
@@ -237,7 +237,7 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
     if(p) tr[p].s[v &gt; tr[p].v] = u;		//将p的儿子u插入适当位置
     tr[u].init(v, p);	//给这个点初始化爸爸下标和自身value, 并将大小设为1
     splay(u, 0);		//转到根结点
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="查询指定数的排名getrank">查询指定数的排名(getRank)</h2>
 <p>不会<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>.</p>
 <h2 id="查询第k小的数getvalbyrank">查询第<span class="math inline">\(k\)</span>小的数(getValByRank)</h2>
@@ -249,7 +249,7 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
 3. 所求结点位于右子树(rank需要减去左子树大小加一的和), 左子树结点个数 \lt rank - 1
 \end{cases}
 \]</span></p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">int getValByRank(int rk) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int getValByRank(int rk) {
     int u = Root;
     while(true) {
         Pushdown(u);
@@ -258,7 +258,7 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
         else rk -= (tr[tr[u].s[0]] + 1), u = tr[u].s[1];
     }
     return -1;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="删除操作delete">删除操作(delete)</h2>
 <p>操作<span class="math inline">\(\operatorname{delete}(x)\)</span>从Splay中删除value为<span class="math inline">\(x\)</span>的结点.</p>
 <p>该操作首先将<span class="math inline">\(x\)</span>转到根结点, 再合并<span class="math inline">\(x\)</span>的左右子树.</p>
@@ -274,7 +274,7 @@ x(此时在y的位置上)的兄弟转到原先x(即tr[y].s[k])的位置上;
 <p>翻转一个区间，例如原有序序列是<span class="math inline">\(\{5, 4, 3, 2, 1\}\)</span>，翻转区间是<span class="math inline">\([2, 4]\)</span>的话，结果是<span class="math inline">\(\{5, 2, 3, 4, 1\}\)</span>.</p>
 </blockquote>
 <p>在结点上维护延迟标记<span class="math inline">\(flag\)</span>来判定翻转状态, 避免多次翻转造成性能上的浪费.</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 const int N = 1e5;
 
@@ -378,8 +378,8 @@ int main() {
     }
     Output(Root);
     return 0;
-}</code></pre></div>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">//对零基础即为友好
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//对零基础即为友好
 #include &lt;iostream&gt;
 
 const int N = 1e6;
@@ -503,13 +503,13 @@ int main() {
 	Output(Root);
 	puts("");
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="普通平衡树luogu-p3369">普通平衡树(<a href="https://www.luogu.com.cn/problem/P3369">Luogu P3369</a>)</h3>
 <blockquote>
 <p>实现增, 删, 查询排名与反查, 查询前驱与后继功能.</p>
 </blockquote>
 <h4 id="solution1-stdvector">Solution1: <code>std::vector</code></h4>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;vector&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;vector&gt;
 #include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 
@@ -545,7 +545,7 @@ int main() {
 		}
 	}
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -565,7 +565,7 @@ int main() {
 <h2 id="定义">定义</h2>
 <h2 id="应用">应用</h2>
 <h3 id="像查字典一样检索字符串">像查字典一样"检索"字符串</h3>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;string&gt;
 
 const int N = 1e6;
@@ -620,7 +620,7 @@ int main() {
 		puts(tr.isExist(s) ? "Exist." : "Not Exist.");
 	}
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="异或极值问题">异或极值问题</h3>
 ]]></content>
       <tags>
@@ -635,19 +635,19 @@ int main() {
 <h2 id="二分查找">二分查找</h2>
 <p>给定一个序列<span class="math inline">\(\{a\}\)</span>, 查找指定元素<span class="math inline">\(x\)</span>位置.</p>
 <h3 id="代码实现">代码实现</h3>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">int bsearch(int* a, int x, int l, int r) {
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int bsearch(int* a, int x, int l, int r) {
     while(l &lt; r) {
         int mid = l + (r - l &gt;&gt; 1);
         if(a[mid] &gt;= x) r = mid;
         else l = mid + 1;
     }
     return a[l] == x ? l : -1;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="二分答案">二分答案</h2>
 <p>单调区间内高效地查找最优答案, <strong>可以看作"枚举"的优化</strong>. 常用来解决"最大值最小化"问题.</p>
 <h2 id="luogu-p1873-砍树"><a href="https://www.luogu.com.cn/problem/P1873">Luogu P1873 砍树</a></h2>
 <p>如果枚举<span class="math inline">\([1, 1\times 10^9]\)</span>会超时, 使用二分答案.</p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 typedef long long LL;
 
@@ -682,7 +682,7 @@ int main() {
     }
     cout &lt;&lt; l &lt;&lt; endl;
     return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -700,7 +700,7 @@ int main() {
 dp(u, 0) = \sum \max_{v \in u.\mathrm{son}} \{dp(v, 0), dp(v, 1)\}\\
 dp(u, 1) = dp(v, 0)
 \]</span></p>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
 const int N = 1e6 + 10;
@@ -752,9 +752,9 @@ int main() {
 	cout &lt;&lt; max(dp[Root][0], dp[Root][1]) &lt;&lt; endl;
 
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="战略游戏"><a href="https://www.luogu.com.cn/problem/P2016">战略游戏</a></h3>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 
 const int N = 1e6 + 10;
@@ -802,9 +802,9 @@ int main() {
 	cout &lt;&lt; min(dp[0][0], dp[0][1]) &lt;&lt; endl;
 
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="dp求树的直径"><a href="https://www.luogu.com.cn/problem/SP1437">DP求树的直径</a></h3>
-<div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 #include &lt;queue&gt;
 
@@ -857,7 +857,7 @@ int main() {
 
 	cout &lt;&lt; ans	&lt;&lt; endl;
 	return 0;
-}</code></pre></div>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h3 id="消防局的设立"><a href="https://www.luogu.com.cn/problem/P2279">消防局的设立</a></h3>
 ]]></content>
   </entry>

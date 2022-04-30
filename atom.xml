@@ -135,9 +135,7 @@
       
         
         
-    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include &amp;lt;iostream&amp;gt;
-
-const int N =</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     
@@ -162,8 +160,7 @@ const int N =</summary>
       
         
         
-    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include &amp;lt;iostream&amp;gt;
-#include</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     
