@@ -16,12 +16,12 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="#include &lt;iostream&gt; #include &lt;vector&gt;  using namespace std;  const int N &#x3D; 1e6; #define YES puts(&quot;TAK&quot;) #define NO puts(&quot;NIE&quot;);  int len, tc; vector&lt;int&gt; nxt[N];  &#x2F;&#x2F;思路 开二维vector存一堆指针">
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N &#x3D; 1e6;#define YES p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POI2010 - TESIntelligence Test">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2021/11/21/POI2010-TESIntelligence-Test/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="#include &lt;iostream&gt; #include &lt;vector&gt;  using namespace std;  const int N &#x3D; 1e6; #define YES puts(&quot;TAK&quot;) #define NO puts(&quot;NIE&quot;);  int len, tc; vector&lt;int&gt; nxt[N];  &#x2F;&#x2F;思路 开二维vector存一堆指针">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N &#x3D; 1e6;#define YES p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-21T13:01:04.000Z">
 <meta property="article:modified_time" content="2021-11-21T13:02:47.638Z">
@@ -43,17 +43,7 @@
     
     
       
-      
-        
-          
-          
-          
-        
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
-      
-      
-        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
-      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-dark.min.css" />
     
   
 
@@ -217,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.1k 字
     </span>
   
 
@@ -266,61 +256,7 @@
             <h1 style="display: none">POI2010 - TESIntelligence Test</h1>
             
             <div class="markdown-body">
-              <div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-using namespace std;
-
-const int N = 1e6;
-#define YES puts("TAK")
-#define NO puts("NIE");
-
-int len, tc;
-vector&lt;int&gt; nxt[N];
-
-//思路 开二维vector存一堆指针 nxt[x][y]就是数字x出现的第y次的位置.
-//vector动态开内存 不会爆空间.
-//二分去找"数字k出现第x次的位置", 实现"快速跳转".
-
-int bsearch(int num, int expected_pos) {
-    int l = 0, r = nxt[num].size() - 1, res = len + 1;
-    while(l &lt;= r) {
-        int mid = (l + r) &gt;&gt; 1;
-        if(nxt[num][mid] &gt; expected_pos) {
-            r = mid - 1;
-            res = mid;
-        } else l = mid + 1;
-    }
-    //return nxt[num][res];
-    return (res == len + 1 ? res : nxt[num][res]);
-}
-
-int main() {
-    ios_base::sync_with_stdio(false); cin.tie(0);
-    cin &gt;&gt; len;
-    for(int i = 1; i &lt;= len; i++) {
-        int tmp;
-        cin &gt;&gt; tmp;
-        nxt[tmp].push_back(i);
-    }
-
-    cin &gt;&gt; tc;
-    while(tc--) {
-        int l, a[N];
-        cin &gt;&gt; l;
-        bool flag = true; int pos = 0;
-        for(int i = 1; i &lt;= l; i++) cin &gt;&gt; a[i];
-        for(int i = 1; i &lt;= l; i++) {
-            pos = bsearch(a[i], pos);
-            //fprintf(stderr, "a[%d] = %d,\tpos = %d\n", i, a[i], pos);
-            if(pos &gt; len) { flag = 0; break; }
-        }
-        
-        flag ? YES : NO;
-    }
-    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+              <figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> YES puts(<span class="hljs-meta-string">"TAK"</span>)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NO puts(<span class="hljs-meta-string">"NIE"</span>);</span><br><br><span class="hljs-keyword">int</span> len, tc;<br>vector&lt;<span class="hljs-keyword">int</span>&gt; nxt[N];<br><br><span class="hljs-comment">//思路 开二维vector存一堆指针 nxt[x][y]就是数字x出现的第y次的位置.</span><br><span class="hljs-comment">//vector动态开内存 不会爆空间.</span><br><span class="hljs-comment">//二分去找"数字k出现第x次的位置", 实现"快速跳转".</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num, <span class="hljs-keyword">int</span> expected_pos)</span> </span>{<br>    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = nxt[num].<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, res = len + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(l &lt;= r) {<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(nxt[num][mid] &gt; expected_pos) {<br>            r = mid - <span class="hljs-number">1</span>;<br>            res = mid;<br>        } <span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-comment">//return nxt[num][res];</span><br>    <span class="hljs-keyword">return</span> (res == len + <span class="hljs-number">1</span> ? res : nxt[num][res]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; len;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) {<br>        <span class="hljs-keyword">int</span> tmp;<br>        cin &gt;&gt; tmp;<br>        nxt[tmp].<span class="hljs-built_in">push_back</span>(i);<br>    }<br><br>    cin &gt;&gt; tc;<br>    <span class="hljs-keyword">while</span>(tc--) {<br>        <span class="hljs-keyword">int</span> l, a[N];<br>        cin &gt;&gt; l;<br>        <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>; <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) cin &gt;&gt; a[i];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) {<br>            pos = <span class="hljs-built_in">bsearch</span>(a[i], pos);<br>            <span class="hljs-comment">//fprintf(stderr, "a[%d] = %d,\tpos = %d\n", i, a[i], pos);</span><br>            <span class="hljs-keyword">if</span>(pos &gt; len) { flag = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>; }<br>        }<br>        <br>        flag ? YES : NO;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> YES puts(<span class="hljs-meta-string">"TAK"</span>)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NO puts(<span class="hljs-meta-string">"NIE"</span>);</span><br><br><span class="hljs-keyword">int</span> len, tc;<br>vector&lt;<span class="hljs-keyword">int</span>&gt; nxt[N];<br><br><span class="hljs-comment">//思路 开二维vector存一堆指针 nxt[x][y]就是数字x出现的第y次的位置.</span><br><span class="hljs-comment">//vector动态开内存 不会爆空间.</span><br><span class="hljs-comment">//二分去找"数字k出现第x次的位置", 实现"快速跳转".</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num, <span class="hljs-keyword">int</span> expected_pos)</span> </span>{<br>    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = nxt[num].<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, res = len + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(l &lt;= r) {<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(nxt[num][mid] &gt; expected_pos) {<br>            r = mid - <span class="hljs-number">1</span>;<br>            res = mid;<br>        } <span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-comment">//return nxt[num][res];</span><br>    <span class="hljs-keyword">return</span> (res == len + <span class="hljs-number">1</span> ? res : nxt[num][res]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; len;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) {<br>        <span class="hljs-keyword">int</span> tmp;<br>        cin &gt;&gt; tmp;<br>        nxt[tmp].<span class="hljs-built_in">push_back</span>(i);<br>    }<br><br>    cin &gt;&gt; tc;<br>    <span class="hljs-keyword">while</span>(tc--) {<br>        <span class="hljs-keyword">int</span> l, a[N];<br>        cin &gt;&gt; l;<br>        <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>; <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) cin &gt;&gt; a[i];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) {<br>            pos = <span class="hljs-built_in">bsearch</span>(a[i], pos);<br>            <span class="hljs-comment">//fprintf(stderr, "a[%d] = %d,\tpos = %d\n", i, a[i], pos);</span><br>            <span class="hljs-keyword">if</span>(pos &gt; len) { flag = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>; }<br>        }<br>        <br>        flag ? YES : NO;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
 
             </div>
             <hr>
@@ -521,8 +457,6 @@ int main() {
 
 
 
-  
-    
   
 
 
