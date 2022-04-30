@@ -649,13 +649,13 @@
       
       jQuery.ajax({
         type: 'GET',
-        url: 'https://v1.hitokoto.cn/?c=k&amp;encode=text',
+        url: 'https://v1.hitokoto.cn/?c=k',
         headers: {},
         dataType: 'json',
         success: function(result) {
           var text;
           if (result) {
-            var keys = ''.split(',');
+            var keys = 'hitokoto'.split(',');
             if (result instanceof Array) {
               result = result[0];
             }
