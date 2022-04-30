@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>单调队列</title>
+    <link href="/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+    <url>/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义">定义</h2><p>维护一种序列, 可以从头和尾增加或删除元素(即双端队列), 且元素具有单调性.</p><h2 id="实现">实现</h2><p>本质是维护具有单调性的<strong>最优决策集合</strong>, 该如何维护最优与单调的性质呢?</p><h3 id="维护序列">维护序列</h3><p>该操作的本质是<strong>对原序列<span class="math inline">\(A\)</span>扫描, 将当前的元素<span class="math inline">\(A_i\)</span>与单调队列队尾比较, 如果<span class="math inline">\(A_i\)</span>更优则将队尾换成<span class="math inline">\(A_i\)</span></strong>.</p><h3 id="实现双端队列">实现双端队列</h3><h4 id="stddeque"><code>std::deque</code></h4><p>可以使用deque对序列进行操作.</p><div class="code-wrapper"><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">using namespace std;deque&lt;int&gt; q;//入队q.push_front(x);q.push_back(x);//出队q.pop_front();q.pop_back();//取头尾q.front();q.back();//遍历for(int x: q) {    cout &lt;&lt; x &lt;&lt; " ";}puts("");</code></pre></div><h4 id="数组模拟">数组模拟</h4><p>可以使用两个指针<span class="math inline">\(head\)</span>, <span class="math inline">\(tail\)</span>模拟.</p><p><strong>需要注意的是数组中下标小的元素在队列前面, 同时指针<span class="math inline">\(head \le tail\)</span>.</strong></p><h2 id="例题">例题</h2><h3 id="滑动窗口">滑动窗口</h3><blockquote><p>给定一个长度为<span class="math inline">\(n\)</span>的序列, 求其每个长度为<span class="math inline">\(k\)</span>的连续子序列中的最大与最小值.</p></blockquote><p>本题只需维护两个单调队列(一个递减, 队头为min; 另一个反之)即可.</p><p>需要注意的是要让窗口大小不超过<span class="math inline">\(k\)</span>, 这里采用在队列中存储数组下标的方法统计, 即保证<span class="math inline">\(head\)</span>中存储的下标与当前扫描元素的下标之差小于<span class="math inline">\(k\)</span>.</p><div class="code-wrapper"><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std;const int N = 1e6 + 100;int q[N], a[N];int n, k;void getMin() {//维护递减序列, 队头即为答案int head = 0, tail = 0;for(int i = 1; i &lt; k; ++i) {//Step 1: [1, k), pushwhile(head &lt;= tail &amp;&amp; a[q[tail]] &gt;= a[i]) --tail;q[++tail] = i;}for(int i = k; i &lt;= n; ++i) {//Step 2: [k, n]//这个区间窗口可能超过k, 需要特判维护窗口大小while(head &lt;= tail &amp;&amp; a[q[tail]] &gt;= a[i]) --tail;q[++tail] = i;while(q[head] &lt;= i - k) ++head;cout &lt;&lt; a[q[head]] &lt;&lt; ' ';}}void getMax() {memset(q, 0, sizeof q);int head = 0, tail = 0;for(int i = 1; i &lt; k; ++i) {while(head &lt;= tail &amp;&amp; a[q[tail]] &lt;= a[i]) --tail;q[++tail] = i;}for(int i = k; i &lt;= n; ++i) {while(head &lt;= tail &amp;&amp; a[q[tail]] &lt;= a[i]) --tail;q[++tail] = i;if(q[head] &lt;= i - k) ++head;cout &lt;&lt; a[q[head]] &lt;&lt; ' ';}}int main() {cin &gt;&gt; n &gt;&gt; k;for(int i = 1; i &lt;= n; ++i) {cin &gt;&gt; a[i];}getMin();puts("");getMax();puts("");return 0;}</code></pre></div><h3 id="最大子序和">最大子序和</h3><blockquote><p>给定一个长度为<span class="math inline">\(n\)</span>的序列, 求出一段长度不超过<span class="math inline">\(m\)</span>的连续子序列, 输出子序和.</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>OI</tag>
+      
+      <tag>数据结构</tag>
+      
+      <tag>to-be-continued</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>字典树</title>
     <link href="/2022/04/18/trie/"/>
     <url>/2022/04/18/trie/</url>

@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-04-29T12:25:00.999Z</updated>
+  <updated>2022-04-30T13:02:59.035Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单调队列</title>
+    <link href="https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+    <id>https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/</id>
+    <published>2022-04-30T11:11:11.000Z</published>
+    <updated>2022-04-30T13:02:59.035Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;p&gt;维护一种序列, 可以从头和尾增加或删除元素(即双端队列), 且元素具有单调性.&lt;/p&gt;
+&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
+&lt;p&gt;本质是维护具有单调性的&lt;strong&gt;最优决策集合&lt;/strong&gt;,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="to-be-continued" scheme="https://ret2libc-pwned.github.io/tags/to-be-continued/"/>
+    
+  </entry>
   
   <entry>
     <title>字典树</title>
