@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>FREE-Figurines</title>
+    <url>/2021/12/04/FREE-Figurines/</url>
+    <content><![CDATA[<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+const int N = 1e6;
+
+using namespace std;
+
+/*
+两种操作: 接在后面 / 删除最前面.
+最差情况: "重组", 即全部删了再拼起来. 需要2n次操作.
+优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可.
+*/
+
+int src[N], dest[N], len[N], n, ans;
+bool vis[N];
+
+inline void debug() {
+    printf("ans = %d\n", ans);
+}
+
+int main() {
+    cin &gt;&gt; n;
+    /*预处理, 统计最坏情况ans*/
+    for(int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; src[i];
+        vis[src[i]] = true;
+        if(src[i]) ans++;
+    }
+    for(int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; dest[i];
+        vis[dest[i]] = true;
+        if(dest[i]) ans++;
+    }
+
+    for(int i = 1; i &lt;= n; i++) {
+        if(!vis[i]) {
+            int tmpi = i;
+            while(src[tmpi] * dest[tmpi] &amp;&amp; src[tmpi] == dest[tmpi]) {   //不为自由的 &amp;&amp; 相等就是不用断开的链
+                ans -= 2;
+                tmpi = src[tmpi];
+            }
+        }
+    }
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}</code></pre></div>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>POI2010 - TESIntelligence Test</title>
     <url>/2021/11/21/POI2010-TESIntelligence-Test/</url>
     <content><![CDATA[<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
@@ -63,68 +119,6 @@ int main() {
         <tag>OI</tag>
         <tag>题解</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>FREE-Figurines</title>
-    <url>/2021/12/04/FREE-Figurines/</url>
-    <content><![CDATA[<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-
-const int N = 1e6;
-
-using namespace std;
-
-/*
-两种操作: 接在后面 / 删除最前面.
-最差情况: "重组", 即全部删了再拼起来. 需要2n次操作.
-优化: 尾巴上的节点不需要操作. 可以统计有多少个这种节点, 减去节点数 * 2即可.
-*/
-
-int src[N], dest[N], len[N], n, ans;
-bool vis[N];
-
-inline void debug() {
-    printf("ans = %d\n", ans);
-}
-
-int main() {
-    cin &gt;&gt; n;
-    /*预处理, 统计最坏情况ans*/
-    for(int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; src[i];
-        vis[src[i]] = true;
-        if(src[i]) ans++;
-    }
-    for(int i = 1; i &lt;= n; i++) {
-        cin &gt;&gt; dest[i];
-        vis[dest[i]] = true;
-        if(dest[i]) ans++;
-    }
-
-    for(int i = 1; i &lt;= n; i++) {
-        if(!vis[i]) {
-            int tmpi = i;
-            while(src[tmpi] * dest[tmpi] &amp;&amp; src[tmpi] == dest[tmpi]) {   //不为自由的 &amp;&amp; 相等就是不用断开的链
-                ans -= 2;
-                tmpi = src[tmpi];
-            }
-        }
-    }
-
-    cout &lt;&lt; ans &lt;&lt; endl;
-
-    return 0;
-}</code></pre></div>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/10/06/hello-world/</url>
-    <content><![CDATA[<p>如题, 这是我的第一篇文章.</p>
-]]></content>
   </entry>
   <entry>
     <title>Splay</title>
@@ -561,6 +555,12 @@ int main() {
         <tag>OI</tag>
         <tag>数据结构</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/10/06/hello-world/</url>
+    <content><![CDATA[<p>如题, 这是我的第一篇文章.</p>
+]]></content>
   </entry>
   <entry>
     <title>字典树</title>
