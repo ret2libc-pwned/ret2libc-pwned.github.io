@@ -32,7 +32,7 @@
 &lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
 &lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;
 &lt;h3 id=&quot;像查字典一样检索字符串&quot;&gt;像查字典一样&quot;检索&quot;字符串&lt;/h3&gt;
-&lt;figure class=&quot;highlight</summary>
+&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre</summary>
         
       
     
@@ -135,7 +135,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     
@@ -160,7 +160,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre class=&quot;line-numbers language-c++&quot; data-language=&quot;c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;#include</summary>
         
       
     

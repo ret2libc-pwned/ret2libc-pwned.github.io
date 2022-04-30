@@ -16,12 +16,12 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N &#x3D; 1e6;using n">
+    <meta name="description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 #include &lt;iostream&gt; #include &lt;string&gt;  const int N &#x3D; 1e6;  using namespace std;  struct Trie { 	int nxt[N][26], tot &#x3D; 0; 	bool ed[N];  	void insert(string s) { 		in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字典树">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2022/04/18/trie/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N &#x3D; 1e6;using n">
+<meta property="og:description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 #include &lt;iostream&gt; #include &lt;string&gt;  const int N &#x3D; 1e6;  using namespace std;  struct Trie { 	int nxt[N][26], tot &#x3D; 0; 	bool ed[N];  	void insert(string s) { 		in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-18T13:21:23.987Z">
 <meta property="article:modified_time" content="2022-04-29T12:25:00.999Z">
@@ -43,7 +43,17 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-dark.min.css" />
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -76,7 +86,8 @@
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Ret2Libc" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
 
 
 <body>
@@ -207,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      872 字
+      845 字
     </span>
   
 
@@ -260,7 +271,62 @@
 <h2 id="定义">定义</h2>
 <h2 id="应用">应用</h2>
 <h3 id="像查字典一样检索字符串">像查字典一样"检索"字符串</h3>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre class="line-numbers language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Trie</span> {</span><br>	<span class="hljs-keyword">int</span> nxt[N][<span class="hljs-number">26</span>], tot = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">bool</span> ed[N];<br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				nxt[p][key] = ++tot;<br>			}<br>			p = nxt[p][key];<br>		}<br>		ed[p] = <span class="hljs-literal">true</span>;<br>	}<br><br>	<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isExist</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			}<br>			p = nxt[p][key];<br>		}<br>		<span class="hljs-keyword">return</span> ed[p];<br>	}<br><br>};<br><br>Trie tr;	<span class="hljs-comment">//Allocate</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">int</span> cas;<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>	    string s;<br>	    cin &gt;&gt; s;<br>	    tr.<span class="hljs-built_in">insert</span>(s);<br>	}<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">"Inserted!!!!!!\n\nAsk Me!!!!!!!"</span>);<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		string s;<br>		cin &gt;&gt; s;<br>		<span class="hljs-built_in">puts</span>(tr.<span class="hljs-built_in">isExist</span>(s) ? <span class="hljs-string">"Exist."</span> : <span class="hljs-string">"Not Exist."</span>);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number"><code class="language-hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Trie</span> {</span><br>	<span class="hljs-keyword">int</span> nxt[N][<span class="hljs-number">26</span>], tot = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">bool</span> ed[N];<br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				nxt[p][key] = ++tot;<br>			}<br>			p = nxt[p][key];<br>		}<br>		ed[p] = <span class="hljs-literal">true</span>;<br>	}<br><br>	<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isExist</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			}<br>			p = nxt[p][key];<br>		}<br>		<span class="hljs-keyword">return</span> ed[p];<br>	}<br><br>};<br><br>Trie tr;	<span class="hljs-comment">//Allocate</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">int</span> cas;<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>	    string s;<br>	    cin &gt;&gt; s;<br>	    tr.<span class="hljs-built_in">insert</span>(s);<br>	}<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">"Inserted!!!!!!\n\nAsk Me!!!!!!!"</span>);<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		string s;<br>		cin &gt;&gt; s;<br>		<span class="hljs-built_in">puts</span>(tr.<span class="hljs-built_in">isExist</span>(s) ? <span class="hljs-string">"Exist."</span> : <span class="hljs-string">"Not Exist."</span>);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+const int N = 1e6;
+
+using namespace std;
+
+struct Trie {
+	int nxt[N][26], tot = 0;
+	bool ed[N];
+
+	void insert(string s) {
+		int p = 0;
+		for(char ch: s) {
+			int key = ch - 'a';
+			if(nxt[p][key] == 0) {
+				nxt[p][key] = ++tot;
+			}
+			p = nxt[p][key];
+		}
+		ed[p] = true;
+	}
+
+	bool isExist(string s) {
+		int p = 0;
+		for(char ch: s) {
+			int key = ch - 'a';
+			if(nxt[p][key] == 0) {
+				return false;
+			}
+			p = nxt[p][key];
+		}
+		return ed[p];
+	}
+
+};
+
+Trie tr;	//Allocate
+
+int main() {
+	int cas;
+	cin &gt;&gt; cas;
+	while(cas--) {
+	    string s;
+	    cin &gt;&gt; s;
+	    tr.insert(s);
+	}
+	puts("Inserted!!!!!!\n\nAsk Me!!!!!!!");
+	cin &gt;&gt; cas;
+	while(cas--) {
+		string s;
+		cin &gt;&gt; s;
+		puts(tr.isExist(s) ? "Exist." : "Not Exist.");
+	}
+	return 0;
+}</code></pre></div>
 <h3 id="异或极值问题">异或极值问题</h3>
 
             </div>
@@ -456,6 +522,14 @@
 
 
 
+  
+    
+      <script  src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js" ></script>
+      <script  src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js" ></script>
+      
+        <script  src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+      
+    
   
 
 
