@@ -25,6 +25,19 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2022/03/25/%E6%A0%91%E5%BD%A2dp/"/>
+    <url>/2022/03/25/%E6%A0%91%E5%BD%A2dp/</url>
+    
+    <content type="html"><![CDATA[<h1 id="树形dp">树形dp</h1><h2 id="例题">例题</h2><h3 id="没有上司的舞会"><a href="https://www.luogu.com.cn/problem/P1352">没有上司的舞会</a></h3><p>使用<span class="math inline">\(dp(u, 0/1)\)</span>表示以<span class="math inline">\(u\)</span>来或不来时<span class="math inline">\(u\)</span>为根结点子树的快乐指数总和.</p><p>则: <span class="math display">\[dp(u, 0) = \sum \max_{v \in u.\mathrm{son}} \{dp(v, 0), dp(v, 1)\}\\dp(u, 1) = dp(v, 0)\]</span></p><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;const int N = 1e6 + 10;using namespace std;int head[N], to[N], nxt[N], tot, n, r[N], Root = 1, dp[N][2];bool haveFa[N];inline void initGraph() {memset(head, -1, sizeof head);tot = -1;}void addEdge(int u, int v) {nxt[++tot] = head[u], head[u] = tot, to[tot] = v;}void calc(int u) {for(int i = head[u]; ~i; i = nxt[i]) {int v = to[i];calc(v);dp[u][0] += max(dp[v][0], dp[v][1]);dp[u][1] += dp[v][0];}}int main() {initGraph();cin &gt;&gt; n;for(int i = 1; i &lt;= n; ++i) {cin &gt;&gt; dp[i][1];}for(int i = 1; i &lt; n; ++i) {int u, v;cin &gt;&gt; u &gt;&gt; v;addEdge(v, u);haveFa[u] = true;}while(haveFa[Root]) {Root++;}calc(Root);cout &lt;&lt; max(dp[Root][0], dp[Root][1]) &lt;&lt; endl;return 0;}</code></pre></div><h3 id="战略游戏"><a href="https://www.luogu.com.cn/problem/P2016">战略游戏</a></h3><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;const int N = 1e6 + 10;using namespace std;int head[N], to[N], nxt[N], tot, dp[N][2], n, Root;inline void initGraph() {memset(head, -1, sizeof head);tot = -1;}void addEdge(int u, int v) {nxt[++tot] = head[u], head[u] = tot, to[tot] = v;}void calc(int u) {dp[u][1] = 1, dp[u][0] = 0;for(int i = head[u]; ~i; i = nxt[i]) {int v = to[i];calc(v);dp[u][0] += dp[v][1];dp[u][1] += min(dp[v][0], dp[v][1]);}}int main() {initGraph();cin &gt;&gt; n;for(int i = 1; i &lt;= n; ++i) {int u, k;cin &gt;&gt; u &gt;&gt; k;for(int j = 1; j &lt;= k; ++j) {int v;cin &gt;&gt; v;addEdge(u, v);}}calc(0);cout &lt;&lt; min(dp[0][0], dp[0][1]) &lt;&lt; endl;return 0;}</code></pre></div><h3 id="dp求树的直径"><a href="https://www.luogu.com.cn/problem/SP1437">DP求树的直径</a></h3><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;queue&gt;const int N = 1e6 + 10, INF = 0x3f3f3f3f;using namespace std;int n;int head[N], to[N], nxt[N], tot, Root, d1[N], d2[N];bool vis[N];inline void initGraph() {memset(head, -1, sizeof head);tot = -1;}void addEdge(int u, int v) {nxt[++tot] = head[u], head[u] = tot, to[tot] = v;}int getDiam(int u) {int ret = -INF;d1[u] = d2[u] = 0;for(int i = head[u]; ~i; i = nxt[i]) {int v = to[i];getDiam(v);int t = d1[v] + 1;if(t &gt; d1[u]) {d2[u] = d1[u], d1[u] = t;} else if(t &gt; d2[u]) {d2[u] = t;}}ret = max(ret, d1[u] + d2[u]);return ret;}int main() {initGraph();cin &gt;&gt; n;for(int i = 0; i &lt; n - 1; ++i) {int u, v;cin &gt;&gt; u &gt;&gt; v;addEdge(u, v);}int ans = getDiam(1);cout &lt;&lt; ans&lt;&lt; endl;return 0;}</code></pre></div><h3 id="消防局的设立"><a href="https://www.luogu.com.cn/problem/P2279">消防局的设立</a></h3>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Splay</title>
     <link href="/2022/03/12/Splay/"/>
     <url>/2022/03/12/Splay/</url>
