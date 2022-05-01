@@ -1031,9 +1031,9 @@ int main() {
 <p>dp, 设<span class="math inline">\(F_{i, j}\)</span>为前<span class="math inline">\(i\)</span>人刷前<span class="math inline">\(j\)</span>块板获得的最大报酬.</p>
 <p>则有: <span class="math display">\[
 %\begin {aligned}
-F_{i, j} = F_{i - 1, j}&amp;\text{(第$i$人不干)}\\
-F_{i, j} = F_{i, j - 1}&amp;\text{(第$j$块板不刷)}\\
-F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}&amp;\text{(第$i$人刷了$[k + 1, j]$板)}
+F_{i, j} = F_{i - 1, j}\\
+F_{i, j} = F_{i, j - 1}\\
+F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}
 %\end {aligned}
 \]</span></p>
 ]]></content>

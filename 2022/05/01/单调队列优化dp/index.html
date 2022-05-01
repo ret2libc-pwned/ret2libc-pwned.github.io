@@ -24,7 +24,7 @@
 <meta property="og:description" content="例题 Fance  有\(n\)块木板从左到右排成一行，有\(m\)个工匠对这些木板进行粉刷，每块木板至多被粉刷一次。 第\(i\)个木匠要么不粉刷，要么粉刷包含木板\(S_i\)的，长度不超过\(L_i\)的连续的一段木板，每粉刷一块可以得到\(P_i\)的报酬。 不同工匠的\(S_i\)不同。 请问如何安排能使工匠们获得的总报酬最多。  dp, 设\(F_{i, j}\)为前\(i\)人刷前\">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-01T12:31:36.000Z">
-<meta property="article:modified_time" content="2022-05-01T13:50:32.304Z">
+<meta property="article:modified_time" content="2022-05-01T13:56:12.163Z">
 <meta property="article:author" content="ret2libc">
 <meta property="article:tag" content="OI">
 <meta property="article:tag" content="数据结构">
@@ -220,7 +220,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      410 字
+      336 字
     </span>
   
 
@@ -229,7 +229,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      2 分钟
     </span>
   
 
@@ -280,9 +280,9 @@
 <p>dp, 设<span class="math inline">\(F_{i, j}\)</span>为前<span class="math inline">\(i\)</span>人刷前<span class="math inline">\(j\)</span>块板获得的最大报酬.</p>
 <p>则有: <span class="math display">\[
 %\begin {aligned}
-F_{i, j} = F_{i - 1, j}&amp;\text{(第$i$人不干)}\\
-F_{i, j} = F_{i, j - 1}&amp;\text{(第$j$块板不刷)}\\
-F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}&amp;\text{(第$i$人刷了$[k + 1, j]$板)}
+F_{i, j} = F_{i - 1, j}\\
+F_{i, j} = F_{i, j - 1}\\
+F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}
 %\end {aligned}
 \]</span></p>
 
