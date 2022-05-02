@@ -866,11 +866,11 @@ int main() {
 <li>第<span class="math inline">\(i\)</span>人刷了<span class="math inline">\([k + 1, j]\)</span>的连续一段.</li>
 </ol>
 <p><span class="math display">\[
-\begin {aligned}
+\begin{array}{c}
 F_{i, j} = F_{i - 1, j}\\
 F_{i, j} = F_{i, j - 1}\\
 F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}
-\end {aligned}
+\end{array}
 \]</span></p>
 <p>注意观察三式, 如果枚举<span class="math inline">\(i, j, k\)</span>肯定超时. 该怎么优化呢?</p>
 <p>观察等号左侧, 这是一个关于<span class="math inline">\(i, j\)</span>的式子, 所以肯定要嵌套循环枚举它们. 此时可以通过防止不优的<span class="math inline">\(k\)</span>做dp来优化.</p>
