@@ -1039,8 +1039,8 @@ int main() {
 </ol>
 <p><span class="math display">\[
 %\begin {aligned}
-F_{i, j} = F_{i - 1, j}\newline
-F_{i, j} = F_{i, j - 1}\newline
+F_{i, j} = F_{i - 1, j}\\\\
+F_{i, j} = F_{i, j - 1}\\\\
 F_{i, j} = \max_{k\in [j - L_i, S_i)} \{F_{i - 1, j} + P_i \cdot (j - k)\}
 %\end {aligned}
 \]</span></p>
