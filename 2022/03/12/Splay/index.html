@@ -16,19 +16,19 @@
   <meta name="author" content="ret2libc">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Splay 定义 Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
+    <meta name="description" content="Splay 定义 Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Splay">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2022/03/12/Splay/index.html">
 <meta property="og:site_name" content="Ret2Libc">
-<meta property="og:description" content="Splay 定义 Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
+<meta property="og:description" content="Splay 定义 Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;, 基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近). 本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据. BST性质 左子树任意结点的key\(\lt\)根结点key\">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">
 <meta property="article:published_time" content="2022-03-12T13:39:05.000Z">
-<meta property="article:modified_time" content="2022-04-30T02:45:43.529Z">
+<meta property="article:modified_time" content="2022-05-03T11:08:16.667Z">
 <meta property="article:author" content="ret2libc">
-<meta property="article:tag" content="OI">
+<meta property="article:tag" content="平衡树">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2022/02/27/51Z6t4FNpChvJbi.jpg">
@@ -272,7 +272,7 @@
             <div class="markdown-body">
               <h1 id="splay">Splay</h1>
 <h2 id="定义">定义</h2>
-<p>Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其"平衡", <strong>基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近)</strong>.</p>
+<p>Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其"平衡", <strong>基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近)</strong>.</p>
 <p><strong>本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据.</strong></p>
 <h3 id="bst性质">BST性质</h3>
 <p>左子树任意结点的key<span class="math inline">\(\lt\)</span>根结点key<span class="math inline">\(\lt\)</span>右子树任意结点key, 即<strong>中序遍历单调递增</strong>.</p>
@@ -703,11 +703,18 @@ int main() {
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
+                    
+                  </div>
+                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/OI/">OI</a>
+                      <a class="hover-with-bg" href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/">平衡树</a>
                     
                       <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
                     
@@ -728,7 +735,7 @@ int main() {
                     
                       <a href="/2022/03/25/%E6%A0%91%E5%BD%A2dp/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">树形dp</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-05-02T14:18:48.091Z</updated>
+  <updated>2022-05-03T11:16:23.673Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/05/01/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/"/>
     <id>https://ret2libc-pwned.github.io/2022/05/01/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96dp/</id>
     <published>2022-05-01T12:31:36.000Z</published>
-    <updated>2022-05-02T14:18:48.091Z</updated>
+    <updated>2022-05-03T11:16:23.673Z</updated>
     
     
       
@@ -39,8 +39,8 @@
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
@@ -55,7 +55,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
     <id>https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/</id>
     <published>2022-04-30T11:11:11.000Z</published>
-    <updated>2022-05-02T11:09:11.618Z</updated>
+    <updated>2022-05-03T11:09:34.737Z</updated>
     
     
       
@@ -71,8 +71,8 @@
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
@@ -83,7 +83,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/04/18/trie/"/>
     <id>https://ret2libc-pwned.github.io/2022/04/18/trie/</id>
     <published>2022-04-18T13:21:23.987Z</published>
-    <updated>2022-04-29T12:25:00.999Z</updated>
+    <updated>2022-05-03T11:12:28.474Z</updated>
     
     
       
@@ -100,19 +100,19 @@
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
   <entry>
-    <title></title>
+    <title>树形dp</title>
     <link href="https://ret2libc-pwned.github.io/2022/03/25/%E6%A0%91%E5%BD%A2dp/"/>
     <id>https://ret2libc-pwned.github.io/2022/03/25/%E6%A0%91%E5%BD%A2dp/</id>
     <published>2022-03-25T11:36:01.065Z</published>
-    <updated>2022-03-27T11:58:20.437Z</updated>
+    <updated>2022-05-03T11:11:31.866Z</updated>
     
     
       
@@ -128,6 +128,12 @@
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="动态规划" scheme="https://ret2libc-pwned.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="图论" scheme="https://ret2libc-pwned.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
@@ -136,7 +142,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/03/12/Splay/"/>
     <id>https://ret2libc-pwned.github.io/2022/03/12/Splay/</id>
     <published>2022-03-12T13:39:05.000Z</published>
-    <updated>2022-04-30T02:45:43.529Z</updated>
+    <updated>2022-05-03T11:08:16.667Z</updated>
     
     
       
@@ -145,14 +151,16 @@
         
     <summary type="html">&lt;h1 id=&quot;splay&quot;&gt;Splay&lt;/h1&gt;
 &lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;p&gt;Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;,</summary>
+&lt;p&gt;Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;,</summary>
         
       
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
+    
+    <category term="平衡树" scheme="https://ret2libc-pwned.github.io/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/"/>
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
@@ -163,7 +171,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/02/20/%E4%BA%8C%E5%88%86/"/>
     <id>https://ret2libc-pwned.github.io/2022/02/20/%E4%BA%8C%E5%88%86/</id>
     <published>2022-02-20T12:53:53.000Z</published>
-    <updated>2022-02-20T12:56:05.619Z</updated>
+    <updated>2022-05-03T11:12:30.856Z</updated>
     
     
       
@@ -178,10 +186,10 @@
     
     
     
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
-    <category term="算法" scheme="https://ret2libc-pwned.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    <category term="基础算法" scheme="https://ret2libc-pwned.github.io/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -190,7 +198,7 @@
     <link href="https://ret2libc-pwned.github.io/2021/12/04/FREE-Figurines/"/>
     <id>https://ret2libc-pwned.github.io/2021/12/04/FREE-Figurines/</id>
     <published>2021-12-04T14:18:52.000Z</published>
-    <updated>2021-12-04T14:20:43.140Z</updated>
+    <updated>2022-05-03T11:12:14.168Z</updated>
     
     
       
@@ -203,10 +211,10 @@
     
     
     
+    <category term="题解" scheme="https://ret2libc-pwned.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
-    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    <category term="POI" scheme="https://ret2libc-pwned.github.io/tags/POI/"/>
     
   </entry>
   
@@ -215,7 +223,7 @@
     <link href="https://ret2libc-pwned.github.io/2021/11/21/POI2010-TESIntelligence-Test/"/>
     <id>https://ret2libc-pwned.github.io/2021/11/21/POI2010-TESIntelligence-Test/</id>
     <published>2021-11-21T13:01:04.000Z</published>
-    <updated>2021-11-21T13:02:47.638Z</updated>
+    <updated>2022-05-03T11:12:22.116Z</updated>
     
     
       
@@ -228,10 +236,10 @@
     
     
     
+    <category term="题解" scheme="https://ret2libc-pwned.github.io/categories/%E9%A2%98%E8%A7%A3/"/>
     
-    <category term="OI" scheme="https://ret2libc-pwned.github.io/tags/OI/"/>
     
-    <category term="题解" scheme="https://ret2libc-pwned.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    <category term="POI" scheme="https://ret2libc-pwned.github.io/tags/POI/"/>
     
   </entry>
   
@@ -240,7 +248,7 @@
     <link href="https://ret2libc-pwned.github.io/2021/10/06/hello-world/"/>
     <id>https://ret2libc-pwned.github.io/2021/10/06/hello-world/</id>
     <published>2021-10-06T06:53:59.209Z</published>
-    <updated>2021-10-17T09:07:02.605Z</updated>
+    <updated>2022-05-03T11:05:33.248Z</updated>
     
     
       
@@ -252,6 +260,8 @@
       
     
     
+    
+    <category term="随记" scheme="https://ret2libc-pwned.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
     
     
   </entry>

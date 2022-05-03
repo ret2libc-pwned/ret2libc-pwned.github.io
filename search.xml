@@ -51,9 +51,11 @@ int main() {
     return 0;
 }</code></pre></div>
 ]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
-        <tag>题解</tag>
+        <tag>POI</tag>
       </tags>
   </entry>
   <entry>
@@ -115,9 +117,11 @@ int main() {
 }
 </code></pre></div>
 ]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
-        <tag>题解</tag>
+        <tag>POI</tag>
       </tags>
   </entry>
   <entry>
@@ -125,7 +129,7 @@ int main() {
     <url>/2022/03/12/Splay/</url>
     <content><![CDATA[<h1 id="splay">Splay</h1>
 <h2 id="定义">定义</h2>
-<p>Splay是一种BST, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其"平衡", <strong>基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近)</strong>.</p>
+<p>Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其"平衡", <strong>基于时间、空间局部性原理优化查找性能(这样操作使得高频访问的结点在经常根结点附近)</strong>.</p>
 <p><strong>本文的BST每一个结点只维护单个值(而非键值对), 下面说法中v、val、key都指这个值, BST性质的维护它们的大小关系做依据.</strong></p>
 <h3 id="bst性质">BST性质</h3>
 <p>左子树任意结点的key<span class="math inline">\(\lt\)</span>根结点key<span class="math inline">\(\lt\)</span>右子树任意结点key, 即<strong>中序遍历单调递增</strong>.</p>
@@ -551,8 +555,11 @@ int main() {
 	return 0;
 }</code></pre></div>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
+        <tag>平衡树</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -561,6 +568,9 @@ int main() {
     <url>/2021/10/06/hello-world/</url>
     <content><![CDATA[<p>如题, 这是我的第一篇文章.</p>
 ]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
   </entry>
   <entry>
     <title>字典树</title>
@@ -627,8 +637,10 @@ int main() {
 }</code></pre></div>
 <h3 id="异或极值问题">异或极值问题</h3>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -688,9 +700,11 @@ int main() {
     return 0;
 }</code></pre></div>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
-        <tag>算法</tag>
+        <tag>基础算法</tag>
       </tags>
   </entry>
   <entry>
@@ -840,8 +854,10 @@ int main() {
 	return 0;
 }</code></pre></div>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
@@ -941,16 +957,19 @@ int main() {
 	cout &lt;&lt; f[m][n] &lt;&lt; endl;
 	return 0;
 }</code></pre></div>
+<h3 id="section"></h3>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
       <tags>
-        <tag>OI</tag>
         <tag>数据结构</tag>
         <tag>动态规划</tag>
         <tag>dp优化</tag>
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>树形dp</title>
     <url>/2022/03/25/%E6%A0%91%E5%BD%A2dp/</url>
     <content><![CDATA[<h1 id="树形dp">树形dp</h1>
 <h2 id="例题">例题</h2>
@@ -1120,5 +1139,12 @@ int main() {
 }</code></pre></div>
 <h3 id="消防局的设立"><a href="https://www.luogu.com.cn/problem/P2279">消防局的设立</a></h3>
 ]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>图论</tag>
+      </tags>
   </entry>
 </search>
