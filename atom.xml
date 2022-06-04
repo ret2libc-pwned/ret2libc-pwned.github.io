@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-05-28T14:14:36.193Z</updated>
+  <updated>2022-06-04T13:28:41.177Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最短路算法</title>
+    <link href="https://ret2libc-pwned.github.io/2022/06/04/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/"/>
+    <id>https://ret2libc-pwned.github.io/2022/06/04/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/</id>
+    <published>2022-06-04T13:23:47.000Z</published>
+    <updated>2022-06-04T13:28:41.177Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;h2 id=&quot;模板代码&quot;&gt;模板代码&lt;/h2&gt;
+&lt;p&gt;这样&quot;三合一&quot;过不了. 需要哪个直接用哪个即可.&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>DP斜率优化</title>
