@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Ret2Libc</title>
+  <title>OI-Cheatsheet</title>
   
   <subtitle>Hello, the cruel world.</subtitle>
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-06-04T13:30:03.978Z</updated>
+  <updated>2022-06-04T14:25:15.923Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
-    <name>ret2libc</name>
+    <name>ret2libc-pwned</name>
     
   </author>
   
@@ -21,7 +21,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/06/04/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/"/>
     <id>https://ret2libc-pwned.github.io/2022/06/04/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/</id>
     <published>2022-06-04T13:23:47.000Z</published>
-    <updated>2022-06-04T13:30:03.978Z</updated>
+    <updated>2022-06-04T14:25:15.923Z</updated>
     
     
       
