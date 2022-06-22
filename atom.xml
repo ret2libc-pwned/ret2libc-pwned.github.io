@@ -76,6 +76,53 @@
   </entry>
   
   <entry>
+    <title>DP心得</title>
+    <link href="https://ret2libc-pwned.github.io/2022/05/03/DP%E5%BF%83%E5%BE%97/"/>
+    <id>https://ret2libc-pwned.github.io/2022/05/03/DP%E5%BF%83%E5%BE%97/</id>
+    <published>2022-05-03T11:18:35.000Z</published>
+    <updated>2022-05-28T14:14:41.504Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单调队列优化DP</title>
+    <link href="https://ret2libc-pwned.github.io/2022/05/01/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96DP/"/>
+    <id>https://ret2libc-pwned.github.io/2022/05/01/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96DP/</id>
+    <published>2022-05-01T12:31:36.000Z</published>
+    <updated>2022-05-28T14:15:38.292Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;不会.&lt;/p&gt;
+&lt;h2 id=&quot;例题&quot;&gt;例题&lt;/h2&gt;
+&lt;h3 id=&quot;fance&quot;&gt;Fance&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有&lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="动态规划" scheme="https://ret2libc-pwned.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="DP优化" scheme="https://ret2libc-pwned.github.io/tags/DP%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>单调队列</title>
     <link href="https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
     <id>https://ret2libc-pwned.github.io/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/</id>
@@ -129,6 +176,36 @@
     
     
     <category term="数据结构" scheme="https://ret2libc-pwned.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>树形DP</title>
+    <link href="https://ret2libc-pwned.github.io/2022/03/25/%E6%A0%91%E5%BD%A2DP/"/>
+    <id>https://ret2libc-pwned.github.io/2022/03/25/%E6%A0%91%E5%BD%A2DP/</id>
+    <published>2022-03-25T11:36:01.065Z</published>
+    <updated>2022-05-28T14:15:13.670Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;树形dp&quot;&gt;树形DP&lt;/h1&gt;
+&lt;h2 id=&quot;例题&quot;&gt;例题&lt;/h2&gt;
+&lt;h3 id=&quot;没有上司的舞会&quot;&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P1352&quot;&gt;没有上司的舞会&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使用&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="动态规划" scheme="https://ret2libc-pwned.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="图论" scheme="https://ret2libc-pwned.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
