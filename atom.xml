@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-06-22T14:32:16.066Z</updated>
+  <updated>2022-06-25T11:59:54.340Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搜索算法入门</title>
+    <link href="https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/"/>
+    <id>https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/</id>
+    <published>2022-06-24T06:04:12.000Z</published>
+    <updated>2022-06-25T11:59:54.340Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;深度优先搜索-dfs&quot;&gt;深度优先搜索 (DFS)&lt;/h2&gt;
+&lt;p&gt;本质是将状态的集合表达为一棵搜索树, 自顶向下地递归求解子问题 (抽象为图就是: 每一层为一个阶段, 每一个结点表示一个决策. 深度优先遍历每一棵子树).&lt;/p&gt;
+&lt;div class=&quot;note</summary>
+        
+      
+    
+    
+    
+    <category term="搜索" scheme="https://ret2libc-pwned.github.io/categories/%E6%90%9C%E7%B4%A2/"/>
+    
+    
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/tags/OI%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>树形DP</title>
