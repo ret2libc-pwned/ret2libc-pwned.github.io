@@ -600,7 +600,7 @@
       <p class="index-excerpt">
         <a href="/2022/02/20/%E4%BA%8C%E5%88%86/" target="_self">
           
-          二分 二分查找 给定一个序列\(\{a\}\), 查找指定元素\(x\)位置. 代码实现 12345678int bsearch(int* a, int x, int l, int r) {    while(l &lt; r) {        int mid &#x3D; l + (r - l &gt;&gt; 1);        if(a[mid] &gt;&#x3D; x) r &#x3D; mid;
+          二分 原理及实现 能用二分解决的问题本质上是 求可行域的界 ．在本文中，我们定义：若在一个单调区间 \([st, ed]\) 内，问题的最优答案为 \(ans\) ，有 \(\forall x \in [st, ans]\) 满足问题的要求，则称 \([st, ans]\) 为该问题的 可行域．即，在 \((ans, ed]\) 的答案都不能满足该问题的条件．因为区间的单调性，可行域的一个界往往是
         </a>
       </p>
 

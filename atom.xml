@@ -228,7 +228,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/03/12/Splay/"/>
     <id>https://ret2libc-pwned.github.io/2022/03/12/Splay/</id>
     <published>2022-03-12T13:39:05.000Z</published>
-    <updated>2022-05-22T11:27:03.137Z</updated>
+    <updated>2022-06-25T11:31:58.921Z</updated>
     
     
       
@@ -257,7 +257,7 @@
     <link href="https://ret2libc-pwned.github.io/2022/02/20/%E4%BA%8C%E5%88%86/"/>
     <id>https://ret2libc-pwned.github.io/2022/02/20/%E4%BA%8C%E5%88%86/</id>
     <published>2022-02-20T12:53:53.000Z</published>
-    <updated>2022-05-03T11:12:30.856Z</updated>
+    <updated>2022-07-13T06:41:06.857Z</updated>
     
     
       
@@ -265,8 +265,8 @@
         
         
     <summary type="html">&lt;h1 id=&quot;二分&quot;&gt;二分&lt;/h1&gt;
-&lt;h2 id=&quot;二分查找&quot;&gt;二分查找&lt;/h2&gt;
-&lt;p&gt;给定一个序列&lt;span class=&quot;math inline&quot;&gt;\(\{a\}\)&lt;/span&gt;, 查找指定元素&lt;span class=&quot;math</summary>
+&lt;h2 id=&quot;原理及实现&quot;&gt;原理及实现&lt;/h2&gt;
+&lt;p&gt;能用二分解决的问题本质上是 &lt;strong&gt;求可行域的界&lt;/strong&gt; ．在本文中，我们定义：若在一个单调区间 &lt;span class=&quot;math inline&quot;&gt;\([st,</summary>
         
       
     
