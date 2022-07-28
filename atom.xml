@@ -28,9 +28,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;深度优先搜索-dfs&quot;&gt;深度优先搜索 (DFS)&lt;/h2&gt;
-&lt;p&gt;本质是将状态的集合表达为一棵搜索树, 自顶向下地递归求解子问题 (抽象为图就是: 每一层为一个阶段, 每一个结点表示一个决策. 深度优先遍历每一棵子树).&lt;/p&gt;
-&lt;div class=&quot;note</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -55,10 +53,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;树形dp&quot;&gt;树形DP&lt;/h1&gt;
-&lt;h2 id=&quot;例题&quot;&gt;例题&lt;/h2&gt;
-&lt;h3 id=&quot;没有上司的舞会&quot;&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P1352&quot;&gt;没有上司的舞会&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;使用&lt;span</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -85,10 +80,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;h2 id=&quot;模板代码&quot;&gt;模板代码&lt;/h2&gt;
-&lt;p&gt;这样&quot;三合一&quot;过不了. 需要哪个直接用哪个即可.&lt;/p&gt;
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -115,11 +107,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;p&gt;刷完题再写&lt;/p&gt;
-&lt;h2 id=&quot;例题&quot;&gt;例题&lt;/h2&gt;
-&lt;h3 id=&quot;hnoi2008玩具装箱&quot;&gt;[HNOI2008]玩具装箱&lt;/h3&gt;
-&lt;figure class=&quot;highlight</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -144,12 +132,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;p&gt;不会.&lt;/p&gt;
-&lt;h2 id=&quot;例题&quot;&gt;例题&lt;/h2&gt;
-&lt;h3 id=&quot;fance&quot;&gt;Fance&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;有&lt;span class=&quot;math</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -178,10 +161,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;p&gt;维护一种序列, 可以从头和尾增加或删除元素(即双端队列), 且元素具有单调性.&lt;/p&gt;
-&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
-&lt;p&gt;本质是维护具有单调性的&lt;strong&gt;最优决策集合&lt;/strong&gt;,</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -206,11 +186,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;字典树&quot;&gt;字典树&lt;/h1&gt;
-&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;h2 id=&quot;应用&quot;&gt;应用&lt;/h2&gt;
-&lt;h3 id=&quot;像查字典一样检索字符串&quot;&gt;像查字典一样&quot;检索&quot;字符串&lt;/h3&gt;
-&lt;figure class=&quot;highlight</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -235,9 +211,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;splay&quot;&gt;Splay&lt;/h1&gt;
-&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;p&gt;Splay是一种平衡树, 将访问过的结点不断旋转到根结点, 在满足BST性质的同时保证其&quot;平衡&quot;,</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -264,9 +238,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;二分&quot;&gt;二分&lt;/h1&gt;
-&lt;h2 id=&quot;原理及实现&quot;&gt;原理及实现&lt;/h2&gt;
-&lt;p&gt;能用二分解决的问题本质上是 &lt;strong&gt;求可行域的界&lt;/strong&gt; ．在本文中，我们定义：若在一个单调区间 &lt;span class=&quot;math inline&quot;&gt;\([st,</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -291,7 +263,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -316,7 +288,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
@@ -341,7 +313,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;如题,</summary>
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
     
