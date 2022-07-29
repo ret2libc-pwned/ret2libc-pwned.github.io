@@ -360,10 +360,10 @@ F_{i, j} = \max _{j - \Delta s \le k\le j + \Delta s}\{F_{i - 1, k} + b_i - |a_i
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iomanip&gt;</span></span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">33</span>;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">int</span> n, k, ans[<span class="hljs-number">23</span>];<br><span class="hljs-keyword">bool</span> vis[<span class="hljs-number">23</span>];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> idx, <span class="hljs-keyword">int</span> lst)</span> </span>{<br>	<span class="hljs-keyword">if</span>(idx == k + <span class="hljs-number">1</span>) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= idx - <span class="hljs-number">1</span>; ++i) cout &lt;&lt; <span class="hljs-built_in">setw</span>(<span class="hljs-number">3</span>) &lt;&lt; ans[i];<br>		<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>		<span class="hljs-keyword">return</span>;<br>	}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) {<br>		<span class="hljs-keyword">if</span>(vis[i] || i &lt;= lst) <span class="hljs-keyword">continue</span>;<br>		ans[idx] = i, vis[i] = <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">dfs</span>(idx + <span class="hljs-number">1</span>, i);<br>		vis[i] = <span class="hljs-number">0</span>;<br>	}<br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; n &gt;&gt; k;<br>	<span class="hljs-built_in">dfs</span>(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
 ]]></content>
       <categories>
-        <category>搜索</category>
+        <category>OI笔记</category>
       </categories>
       <tags>
-        <tag>OI笔记</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -406,6 +406,53 @@ dp(u, 1) = dp(v, 0)
       <tags>
         <tag>动态规划</tag>
         <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状态压缩技巧</title>
+    <url>/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="状态压缩">状态压缩</h2>
+<p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、<code>bitset</code>) 表示的技巧. 例如在数组 <code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列 <code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
+<h2 id="注意事项">注意事项</h2>
+<h3 id="选择合适的载体进行压缩">选择合适的载体进行压缩</h3>
+<p>对于上文所说的状态集合, 为什么不开一个<code>bool</code> 类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong> .</p>
+<p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间, 而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C 语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用 <code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
+<p>状态集合可能会很大, 所以, 直接用 <code>bool</code> 数组存储这个集合不太合适. 同时, <code>bool</code> 数组不方便进行数学与位运算. 故需要将这些状态压缩到更合适的载体中存储.</p>
+<h4 id="整数状态压缩">整数状态压缩</h4>
+<p>将 0/1 状态集合压缩到二进制整数中.</p>
+<h5 id="优势">优势</h5>
+<ul>
+<li>可作为数组下标访问数组元素(需要在 <code>size_t</code> 范围内). 例如在状压 DP 时将 0/1 状态集合压缩成的整数作为访问答案的其中一个关键字, 能通过当前局面进行递推计算答案.</li>
+<li>可以进行数学运算.</li>
+</ul>
+<h5 id="缺陷">缺陷</h5>
+<ul>
+<li>集合的大小有限制( <span class="math inline">\(2^{状态数量}\)</span> 不能超过当前类型数据范围).</li>
+<li>操作较为繁琐; 过多使用位运算会使代码可读性较差.</li>
+</ul>
+<h4 id="stdbitset"><code>std::bitset</code></h4>
+<h5 id="优势-1">优势</h5>
+<ul>
+<li>支持位运算.</li>
+<li>像一个数组一样, 操作较为简便.</li>
+<li>长度不受限制.</li>
+</ul>
+<h5 id="缺陷-1">缺陷</h5>
+<ul>
+<li>不支持数学运算.</li>
+<li>不能访问数组元素.</li>
+</ul>
+<h2 id="应用">应用</h2>
+<h3 id="子集枚举">子集枚举</h3>
+<h3 id="例题">例题</h3>
+<h4 id="section"></h4>
+<h3 id="动态规划中-表示状态">(动态规划中) 表示状态</h3>
+]]></content>
+      <categories>
+        <category>OI笔记</category>
+      </categories>
+      <tags>
+        <tag>技巧</tag>
       </tags>
   </entry>
 </search>

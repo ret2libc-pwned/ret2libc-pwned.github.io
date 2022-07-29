@@ -6,7 +6,7 @@
   <link href="https://ret2libc-pwned.github.io/atom.xml" rel="self"/>
   
   <link href="https://ret2libc-pwned.github.io/"/>
-  <updated>2022-06-25T14:57:53.719Z</updated>
+  <updated>2022-07-29T09:42:13.558Z</updated>
   <id>https://ret2libc-pwned.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>搜索算法入门</title>
-    <link href="https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/"/>
-    <id>https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/</id>
-    <published>2022-06-24T06:04:12.000Z</published>
-    <updated>2022-06-25T14:57:53.719Z</updated>
+    <title>状态压缩技巧</title>
+    <link href="https://ret2libc-pwned.github.io/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/"/>
+    <id>https://ret2libc-pwned.github.io/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/</id>
+    <published>2022-07-29T08:53:54.000Z</published>
+    <updated>2022-07-29T09:42:13.558Z</updated>
     
     
       
@@ -34,10 +34,35 @@
     
     
     
-    <category term="搜索" scheme="https://ret2libc-pwned.github.io/categories/%E6%90%9C%E7%B4%A2/"/>
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/tags/OI%E7%AC%94%E8%AE%B0/"/>
+    <category term="技巧" scheme="https://ret2libc-pwned.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搜索算法入门</title>
+    <link href="https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/"/>
+    <id>https://ret2libc-pwned.github.io/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/</id>
+    <published>2022-06-24T06:04:12.000Z</published>
+    <updated>2022-07-29T08:57:31.128Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="OI笔记" scheme="https://ret2libc-pwned.github.io/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="搜索" scheme="https://ret2libc-pwned.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
     
   </entry>
   
