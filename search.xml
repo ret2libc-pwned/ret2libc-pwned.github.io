@@ -492,7 +492,7 @@ dp(u, 1) = dp(v, 0)
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="数学一模练习一">数学一模练习一</h2>
 <p>一模将至，博主提供练习。</p>
 <p>试卷共 10 题，100 分，题目均是原题。</p>
-<p><a href="/pdf/%E5%88%9D%E4%B8%89%E4%B8%80%E6%A8%A1%E6%95%B0%E5%AD%A6%E7%BB%83%E4%B9%A0%E4%B8%80.pdf">进入试卷</a></p>
+<p><a href="paper.pdf">进入试卷</a></p>
 ]]></content>
       <categories>
         <category>文化课</category>
