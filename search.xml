@@ -483,7 +483,7 @@ dp(u, 1) = dp(v, 0)
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>终于换新电脑了，hexo博客迁移成功！</p>
 <p>我的第一台电脑是 ThinkPad E450。</p>
 <figure>
-<img src="E:\GitHub_Blog\source_posts\电脑换新\bandicam%202022-10-15%2022-57-33-970.jpg" alt="旧的 Thinkpad E450">
+<img src="/bandicam%202022-10-15%2022-57-33-970.jpg" alt="旧的 Thinkpad E450">
 <figcaption aria-hidden="true">旧的 Thinkpad E450</figcaption>
 </figure>
 <p>这台 E450
@@ -494,12 +494,12 @@ E450 装上了 Windows 10 LTSC
 分钟，编译几十行的小程序（<code>-O2</code>）都要几秒，平时开个Sublime，谷歌浏览器开几个页面内存就满了，但是在使用中它没出半点差错。</p>
 <p>另外，这个笔记本的键盘手感很好，拿来写代码很爽（卡死的时候除外）。</p>
 <figure>
-<img src="E:\GitHub_Blog\source_posts\电脑换新\bandicam%202022-10-15%2022-57-42-211.jpg" alt="旧电脑桌面截图">
+<img src="/bandicam%202022-10-15%2022-57-42-211.jpg" alt="旧电脑桌面截图">
 <figcaption aria-hidden="true">旧电脑桌面截图</figcaption>
 </figure>
 <p>我现在的电脑是 ThinkPad T14 Gen3，如图所示：</p>
 <figure>
-<img src="E:\GitHub_Blog\source_posts\电脑换新\image-20221016001800688.png" alt="新电脑配置">
+<img src="/image-20221016001800688.png" alt="新电脑配置">
 <figcaption aria-hidden="true">新电脑配置</figcaption>
 </figure>
 <p>期待着它在我将来的路上陪伴着我！</p>
