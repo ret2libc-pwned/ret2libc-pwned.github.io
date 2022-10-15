@@ -568,234 +568,211 @@ dp(u, 1) = dp(v, 0)
 <h5 id="ab快速幂">a^b(快速幂)</h5>
 <p>整数可以表达为若干个 2 的整数次幂之和, 即
 <strong>可以"二进制拆分"</strong>. (该性质应用广泛, 例如树状数组).
-同样的道理, 我们也能拆分指数, 实现快速幂. 形式化地说: $a^b=\sum _{i=0} ^{k-1} a^{{c_i}\cdot 2i}$   $(k =  \lceil\log (b + 1)\rceil)$ . 实现过程为从低到高取 $b$ 二进制中的每一位 $c_i$ , 若当前位是 $1$ 则将最终答案乘上 $a$ (可以理解为把落单的 $a$ 乘上去), 然后将 $a$ 平方.
-
-##### 64位整数乘法
-
-类比快速幂的二进制拆分思想, 把累"乘"变成累加即可. 注意它们的区别!!! 例如 `res` 应初始为 $0$ 等.
-
-##### 最短Hamilton路径
-
-这一题的 BF 解法: 枚举点的全排列取最短, 状态数量 $\mathcal O(n!\cdot n)$ . $n = 20$, 时限 5s, 过不了.
-
-考虑状态定义, 需要记录:
-
-1. 走过哪些点;
-2. 当前处于哪一个点.
-
-考虑状压 DP . 即将 0/1 状态压缩到一个整数中, 使得可以通过状态调用子问题答案.
-
-设 $f_{st, u}$ 为当前走到 $u$ 号点, 走过与否的局面为 0/1 集合 $\{st\}$ .
-
-则:
-$$
+同样的道理, 我们也能拆分指数, 实现快速幂.
+形式化地说:<code>$a^b=\sum _{i=0} ^{k-1} a^{{c_i}\cdot 2i}$   $(k =  \lceil\log (b + 1)\rceil)$</code>
+（Hexo不能渲染，请自行复制到能渲染 <span class="math inline">\(\LaTeX\)</span> 的编辑器（如 Typora、MathType等
+）查看） . 实现过程为从低到高取 <span class="math inline">\(b\)</span>
+二进制中的每一位 <span class="math inline">\(c_i\)</span> , 若当前位是
+<span class="math inline">\(1\)</span> 则将最终答案乘上 <span class="math inline">\(a\)</span> (可以理解为把落单的 <span class="math inline">\(a\)</span> 乘上去), 然后将 <span class="math inline">\(a\)</span> 平方.</p>
+<h5 id="位整数乘法">64位整数乘法</h5>
+<p>类比快速幂的二进制拆分思想, 把累"乘"变成累加即可. 注意它们的区别!!!
+例如 <code>res</code> 应初始为 <span class="math inline">\(0\)</span>
+等.</p>
+<h5 id="最短hamilton路径">最短Hamilton路径</h5>
+<p>这一题的 BF 解法: 枚举点的全排列取最短, 状态数量 <span class="math inline">\(\mathcal O(n!\cdot n)\)</span> . <span class="math inline">\(n = 20\)</span>, 时限 5s, 过不了.</p>
+<p>考虑状态定义, 需要记录:</p>
+<ol type="1">
+<li>走过哪些点;</li>
+<li>当前处于哪一个点.</li>
+</ol>
+<p>考虑状压 DP . 即将 0/1 状态压缩到一个整数中,
+使得可以通过状态调用子问题答案.</p>
+<p>设 <span class="math inline">\(f_{st, u}\)</span> 为当前走到 <span class="math inline">\(u\)</span> 号点, 走过与否的局面为 0/1 集合 <span class="math inline">\(\{st\}\)</span> .</p>
+<p>则: <span class="math display">\[
 f_{st, u} = \min _{0 \le v \le n - 1} \{f_{st_v, v} + dis_{u, v}\}\\
-$$
-其中 $st_v$ 为 $st$ 除去 $u$ 得到的状态集合. 可以使用位运算 `st ^ (1 &lt;&lt; u)` 得到.
-
-现在枚举 $st$ (`[0, 1 &lt;&lt; n - 1]`, 即全 $0$ 到全 $1$)、点$u, v$, 即可. 注意状态是否合法(代码中 `if` 语句). 时间复杂度 $\mathcal O(n^2 \cdot 2^n)$ . 
-
-#### 备注
-
-效率还要再高一点.
-
-### 2022-07-02
-
-#### 练习内容
-
-1. CF1698 VP (200 pts)
-2. acw几道水题
-   - 递归实现指数 / 排列 / 组合型枚举
-
-#### 简单题解
-
-##### A. XOR Mixup
-
-枚举即可. 比赛时一开始不知道本题有 SPJ, 所以看到输出与样例不一样就卡了好久.
-
-##### B. Rising Sand
-
-对于任意一个区间, 选取多个数 $+1$ 对原答案无贡献(因为不能将一个数从"不高"到"高"). 但是有一种特例: 选取单个数 $+1$ . 因为可以有多次操作(刚开始没看到!), 所以当 $k = 1$ 时, 答案必为"被夹在中间的元素数量", 即 $\dfrac{n-1}{2}$ .
-
-##### C. 3SUM Closure
-
-题看错了! 题意为: **任意** 三元组的和都能在原序列中找到, 不是找到一个就行了.
-
-##### DFS实现枚举
-
-将状态抽象成一棵搜索树即可, 想想自顶向下遍历时需要传递什么信息? 回溯上来时需要改变什么为后续搜索做准备? 以及其它类似问题.
-
-#### 备注
-
-第一次打 CF, 不太熟悉.
-
-主要问题如下:
-
-1. 没注意题目的细节. 在 A、B、C 中都有这个问题, 导致了浪费时间;
-2. 认为只要修改代码就能碰运气输出正确答案, 导致不重视思考甚至题目的理解;
-3. 下次看到"输出正确的一个就算对"这类字眼就要知道这题大概率用了 SPJ.
-
-### 2022-07-03
-
-#### 练习内容
-
-1. CF1700 VP;
-
-#### 简单题解
-
-##### A. Optimal Path
-
-**(贪心)** 横着走的代价是 $1$ , 竖着走的代价是 $m$. 所以先从 $(1, 1)$ 走到 $(1, m)$, 再往下走到 $(n, m)$.
-
-$\mathcal O(1)$ 计算, 答案即为: $$\dfrac{(1 + m)m}{2} + \dfrac{m(2 + n)(n - 1)}{2} $$ .
-
-##### B. Palindromic Numbers
-
-**(构造) **对于首位非 $9$ 的情况, 构造 $n$ 个 $9$ 组成的数即可; 对于首位是 $9$ 的情况, 构造 $(n + 1)$ 个 $1$ 即可.
-
-注意 $n \le 10^5$, 需要高精减法. 
-
-##### C. Helping the Nature
-
-**(差分)** 求出序列的差分数组 $b$ , 
-
-##### D.  
-
-可以发现, 最优构造一定是把所有水管放在最前面的连续一段. 否则后面的水都溢出来了前面的还没满. 
-
-**(Solution 1: 二分)** ==Todo==
-
-**(Solution 2: 数学)** 记 $\sum _{j = 1} ^{i} v_i = s_i$ , 按照上述的构造方法, 开前 $i$ 个水管把前 $i$ 个容器灌满的时间为 $t_i = \lceil \dfrac{s_i}{i} \rceil$ .  我们可以求出 $\max\{t_i\}$ 即为 $t$ 的下界. 如果询问中的 $t$ 小于这个下界即可判定无解, 否则答案为 $\lceil \dfrac{s_n}{t} \rceil$ .   
-
-##### E. Serega the Pirate
-
-
-
-#### 备注
-
-1. 在计算 `ceil(p / q)` 时, 可以这样: `(p + q - 1) / q`.
-
-### 2022-07-04
-
-#### 练习内容	
-
-1. 订正两场CF, 补充简单题解. 
-
-#### 简单题解
-
-主要是后面几道题, 已经补充.
-
-#### 备注
-
-无.
-
-### 2022-07-05
-
-#### 练习内容
-
-1. 继续订正;
-1. acw164 可达性统计.
-
-#### 简单题解
-
-订正题解已补.
-
-##### 可达性统计
-
-图 $G = (V, E)$ 中, 顶点 $u$ 可达顶点的集合为:
-$$
+\]</span> 其中 <span class="math inline">\(st_v\)</span> 为 <span class="math inline">\(st\)</span> 除去 <span class="math inline">\(u\)</span> 得到的状态集合. 可以使用位运算
+<code>st ^ (1 &lt;&lt; u)</code> 得到.</p>
+<p>现在枚举 <span class="math inline">\(st\)</span>
+(<code>[0, 1 &lt;&lt; n - 1]</code>, 即全 <span class="math inline">\(0\)</span> 到全 <span class="math inline">\(1\)</span>)、点<span class="math inline">\(u,
+v\)</span>, 即可. 注意状态是否合法(代码中 <code>if</code> 语句).
+时间复杂度 <span class="math inline">\(\mathcal O(n^2 \cdot
+2^n)\)</span> .</p>
+<h4 id="备注-1">备注</h4>
+<p>效率还要再高一点.</p>
+<h3 id="section-1">2022-07-02</h3>
+<h4 id="练习内容-2">练习内容</h4>
+<ol type="1">
+<li>CF1698 VP (200 pts)</li>
+<li>acw几道水题
+<ul>
+<li>递归实现指数 / 排列 / 组合型枚举</li>
+</ul></li>
+</ol>
+<h4 id="简单题解-2">简单题解</h4>
+<h5 id="a.-xor-mixup">A. XOR Mixup</h5>
+<p>枚举即可. 比赛时一开始不知道本题有 SPJ,
+所以看到输出与样例不一样就卡了好久.</p>
+<h5 id="b.-rising-sand">B. Rising Sand</h5>
+<p>对于任意一个区间, 选取多个数 <span class="math inline">\(+1\)</span>
+对原答案无贡献(因为不能将一个数从"不高"到"高"). 但是有一种特例:
+选取单个数 <span class="math inline">\(+1\)</span> .
+因为可以有多次操作(刚开始没看到!), 所以当 <span class="math inline">\(k
+= 1\)</span> 时, 答案必为"被夹在中间的元素数量", 即 <span class="math inline">\(\dfrac{n-1}{2}\)</span> .</p>
+<h5 id="c.-3sum-closure">C. 3SUM Closure</h5>
+<p>题看错了! 题意为: <strong>任意</strong> 三元组的和都能在原序列中找到,
+不是找到一个就行了.</p>
+<h5 id="dfs实现枚举">DFS实现枚举</h5>
+<p>将状态抽象成一棵搜索树即可, 想想自顶向下遍历时需要传递什么信息?
+回溯上来时需要改变什么为后续搜索做准备? 以及其它类似问题.</p>
+<h4 id="备注-2">备注</h4>
+<p>第一次打 CF, 不太熟悉.</p>
+<p>主要问题如下:</p>
+<ol type="1">
+<li>没注意题目的细节. 在 A、B、C 中都有这个问题, 导致了浪费时间;</li>
+<li>认为只要修改代码就能碰运气输出正确答案,
+导致不重视思考甚至题目的理解;</li>
+<li>下次看到"输出正确的一个就算对"这类字眼就要知道这题大概率用了
+SPJ.</li>
+</ol>
+<h3 id="section-2">2022-07-03</h3>
+<h4 id="练习内容-3">练习内容</h4>
+<ol type="1">
+<li>CF1700 VP;</li>
+</ol>
+<h4 id="简单题解-3">简单题解</h4>
+<h5 id="a.-optimal-path">A. Optimal Path</h5>
+<p><strong>(贪心)</strong> 横着走的代价是 <span class="math inline">\(1\)</span> , 竖着走的代价是 <span class="math inline">\(m\)</span>. 所以先从 <span class="math inline">\((1, 1)\)</span> 走到 <span class="math inline">\((1, m)\)</span>, 再往下走到 <span class="math inline">\((n, m)\)</span>.</p>
+<p><span class="math inline">\(\mathcal O(1)\)</span> 计算, 答案即为:
+<span class="math display">\[\dfrac{(1 + m)m}{2} + \dfrac{m(2 + n)(n -
+1)}{2} \]</span> .</p>
+<h5 id="b.-palindromic-numbers">B. Palindromic Numbers</h5>
+<p><strong>(构造) </strong>对于首位非 <span class="math inline">\(9\)</span> 的情况, 构造 <span class="math inline">\(n\)</span> 个 <span class="math inline">\(9\)</span> 组成的数即可; 对于首位是 <span class="math inline">\(9\)</span> 的情况, 构造 <span class="math inline">\((n + 1)\)</span> 个 <span class="math inline">\(1\)</span> 即可.</p>
+<p>注意 <span class="math inline">\(n \le 10^5\)</span>,
+需要高精减法.</p>
+<h5 id="c.-helping-the-nature">C. Helping the Nature</h5>
+<p><strong>(差分)</strong> 求出序列的差分数组 <span class="math inline">\(b\)</span> ,</p>
+<h5 id="d.">D.</h5>
+<p>可以发现, 最优构造一定是把所有水管放在最前面的连续一段.
+否则后面的水都溢出来了前面的还没满.</p>
+<p><strong>(Solution 1: 二分)</strong> ==Todo==</p>
+<p><strong>(Solution 2: 数学)</strong> 记 <span class="math inline">\(\sum _{j = 1} ^{i} v_i = s_i\)</span> ,
+按照上述的构造方法, 开前 <span class="math inline">\(i\)</span>
+个水管把前 <span class="math inline">\(i\)</span> 个容器灌满的时间为
+<span class="math inline">\(t_i = \lceil \dfrac{s_i}{i} \rceil\)</span>
+. 我们可以求出 <span class="math inline">\(\max\{t_i\}\)</span> 即为
+<span class="math inline">\(t\)</span> 的下界. 如果询问中的 <span class="math inline">\(t\)</span> 小于这个下界即可判定无解, 否则答案为
+<span class="math inline">\(\lceil \dfrac{s_n}{t} \rceil\)</span> .</p>
+<h5 id="e.-serega-the-pirate">E. Serega the Pirate</h5>
+<h4 id="备注-3">备注</h4>
+<ol type="1">
+<li>在计算 <code>ceil(p / q)</code> 时, 可以这样:
+<code>(p + q - 1) / q</code>.</li>
+</ol>
+<h3 id="section-3">2022-07-04</h3>
+<h4 id="练习内容-4">练习内容</h4>
+<ol type="1">
+<li>订正两场CF, 补充简单题解.</li>
+</ol>
+<h4 id="简单题解-4">简单题解</h4>
+<p>主要是后面几道题, 已经补充.</p>
+<h4 id="备注-4">备注</h4>
+<p>无.</p>
+<h3 id="section-4">2022-07-05</h3>
+<h4 id="练习内容-5">练习内容</h4>
+<ol type="1">
+<li>继续订正;</li>
+<li>acw164 可达性统计.</li>
+</ol>
+<h4 id="简单题解-5">简单题解</h4>
+<p>订正题解已补.</p>
+<h5 id="可达性统计">可达性统计</h5>
+<p>图 <span class="math inline">\(G = (V, E)\)</span> 中, 顶点 <span class="math inline">\(u\)</span> 可达顶点的集合为: <span class="math display">\[
 f(u) = \{u\} \cup \{\bigcup_{(u, v) \in E} f(v)\}
-$$
-其中, 集合 $f(u)$ 可以用 $n$ 个 0/1 状态表示对于各个顶点是否可达. 尝试状态压缩, 取并运算即为按位或. 最后每个结点的集合 $f$ 中 1 的个数即为所求. 
-
-我们可以发现上式的递推性质, 即需要通过 $u$ 的相邻结点更新 $f(u)$ . 如何做到 **通过先访问的结点更新后访问的结点的状态** 呢? 答案是 **拓扑排序**. 预处理拓扑序列, 倒序访问序列中每一个结点, 并向前递推更新即可.
-
-#### 备注
-
-1. 状压时要看清楚数据范围, 合理选择用(32位? 64位? (Linux下) 128位?)整数压还是用bitset压, 这一题 $n、m \le 30000$, 考虑使用 bitset.
-
-### 2022-07-06
-
-#### 练习内容
-
-1. acw165 小猫爬山
-
-2. Luogu P1605 迷宫
-
-3. Luogu P1219 八皇后
-
-#### 简单题解
-
-##### 小猫爬山
-
-考虑使用 DFS . 用 `cab[]` 记录每辆缆车的重量. 使用 `dfs(idx, cnt)` 求解第 $idx$ 只猫用了 $cnt$ 辆车的情况. 加两个剪枝: 
-
-1. `c[]` 从大到小排序, 使得重的猫 (较难装的) 先被装进去;
-2. 当 $cnt \gt ans$ 时结束搜索.
-
-答案 $ans$ 初值设为最坏情况 $n$ , 即每只猫给一辆车的情况.
-
-##### 迷宫(回溯法模板)
-
-**回溯法简述:** 在搜索时, 我们有时需要给状态打上标记(如是否访问某个结点或当前状态的某个权值). 这个标记可能会影响到后续搜索. 例如这一题中在一条路径中被搜过的点在另一条路径还能走. 这时就需要在回溯时清除或修改这个标记. 因为 DFS 的回溯是自底向上的, 所以能够方便地清除搜索树中自根结点至叶结点路径上的标记.
-
-参考实现如下: 
-
-</p><figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(PII now)</span> </span>{<br>    <span class="hljs-keyword">if</span>(now == ed) {<br>        ++ans;<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i) {<br>        PII nxt = <span class="hljs-built_in">make_pair</span>(now.x + dx[i], now.y + dy[i]);<br>        <span class="hljs-keyword">if</span>(obs[nxt.x][nxt.y] || vis[nxt.x][nxt.y] || nxt.x &lt; <span class="hljs-number">1</span> || nxt.x &gt; n || nxt.y &lt; <span class="hljs-number">1</span> || nxt.y &gt; m) <span class="hljs-keyword">continue</span>;<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">dfs</span>(nxt);<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">0</span>;<br>    }<br>}<br></code></pre></div></td></tr></tbody></table></figure>
-
-##### 八皇后
-
-该题也是回溯法的一道例题. 难点在于如何判定对角线与平行线是否摆了棋子. 设列为 $x$ , 行为 $y$ . 则对角线和平行线的方程为:
-$$
+\]</span> 其中, 集合 <span class="math inline">\(f(u)\)</span> 可以用
+<span class="math inline">\(n\)</span> 个 0/1
+状态表示对于各个顶点是否可达. 尝试状态压缩, 取并运算即为按位或.
+最后每个结点的集合 <span class="math inline">\(f\)</span> 中 1
+的个数即为所求.</p>
+<p>我们可以发现上式的递推性质, 即需要通过 <span class="math inline">\(u\)</span> 的相邻结点更新 <span class="math inline">\(f(u)\)</span> . 如何做到
+<strong>通过先访问的结点更新后访问的结点的状态</strong> 呢? 答案是
+<strong>拓扑排序</strong>. 预处理拓扑序列, 倒序访问序列中每一个结点,
+并向前递推更新即可.</p>
+<h4 id="备注-5">备注</h4>
+<ol type="1">
+<li>状压时要看清楚数据范围, 合理选择用(32位? 64位? (Linux下)
+128位?)整数压还是用bitset压, 这一题 <span class="math inline">\(n、m \le
+30000\)</span>, 考虑使用 bitset.</li>
+</ol>
+<h3 id="section-5">2022-07-06</h3>
+<h4 id="练习内容-6">练习内容</h4>
+<ol type="1">
+<li><p>acw165 小猫爬山</p></li>
+<li><p>Luogu P1605 迷宫</p></li>
+<li><p>Luogu P1219 八皇后</p></li>
+</ol>
+<h4 id="简单题解-6">简单题解</h4>
+<h5 id="小猫爬山">小猫爬山</h5>
+<p>考虑使用 DFS . 用 <code>cab[]</code> 记录每辆缆车的重量. 使用
+<code>dfs(idx, cnt)</code> 求解第 <span class="math inline">\(idx\)</span> 只猫用了 <span class="math inline">\(cnt\)</span> 辆车的情况. 加两个剪枝:</p>
+<ol type="1">
+<li><code>c[]</code> 从大到小排序, 使得重的猫 (较难装的)
+先被装进去;</li>
+<li>当 <span class="math inline">\(cnt \gt ans\)</span> 时结束搜索.</li>
+</ol>
+<p>答案 <span class="math inline">\(ans\)</span> 初值设为最坏情况 <span class="math inline">\(n\)</span> , 即每只猫给一辆车的情况.</p>
+<h5 id="迷宫回溯法模板">迷宫(回溯法模板)</h5>
+<p><strong>回溯法简述:</strong> 在搜索时,
+我们有时需要给状态打上标记(如是否访问某个结点或当前状态的某个权值).
+这个标记可能会影响到后续搜索.
+例如这一题中在一条路径中被搜过的点在另一条路径还能走.
+这时就需要在回溯时清除或修改这个标记. 因为 DFS 的回溯是自底向上的,
+所以能够方便地清除搜索树中自根结点至叶结点路径上的标记.</p>
+<p>参考实现如下:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(PII now)</span> </span>{<br>    <span class="hljs-keyword">if</span>(now == ed) {<br>        ++ans;<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i) {<br>        PII nxt = <span class="hljs-built_in">make_pair</span>(now.x + dx[i], now.y + dy[i]);<br>        <span class="hljs-keyword">if</span>(obs[nxt.x][nxt.y] || vis[nxt.x][nxt.y] || nxt.x &lt; <span class="hljs-number">1</span> || nxt.x &gt; n || nxt.y &lt; <span class="hljs-number">1</span> || nxt.y &gt; m) <span class="hljs-keyword">continue</span>;<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">dfs</span>(nxt);<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">0</span>;<br>    }<br>}<br></code></pre></div></td></tr></tbody></table></figure>
+<h5 id="八皇后">八皇后</h5>
+<p>该题也是回溯法的一道例题. 难点在于如何判定对角线与平行线是否摆了棋子.
+设列为 <span class="math inline">\(x\)</span> , 行为 <span class="math inline">\(y\)</span> . 则对角线和平行线的方程为: <span class="math display">\[
 \begin{cases}\ell_1: y=-x+b_1,\\\ell_2: y=x+b_2\\\end{cases}
 \Rightarrow \begin{cases}b_1 = x + y,\\ b_2 = y - x\end{cases}
-$$
-可以使用截距 $b_{1,2}$ 为关键字访问 `vis[]` 数组中对角线上的情况. 注意 $b_2$ 可能为负, 所以在数组中统一加上大于等于 $x,y$ 的 $n$ . 
-
-#### 备注
-
-### 2022-07-07
-
-#### 练习内容
-
-1. 上课.
-
-### 2020-07-08
-
-#### 练习内容
-
-1. 搜索补题.
-
-### 2020-07-09
-
-#### 练习内容
-
-1. CF 1699 vp
-
-#### 简单题解
-
-##### A. The Third Three Number Problem
-
-**(构造)** 可以发现异或运算的性质: $x \oplus x = 0, 0 \oplus x = x$. 可以构造出 $\{\dfrac n 2, 0, 0\}$ 或者是 $\{\dfrac n 2, \dfrac n 2, 0\}$.
-
-##### B. Almost Ternary Matrix
-
-**(构造)** 答案是如下的矩阵 **旋转** 而成的:
-
+\]</span> 可以使用截距 <span class="math inline">\(b_{1,2}\)</span>
+为关键字访问 <code>vis[]</code> 数组中对角线上的情况. 注意 <span class="math inline">\(b_2\)</span> 可能为负,
+所以在数组中统一加上大于等于 <span class="math inline">\(x,y\)</span> 的
+<span class="math inline">\(n\)</span> .</p>
+<h4 id="备注-6">备注</h4>
+<h3 id="section-6">2022-07-07</h3>
+<h4 id="练习内容-7">练习内容</h4>
+<ol type="1">
+<li>上课.</li>
+</ol>
+<h3 id="section-7">2020-07-08</h3>
+<h4 id="练习内容-8">练习内容</h4>
+<ol type="1">
+<li>搜索补题.</li>
+</ol>
+<h3 id="section-8">2020-07-09</h3>
+<h4 id="练习内容-9">练习内容</h4>
+<ol type="1">
+<li>CF 1699 vp</li>
+</ol>
+<h4 id="简单题解-7">简单题解</h4>
+<h5 id="a.-the-third-three-number-problem">A. The Third Three Number
+Problem</h5>
+<p><strong>(构造)</strong> 可以发现异或运算的性质: <span class="math inline">\(x \oplus x = 0, 0 \oplus x = x\)</span>.
+可以构造出 <span class="math inline">\(\{\dfrac n 2, 0, 0\}\)</span>
+或者是 <span class="math inline">\(\{\dfrac n 2, \dfrac n 2,
+0\}\)</span>.</p>
+<h5 id="b.-almost-ternary-matrix">B. Almost Ternary Matrix</h5>
+<p><strong>(构造)</strong> 答案是如下的矩阵 <strong>旋转</strong>
+而成的:</p>
 <figure class="highlight basic"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">0</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">1</span><br></code></pre></div></td></tr></tbody></table></figure>
-
-所以可以构造出下图的矩阵来:
-
-
-
-(赛场上直接 `{{1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}}` 就过了.)
-
-<p></p>
+<p>所以可以构造出下图的矩阵来:</p>
 <p><img src="https://codeforces.com/predownloaded/75/c4/75c46e19cc3cf6f890139b0e74774c3a6fc387db.png" alt="img" style="zoom:50%;"></p>
+<p>注：赛时想到的如下：</p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br></code></pre></div></td></tr></tbody></table></figure>
 <h5 id="c.-the-third-problem">C. The Third Problem</h5>
 <p>根据定义, 有: <span class="math inline">\(\operatorname{MEX}(P) =
 \min\{\complement_{\mathbb N^*} P\}\)</span>.</p>
-<h4 id="备注-1">备注</h4>
+<h4 id="备注-7">备注</h4>
 ]]></content>
       <categories>
         <category>随记</category>
