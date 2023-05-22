@@ -93,8 +93,6 @@
 	function login() {
 		// 获取输入
 		myId = document.getElementById("input_id").value;
-		// l = document.getElementById("input_l").value;
-		// n = document.getElementById("input_n").value;
 		let flowerLs = parseList(myId);
 		// 生成前端
 		writeln("17English 鲜花超级大盗 - 内部版本", "h2");
@@ -151,12 +149,10 @@
 	writeln("本网页不会储存、记录您的账号信息，请放心使用！","b");
 	writeln(`${["如何制作老师恶搞表情包", "如何玩学校电脑不被班主任发现", "班主任整天查历史记录烦死了怎么办", "玩电脑被老师发现检讨800字"][Math.floor(Math.random() * 100) % 4]} - 百度经验`, "title"); 	// 该版本禁止外传，禁止在学校使用，后果自负！！！
 </script>
-
+<a href="README.html">Readme 文档</a>
 <br>
 <br>
-您的 ID：<input id="input_id" value="1194148"></input><br>
-<!-- 开始 ID：<input id="input_l" value="1194119"></input><br> -->
-<!-- 尝试用户数：<input id="input_n" value="100000"></input><br> -->
+您的 ID：<input id="input_id"></input><br>
 <button onclick="linerFunc()">神奇的一次函数</button>
 <button onclick="login()">确定</button>
 <br>
