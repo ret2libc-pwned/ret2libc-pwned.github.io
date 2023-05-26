@@ -366,7 +366,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      612 字
+      618 字
     </span>
   
 
@@ -416,46 +416,32 @@
             
             <div class="markdown-body">
               <h2 id="状态压缩">状态压缩</h2>
-<p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体
-(如整数、<code>bitset</code>) 表示的技巧. 例如在数组
-<code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列
-<code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
+<p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、<code>bitset</code>) 表示的技巧. 例如在数组 <code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列 <code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
 <h2 id="注意事项">注意事项</h2>
 <h3 id="选择合适的载体进行压缩">选择合适的载体进行压缩</h3>
-<p>对于上文所说的状态集合, 为什么不开一个<code>bool</code>
-类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong>
-.</p>
-<p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间,
-而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C
-语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用
-<code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
-<p>状态集合可能会很大, 所以, 直接用 <code>bool</code>
-数组存储这个集合不太合适. 同时, <code>bool</code>
-数组不方便进行数学与位运算.
-故需要将这些状态压缩到更合适的载体中存储.</p>
+<p>对于上文所说的状态集合, 为什么不开一个<code>bool</code> 类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong> .</p>
+<p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间, 而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C 语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用 <code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
+<p>状态集合可能会很大, 所以, 直接用 <code>bool</code> 数组存储这个集合不太合适. 同时, <code>bool</code> 数组不方便进行数学与位运算. 故需要将这些状态压缩到更合适的载体中存储.</p>
 <h4 id="整数状态压缩">整数状态压缩</h4>
 <p>将 0/1 状态集合压缩到二进制整数中.</p>
 <h5 id="优势">优势</h5>
 <ul>
-<li>可作为数组下标访问数组元素(需要在 <code>size_t</code> 范围内).
-例如在状压 DP 时将 0/1 状态集合压缩成的整数作为访问答案的其中一个关键字,
-能通过当前局面进行递推计算答案.</li>
+<li>可作为数组下标访问数组元素(需要在 <code>size_t</code> 范围内). 例如在状压 DP 时将 0/1 状态集合压缩成的整数作为访问答案的其中一个关键字, 能通过当前局面进行递推计算答案.</li>
 <li>可以进行数学运算.</li>
 </ul>
 <h5 id="缺陷">缺陷</h5>
 <ul>
-<li>集合的大小有限制( <span class="math inline">\(2^{状态数量}\)</span>
-不能超过当前类型数据范围).</li>
+<li>集合的大小有限制( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mtext>状态数量</mtext></msup></mrow><annotation encoding="application/x-tex">2^{状态数量}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">状态数量</span></span></span></span></span></span></span></span></span></span></span></span> 不能超过当前类型数据范围).</li>
 <li>操作较为繁琐; 过多使用位运算会使代码可读性较差.</li>
 </ul>
-<h4 id="stdbitset"><code>std::bitset</code></h4>
-<h5 id="优势-1">优势</h5>
+<h4 id="std-bitset"><code>std::bitset</code></h4>
+<h5 id="优势-2">优势</h5>
 <ul>
 <li>支持位运算.</li>
 <li>像一个数组一样, 操作较为简便.</li>
 <li>长度不受限制.</li>
 </ul>
-<h5 id="缺陷-1">缺陷</h5>
+<h5 id="缺陷-2">缺陷</h5>
 <ul>
 <li>不支持数学运算.</li>
 <li>不能访问数组元素.</li>
@@ -463,7 +449,7 @@
 <h2 id="应用">应用</h2>
 <h3 id="子集枚举">子集枚举</h3>
 <h3 id="例题">例题</h3>
-<h4 id="section"></h4>
+<h4 id=""></h4>
 <h3 id="动态规划中-表示状态">(动态规划中) 表示状态</h3>
 
             </div>
