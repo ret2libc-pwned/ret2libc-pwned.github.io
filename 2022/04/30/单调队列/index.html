@@ -24,7 +24,7 @@
 <meta property="og:description" content="定义 维护一种序列, 可以从头和尾增加或删除元素(即双端队列), 且元素具有单调性. 实现 本质是维护具有单调性的最优决策集合, 该如何维护最优与单调的性质呢? 维护序列 该操作的本质是对原序列\(A\)扫描, 将当前的元素\(A_i\)与单调队列队尾比较, 如果\(A_i\)更优则将队尾换成\(A_i\). 123456789&#x2F;&#x2F;pseudo codeQueue q, Array a[];int">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-30T11:11:11.000Z">
-<meta property="article:modified_time" content="2022-05-28T14:16:01.303Z">
+<meta property="article:modified_time" content="2022-05-28T14:16:02.000Z">
 <meta property="article:author" content="ret2libc-pwned">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
@@ -416,9 +416,11 @@
             
             <div class="markdown-body">
               <h2 id="定义">定义</h2>
-<p>维护一种序列, 可以从头和尾增加或删除元素(即双端队列), 且元素具有单调性.</p>
+<p>维护一种序列, 可以从头和尾增加或删除元素(即双端队列),
+且元素具有单调性.</p>
 <h2 id="实现">实现</h2>
-<p>本质是维护具有单调性的<strong>最优决策集合</strong>, 该如何维护最优与单调的性质呢?</p>
+<p>本质是维护具有单调性的<strong>最优决策集合</strong>,
+该如何维护最优与单调的性质呢?</p>
 <h3 id="维护序列">维护序列</h3>
 <p>该操作的本质是<strong>对原序列<span class="math inline">\(A\)</span>扫描, 将当前的元素<span class="math inline">\(A_i\)</span>与单调队列队尾比较, 如果<span class="math inline">\(A_i\)</span>更优则将队尾换成<span class="math inline">\(A_i\)</span></strong>.</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pseudocode">//pseudo code<br>Queue q, Array a[];<br>int head = 0, tail = 0;<br>for each a[i] in a {<br>	while(队列过大) ++head;									//pop front<br>	//此时q[head]为当前最优<br>    while(head &lt;= tail &amp;&amp; q[tail]没有a[i]优) --tail;		//pop back<br>    q[++tail] = 当前值;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
@@ -432,14 +434,18 @@
 <h2 id="例题">例题</h2>
 <h3 id="滑动窗口">滑动窗口</h3>
 <blockquote>
-<p>给定一个长度为<span class="math inline">\(n\)</span>的序列, 求其每个长度为<span class="math inline">\(k\)</span>的连续子序列中的最大与最小值.</p>
+<p>给定一个长度为<span class="math inline">\(n\)</span>的序列,
+求其每个长度为<span class="math inline">\(k\)</span>的连续子序列中的最大与最小值.</p>
 </blockquote>
 <p>本题只需维护两个单调队列(一个递减, 队头为min; 另一个反之)即可.</p>
-<p>需要注意的是要让窗口大小不超过<span class="math inline">\(k\)</span>, 这里采用在队列中存储数组下标的方法统计, 即保证<span class="math inline">\(head\)</span>中存储的下标与当前扫描元素的下标之差小于<span class="math inline">\(k\)</span>.</p>
+<p>需要注意的是要让窗口大小不超过<span class="math inline">\(k\)</span>,
+这里采用在队列中存储数组下标的方法统计, 即保证<span class="math inline">\(head\)</span>中存储的下标与当前扫描元素的下标之差小于<span class="math inline">\(k\)</span>.</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span> + <span class="hljs-number">100</span>;<br><br><span class="hljs-keyword">int</span> q[N], a[N];<br><span class="hljs-keyword">int</span> n, k;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getMin</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-comment">//维护递减序列, 队头即为答案</span><br>	<span class="hljs-keyword">int</span> head = <span class="hljs-number">0</span>, tail = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; k; ++i) {<br>		<span class="hljs-comment">//Step 1: [1, k), push</span><br>		<span class="hljs-keyword">while</span>(head &lt;= tail &amp;&amp; a[q[tail]] &gt;= a[i]) --tail;<br>		q[++tail] = i;<br>	}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = k; i &lt;= n; ++i) {<br>		<span class="hljs-comment">//Step 2: [k, n]</span><br>		<span class="hljs-comment">//这个区间窗口可能超过k, 需要特判维护窗口大小</span><br>		<span class="hljs-keyword">while</span>(head &lt;= tail &amp;&amp; a[q[tail]] &gt;= a[i]) --tail;<br>		q[++tail] = i;<br>		<span class="hljs-keyword">while</span>(q[head] &lt;= i - k) ++head;<br>		cout &lt;&lt; a[q[head]] &lt;&lt; <span class="hljs-string">' '</span>;<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getMax</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-built_in">memset</span>(q, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> q);<br>	<span class="hljs-keyword">int</span> head = <span class="hljs-number">0</span>, tail = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; k; ++i) {<br>		<span class="hljs-keyword">while</span>(head &lt;= tail &amp;&amp; a[q[tail]] &lt;= a[i]) --tail;<br>		q[++tail] = i;<br>	}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = k; i &lt;= n; ++i) {<br>		<span class="hljs-keyword">while</span>(head &lt;= tail &amp;&amp; a[q[tail]] &lt;= a[i]) --tail;<br>		q[++tail] = i;<br>		<span class="hljs-keyword">if</span>(q[head] &lt;= i - k) ++head;<br>		cout &lt;&lt; a[q[head]] &lt;&lt; <span class="hljs-string">' '</span>;<br>	}<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	cin &gt;&gt; n &gt;&gt; k;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) {<br>		cin &gt;&gt; a[i];<br>	}<br>	<span class="hljs-built_in">getMin</span>();<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	<span class="hljs-built_in">getMax</span>();<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
 <h3 id="最大子序和">最大子序和</h3>
 <blockquote>
-<p>给定一个长度为<span class="math inline">\(n\)</span>的序列, 求出一段长度不超过<span class="math inline">\(m\)</span>的连续子序列, 输出子序和.</p>
+<p>给定一个长度为<span class="math inline">\(n\)</span>的序列,
+求出一段长度不超过<span class="math inline">\(m\)</span>的连续子序列,
+输出子序和.</p>
 </blockquote>
 <p>不难想到前缀和操作, 在前缀和数组<span class="math inline">\(S\)</span>中, 对于右端点<span class="math inline">\(r\)</span>, 需要找到左端点<span class="math inline">\(l\)</span>满足如下条件: <span class="math display">\[
 \begin {cases}
@@ -493,8 +499,8 @@ r - m \le l&amp;&amp;&amp;(3)
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/18/trie/">
-                        <span class="hidden-mobile">字典树</span>
+                      <a href="/2022/03/12/Splay/">
+                        <span class="hidden-mobile">Splay</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

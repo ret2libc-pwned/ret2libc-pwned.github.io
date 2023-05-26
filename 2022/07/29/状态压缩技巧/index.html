@@ -24,7 +24,7 @@
 <meta property="og:description" content="状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 选择合适的载体进行压缩 对于上文所说的状态集合, 为什么不开一个bool 类型的数组存储呢? 如果是那样多方便! 答案是: 费空间 . 注">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-29T08:53:54.000Z">
-<meta property="article:modified_time" content="2022-07-29T09:42:13.558Z">
+<meta property="article:modified_time" content="2022-07-29T10:33:56.000Z">
 <meta property="article:author" content="ret2libc-pwned">
 <meta property="article:tag" content="技巧">
 <meta name="twitter:card" content="summary_large_image">
@@ -416,22 +416,36 @@
             
             <div class="markdown-body">
               <h2 id="状态压缩">状态压缩</h2>
-<p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、<code>bitset</code>) 表示的技巧. 例如在数组 <code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列 <code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
+<p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体
+(如整数、<code>bitset</code>) 表示的技巧. 例如在数组
+<code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列
+<code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
 <h2 id="注意事项">注意事项</h2>
 <h3 id="选择合适的载体进行压缩">选择合适的载体进行压缩</h3>
-<p>对于上文所说的状态集合, 为什么不开一个<code>bool</code> 类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong> .</p>
-<p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间, 而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C 语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用 <code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
-<p>状态集合可能会很大, 所以, 直接用 <code>bool</code> 数组存储这个集合不太合适. 同时, <code>bool</code> 数组不方便进行数学与位运算. 故需要将这些状态压缩到更合适的载体中存储.</p>
+<p>对于上文所说的状态集合, 为什么不开一个<code>bool</code>
+类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong>
+.</p>
+<p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间,
+而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C
+语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用
+<code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
+<p>状态集合可能会很大, 所以, 直接用 <code>bool</code>
+数组存储这个集合不太合适. 同时, <code>bool</code>
+数组不方便进行数学与位运算.
+故需要将这些状态压缩到更合适的载体中存储.</p>
 <h4 id="整数状态压缩">整数状态压缩</h4>
 <p>将 0/1 状态集合压缩到二进制整数中.</p>
 <h5 id="优势">优势</h5>
 <ul>
-<li>可作为数组下标访问数组元素(需要在 <code>size_t</code> 范围内). 例如在状压 DP 时将 0/1 状态集合压缩成的整数作为访问答案的其中一个关键字, 能通过当前局面进行递推计算答案.</li>
+<li>可作为数组下标访问数组元素(需要在 <code>size_t</code> 范围内).
+例如在状压 DP 时将 0/1 状态集合压缩成的整数作为访问答案的其中一个关键字,
+能通过当前局面进行递推计算答案.</li>
 <li>可以进行数学运算.</li>
 </ul>
 <h5 id="缺陷">缺陷</h5>
 <ul>
-<li>集合的大小有限制( <span class="math inline">\(2^{状态数量}\)</span> 不能超过当前类型数据范围).</li>
+<li>集合的大小有限制( <span class="math inline">\(2^{状态数量}\)</span>
+不能超过当前类型数据范围).</li>
 <li>操作较为繁琐; 过多使用位运算会使代码可读性较差.</li>
 </ul>
 <h4 id="stdbitset"><code>std::bitset</code></h4>

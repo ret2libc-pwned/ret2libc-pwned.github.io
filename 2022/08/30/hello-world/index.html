@@ -16,21 +16,20 @@
   <meta name="author" content="ret2libc-pwned">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N &#x3D; 1e6;using n">
+    <meta name="description" content="如题, 这是我的第一篇文章.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字典树">
-<meta property="og:url" content="https://ret2libc-pwned.github.io/2022/04/18/trie/index.html">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://ret2libc-pwned.github.io/2022/08/30/hello-world/index.html">
 <meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N &#x3D; 1e6;using n">
+<meta property="og:description" content="如题, 这是我的第一篇文章.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-18T13:21:23.987Z">
-<meta property="article:modified_time" content="2022-05-03T11:12:28.474Z">
+<meta property="article:published_time" content="2022-08-30T05:29:18.130Z">
+<meta property="article:modified_time" content="2022-05-03T11:05:34.000Z">
 <meta property="article:author" content="ret2libc-pwned">
-<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>字典树 - OI-Cheatsheet</title>
+  <title>Hello World - OI-Cheatsheet</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -340,7 +339,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="字典树">
+            <span class="h2" id="subtitle" title="Hello World">
               
             </span>
 
@@ -355,8 +354,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-18 21:21" pubdate>
-        2022年4月18日 晚上
+      <time datetime="2022-08-30 13:29" pubdate>
+        2022年8月30日 下午
       </time>
     </span>
   
@@ -366,7 +365,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      872 字
+      13 字
     </span>
   
 
@@ -375,7 +374,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      1 分钟
     </span>
   
 
@@ -412,15 +411,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">字典树</h1>
+            <h1 style="display: none">Hello World</h1>
             
             <div class="markdown-body">
-              <h1 id="字典树">字典树</h1>
-<h2 id="定义">定义</h2>
-<h2 id="应用">应用</h2>
-<h3 id="像查字典一样检索字符串">像查字典一样"检索"字符串</h3>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Trie</span> {</span><br>	<span class="hljs-keyword">int</span> nxt[N][<span class="hljs-number">26</span>], tot = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">bool</span> ed[N];<br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				nxt[p][key] = ++tot;<br>			}<br>			p = nxt[p][key];<br>		}<br>		ed[p] = <span class="hljs-literal">true</span>;<br>	}<br><br>	<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isExist</span><span class="hljs-params">(string s)</span> </span>{<br>		<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch: s) {<br>			<span class="hljs-keyword">int</span> key = ch - <span class="hljs-string">'a'</span>;<br>			<span class="hljs-keyword">if</span>(nxt[p][key] == <span class="hljs-number">0</span>) {<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			}<br>			p = nxt[p][key];<br>		}<br>		<span class="hljs-keyword">return</span> ed[p];<br>	}<br><br>};<br><br>Trie tr;	<span class="hljs-comment">//Allocate</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-keyword">int</span> cas;<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>	    string s;<br>	    cin &gt;&gt; s;<br>	    tr.<span class="hljs-built_in">insert</span>(s);<br>	}<br>	<span class="hljs-built_in">puts</span>(<span class="hljs-string">"Inserted!!!!!!\n\nAsk Me!!!!!!!"</span>);<br>	cin &gt;&gt; cas;<br>	<span class="hljs-keyword">while</span>(cas--) {<br>		string s;<br>		cin &gt;&gt; s;<br>		<span class="hljs-built_in">puts</span>(tr.<span class="hljs-built_in">isExist</span>(s) ? <span class="hljs-string">"Exist."</span> : <span class="hljs-string">"Not Exist."</span>);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
-<h3 id="异或极值问题">异或极值问题</h3>
+              <p>如题, 这是我的第一篇文章.</p>
 
             </div>
             <hr>
@@ -430,17 +424,10 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
                     
                   </div>
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
                 
               </div>
               
@@ -455,9 +442,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/30/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
+                      <a href="/2022/08/30/trie/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">单调队列</span>
+                        <span class="hidden-mobile">字典树</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -465,8 +452,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/12/Splay/">
-                        <span class="hidden-mobile">Splay</span>
+                      <a href="/2022/07/30/OI%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">OI总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -491,7 +478,7 @@
         var options = Object.assign(
           {"clientID":"716ae20c881ca3d84fb8","clientSecret":"0c7c8e3cd7deb964335f06ed76eca352957098f4","repo":"ret2libc-pwned.github.io","owner":"ret2libc-pwned","admin":["ret2libc-pwned"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'fc1e7aa9c4fd85ad1b539d8ca918d269'
+            id: 'c4b51a48e81226fbb8e38a56095e3cb6'
           }
         )
         var gitalk = new Gitalk(options);
