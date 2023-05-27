@@ -779,7 +779,7 @@ dp(u, 1) = dp(v, 0)
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">该文章已被加密</span>
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
       </label>
     </div>
   </div>
