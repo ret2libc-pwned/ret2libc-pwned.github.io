@@ -288,11 +288,31 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/txedu-helper/">
-                <i class="iconfont icon-book"></i>
-                网课神器
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                实验室
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/txedu-helper/">
+                    <i class="iconfont icon-book"></i>
+                    网课神器
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/html/flower/">
+                    <i class="iconfont icon-flower"></i>
+                    鲜花大盗
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -707,53 +727,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/07/30/OI%E6%80%BB%E7%BB%93/" target="_self">
-          OI总结
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/07/30/OI%E6%80%BB%E7%BB%93/" target="_self">
-          
-          再不多做题、打比赛今年联赛要完了啊啊啊啊啊啊啊啊啊
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-30 13:31" pubdate>
-              2022-07-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93%E5%8F%8D%E6%80%9D/">总结反思</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/" target="_self">
           状态压缩技巧
         </a>
@@ -762,7 +735,7 @@
       <p class="index-excerpt">
         <a href="/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/" target="_self">
           
-          状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 选择合适的载体进行压缩 对于上文所说的状态集合, 为什么不开一个bool 类型的数组存储呢? 如果是那样多方便! 答案是: 费空间 . 注
+          状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 xxxxxxxxxx120&amp;nbsp;1&#x2F;&#x2F; 最短路模板三合一2&#x2F;&#x2F; TODO: SPFA3#include 4#include 5#in
         </a>
       </p>
 
@@ -788,6 +761,53 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" target="_self">
+          搜索算法入门
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" target="_self">
+          
+          深度优先搜索 (DFS) 本质是将状态的集合表达为一棵搜索树, 自顶向下地递归求解子问题 (抽象为图就是: 每一层为一个阶段, 每一个结点表示一个决策. 深度优先遍历每一棵子树).              该方法可能会多次重复递归求解相同子问题 (表现为 dfs 函数多次在调用时传入相同参数) , 效率较低. 此时可以使用 记忆化搜索 (自顶向下、带备忘录的方法) 或 动态规划 (自底向上方法)
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-24 14:04" pubdate>
+              2022-06-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
             
           </div>
         

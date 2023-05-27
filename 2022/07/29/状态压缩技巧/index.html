@@ -16,15 +16,15 @@
   <meta name="author" content="ret2libc-pwned">
   <meta name="keywords" content="">
   
-    <meta name="description" content="状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 选择合适的载体进行压缩 对于上文所说的状态集合, 为什么不开一个bool 类型的数组存储呢? 如果是那样多方便! 答案是: 费空间 . 注">
+    <meta name="description" content="状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 xxxxxxxxxx120&amp;nbsp;1&#x2F;&#x2F; 最短路模板三合一2&#x2F;&#x2F; TODO: SPFA3#include 4#include 5#in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="状态压缩技巧">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 选择合适的载体进行压缩 对于上文所说的状态集合, 为什么不开一个bool 类型的数组存储呢? 如果是那样多方便! 答案是: 费空间 . 注">
+<meta property="og:description" content="状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 xxxxxxxxxx120&amp;nbsp;1&#x2F;&#x2F; 最短路模板三合一2&#x2F;&#x2F; TODO: SPFA3#include 4#include 5#in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-29T08:53:54.000Z">
-<meta property="article:modified_time" content="2022-07-29T10:33:56.000Z">
+<meta property="article:modified_time" content="2023-05-27T01:19:37.671Z">
 <meta property="article:author" content="ret2libc-pwned">
 <meta property="article:tag" content="技巧">
 <meta name="twitter:card" content="summary_large_image">
@@ -308,11 +308,31 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/txedu-helper/">
-                <i class="iconfont icon-book"></i>
-                网课神器
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                实验室
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/txedu-helper/">
+                    <i class="iconfont icon-book"></i>
+                    网课神器
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/html/flower/">
+                    <i class="iconfont icon-flower"></i>
+                    鲜花大盗
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -366,7 +386,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      618 字
+      3k 字
     </span>
   
 
@@ -375,7 +395,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      17 分钟
     </span>
   
 
@@ -418,7 +438,7 @@
               <h2 id="状态压缩">状态压缩</h2>
 <p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、<code>bitset</code>) 表示的技巧. 例如在数组 <code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列 <code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
 <h2 id="注意事项">注意事项</h2>
-<h3 id="选择合适的载体进行压缩">选择合适的载体进行压缩</h3>
+<h3 id="xxxxxxxxxx120-1-最短路模板三合一2-TODO-SPFA3-include-iostream-4-include-cstring-5-include-ctime-6-include-queue-7-include-cstdio-8-include-cstdlib-9enum-Algo-DIJKSTRA-0-FLOYD-1-BELLMAN-FORD-2-10const-int-N-1e6-10-INF-0x3f3f3f3f-11using-namespace-std-12int-h-N-e-N-to-N-ne-N-tot-1-13int-n-m-s-14inline-void-add-int-u-int-v-int-w-15-ne-tot-h-u-h-u-tot-e-tot-w-to-tot-v-16-17namespace-Dijkstra-18-int-dis-N-head-tail-19-bool-vis-N-20-struct-Node-21-int-u-dis-22-inline-bool-operator-const-Node-b-const-23-return-dis-b-dis-24-25-26-priority-queue-Node-vector-Node-greater-Node-q-27-void-work-int-n-int-s-28-memset-dis-INF-sizeof-dis-dis-s-0-29-q-push-s-n-30-while-q-empty-31-int-u-q-top-u-q-pop-32-if-vis-u-continue-33-vis-u-true-34-for-int-i-h-u-i-i-ne-i-35-int-v-to-i-w-e-i-36-if-dis-v-dis-u-w-37-dis-v-dis-u-w-q-push-v-dis-v-38-39-40-41-42-namespace-Dijkstra43namespace-Floyd-44-int-dis-1001-1001-n-m-45-void-pre-int-n-int-m-46-n-n-m-m-47-memset-dis-INF-sizeof-dis-48-for-int-i-1-i-n-i-dis-i-i-0-49-50-void-read-51-for-int-i-1-i-m-i-52-int-u-v-w-cin-u-v-w-53-dis-u-v-min-dis-u-v-w-54-55-56-void-work-57-for-int-k-1-k-n-k-58-for-int-i-1-i-n-i-59-for-int-j-1-j-n-j-60-dis-i-j-min-dis-i-j-dis-i-k-dis-k-j-61-62-63-64-65-namespace-Floyd66namespace-Bellman-Ford-67-int-dis-N-68-bool-work-int-n-int-s-判定s为源点路径是否有负环69-memset-dis-INF-sizeof-dis-70-dis-s-0-71-bool-fl-72-for-int-i-1-i-n-i-73-fl-false-74-for-int-u-1-u-n-u-75-if-dis-u-INF-continue-76-for-int-j-h-u-j-j-ne-j-77-int-v-to-j-w-e-j-78-if-dis-v-dis-u-w-79-dis-v-dis-u-w-fl-true-80-81-82-83-if-fl-break-84-85-return-fl-86-87-namespace-Bellman-Ford88int-main-89-srand-unsigned-time-0-memset-h-1-sizeof-h-90-cin-n-m-s-91-enum-Algo-magic-enum-Algo-rand-3-92-printf-“Magic-d-n”-magic-93-if-magic-FLOYD-94-Floyd-pre-n-m-Floyd-read-Floyd-work-95-for-int-i-1-i-n-i-cout-Floyd-dis-s-i-“-96-puts-”“-97-else-98-for-int-i-1-i-m-i-99-int-u-v-w-cin-u-v-w-100-add-u-v-w-101-102-switch-magic-103-case-DIJKSTRA-104-Dijkstra-work-n-s-105-for-int-i-1-i-n-i-106-cout-Dijkstra-dis-i-“-107-108-puts-””-109-break-110-case-BELLMAN-FORD-111-bool-neg-ring-Bellman-Ford-work-n-s-112-for-int-i-1-i-n-i-113-cout-Bellman-Ford-dis-i-“-114-115-puts-”-116-break-117-118-119-return-0-120-cpp">xxxxxxxxxx120&nbsp;1// 最短路模板三合一2// TODO: SPFA3#include <iostream>4#include <cstring>5#include <ctime>6#include <queue>7#include <cstdio>8#include <cstdlib>9enum Algo { DIJKSTRA = 0, FLOYD = 1, BELLMAN_FORD = 2 };10const int N = 1e6 + 10, INF = 0x3f3f3f3f;11using namespace std;12int h[N], e[N], to[N], ne[N], tot = -1;13int n, m, s;14inline void add(int u, int v, int w) {15    ne[++tot] = h[u], h[u] = tot, e[tot] = w, to[tot] = v;16}17namespace Dijkstra {18    int dis[N], head, tail;19    bool vis[N];20    struct Node {21        int u, dis;22        inline bool operator &gt;(const Node&amp; b) const {23            return dis &gt; b.dis;24        }25    };26    priority_queue&lt;Node, vector<node>, greater<node> &gt; q;27    void work(int n, int s) {28        memset(dis, INF, sizeof dis); dis[s] = 0;29        q.push({s, n});30        while(!q.empty()) {31            int u = q.top().u; q.pop();32            if(vis[u]) continue;33            vis[u] = true;34            for(int i = h[u]; ~i; i = ne[i]) {35                int v = to[i], w = e[i];36                if(dis[v] &gt; dis[u] + w) {37                    dis[v] = dis[u] + w; q.push({v, dis[v]});38                }39            }40        }41    }42} // namespace Dijkstra43namespace Floyd {44    int dis[1001][1001], n, m;45    void pre(int _n, int _m) {46        n = _n, m = _m;47        memset(dis, INF, sizeof dis);48        for(int i = 1; i &lt;= n; ++i) dis[i][i] = 0;49    }50    void read() {51        for(int i = 1; i &lt;= m; ++i) {52            int u, v, w; cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;53            dis[u][v] = min(dis[u][v], w);54        }55    }56    void work() {57        for(int k = 1; k &lt;= n; ++k) {58            for(int i = 1; i &lt;= n; ++i) {59                for(int j = 1; j &lt;= n; ++j) {60                    dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);61                }62            }63        }64    }65} // namespace Floyd66namespace Bellman_Ford {67    int dis[N];68    bool work(int n, int s) {               // 判定s为源点路径是否有负环69        memset(dis, INF, sizeof dis);70        dis[s] = 0;71        bool fl;72        for(int i = 1; i &lt;= n; ++i)  {73            fl = false;74            for(int u = 1; u &lt;= n; ++u) {75                if(dis[u] == INF) continue;76                for(int j = h[u]; ~j; j = ne[j]) {77                    int v = to[j], w = e[j];78                    if(dis[v] &gt; dis[u] + w) {79                        dis[v] = dis[u] + w; fl = true;80                    }81                }82            }83            if(!fl) break;84        }85        return fl;          86    }87} // namespace Bellman_Ford88int main() {89    srand((unsigned)time(0)); memset(h, -1, sizeof h);90    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;91    enum Algo magic = (enum Algo)(rand() % 3);92    // printf(“Magic = %d\n”, magic);93    if(magic == FLOYD) {94        Floyd::pre(n, m); Floyd::read(); Floyd::work();95        for(int i = 1; i &lt;= n; ++i) cout &lt;&lt; Floyd::dis[s][i] &lt;&lt; " “;96        puts(”“);97    } else {98        for(int i = 1; i &lt;= m; ++i) {99            int u, v, w; cin &gt;&gt; u &gt;&gt; v &gt;&gt; w; 100            add(u, v, w);101        }102        switch(magic) {103            case DIJKSTRA:104                Dijkstra::work(n, s);105                for(int i = 1; i &lt;= n; ++i) {106                    cout &lt;&lt; Dijkstra::dis[i] &lt;&lt; " “;107                }108                puts(””);109                break;110            case BELLMAN_FORD:111                bool neg_ring = Bellman_Ford::work(n, s);112                for(int i = 1; i &lt;= n; ++i) {113                    cout &lt;&lt; Bellman_Ford::dis[i] &lt;&lt; " “;114                }115                puts(”");116                break;117        }118    }119    return 0;120}cpp</node></node></cstdlib></cstdio></queue></ctime></cstring></iostream></h3>
 <p>对于上文所说的状态集合, 为什么不开一个<code>bool</code> 类型的数组存储呢? 如果是那样多方便! 答案是: <strong>费空间</strong> .</p>
 <p>注意到, 一个 <code>bool</code> 类型的变量占用 1 字节 (8 bit) 的空间, 而不是 1 bit. 这是因为需要方便计算机寻址. (在较早的 C 语言标准中甚至没有引入 <code>bool</code> 类型, 需要程序员根据习惯使用 <code>unsigned short</code> 或者 <code>char</code> 等进行宏定义).</p>
 <p>状态集合可能会很大, 所以, 直接用 <code>bool</code> 数组存储这个集合不太合适. 同时, <code>bool</code> 数组不方便进行数学与位运算. 故需要将这些状态压缩到更合适的载体中存储.</p>
@@ -485,9 +505,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/30/OI%E6%80%BB%E7%BB%93/">
+                      <a href="/2022/08/30/hello-world/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OI总结</span>
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

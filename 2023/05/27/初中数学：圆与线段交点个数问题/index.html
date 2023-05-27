@@ -16,21 +16,22 @@
   <meta name="author" content="ret2libc-pwned">
   <meta name="keywords" content="">
   
-    <meta name="description" content="再不多做题、打比赛今年联赛要完了啊啊啊啊啊啊啊啊啊">
+    <meta name="description" content="一、 问题：给定定点 PPP 与定线段 ABABAB，以 PPP 为圆心，rrr 为半径作 ⊙P\odot P⊙P. 问下列每一种情况中 rrr 的取值范围：  ⊙P\odot P⊙P 与线段 ABABAB 有且仅有两个交点； ⊙P\odot P⊙P 与线段 ABABAB 有且仅有一个交点； ⊙P\odot P⊙P 与线段 ABABAB 无交点；  针对这个问题，我们给出一种极其套路化的方法。联结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OI总结">
-<meta property="og:url" content="https://ret2libc-pwned.github.io/2022/07/30/OI%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="初中数学：圆与线段交点个数问题">
+<meta property="og:url" content="https://ret2libc-pwned.github.io/2023/05/27/%E5%88%9D%E4%B8%AD%E6%95%B0%E5%AD%A6%EF%BC%9A%E5%9C%86%E4%B8%8E%E7%BA%BF%E6%AE%B5%E4%BA%A4%E7%82%B9%E4%B8%AA%E6%95%B0%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="再不多做题、打比赛今年联赛要完了啊啊啊啊啊啊啊啊啊">
+<meta property="og:description" content="一、 问题：给定定点 PPP 与定线段 ABABAB，以 PPP 为圆心，rrr 为半径作 ⊙P\odot P⊙P. 问下列每一种情况中 rrr 的取值范围：  ⊙P\odot P⊙P 与线段 ABABAB 有且仅有两个交点； ⊙P\odot P⊙P 与线段 ABABAB 有且仅有一个交点； ⊙P\odot P⊙P 与线段 ABABAB 无交点；  针对这个问题，我们给出一种极其套路化的方法。联结">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-30T05:31:04.000Z">
-<meta property="article:modified_time" content="2022-10-01T08:36:23.030Z">
+<meta property="article:published_time" content="2023-05-27T01:23:17.000Z">
+<meta property="article:modified_time" content="2023-05-27T02:04:22.896Z">
 <meta property="article:author" content="ret2libc-pwned">
-<meta property="article:tag" content="总结反思">
+<meta property="article:tag" content="课内数学">
+<meta property="article:tag" content="应试技巧">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>OI总结 - OI-Cheatsheet</title>
+  <title>初中数学：圆与线段交点个数问题 - OI-Cheatsheet</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -308,11 +309,31 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/txedu-helper/">
-                <i class="iconfont icon-book"></i>
-                网课神器
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                实验室
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/txedu-helper/">
+                    <i class="iconfont icon-book"></i>
+                    网课神器
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/html/flower/">
+                    <i class="iconfont icon-flower"></i>
+                    鲜花大盗
+                  </a>
+                
+              </div>
             </li>
           
         
@@ -340,7 +361,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="OI总结">
+            <span class="h2" id="subtitle" title="初中数学：圆与线段交点个数问题">
               
             </span>
 
@@ -355,8 +376,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-07-30 13:31" pubdate>
-        2022年7月30日 下午
+      <time datetime="2023-05-27 09:23" pubdate>
+        2023年5月27日 上午
       </time>
     </span>
   
@@ -366,7 +387,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      283 字
+      478 字
     </span>
   
 
@@ -375,7 +396,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      3 分钟
     </span>
   
 
@@ -412,21 +433,25 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OI总结</h1>
+            <h1 style="display: none">初中数学：圆与线段交点个数问题</h1>
             
             <div class="markdown-body">
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="6379ca39a4b9ff560e23552c49c668197e8c0fe12313a9b9fa849e30ed5463ea">e76fef1e3e2566cdd2afcbcc304761f7aac844b4d722cb03a2bea36c1f02d90a031930cfee0c40e8706bb25f6481219f2ac0fd951ff7eaf83bd484a1b1db334d3c128e3f132ccf1c0c01c5419107b7ee9d7ee1a36e6204c59ee04990d0a3f660de6237e61eb52460851954eace068577a3e96d54066bd2d2886fcf993fd66015d7915bdcd22d29e2a6c37aab25f6de09c6a251eb2bf8c27e2e40a3829049b0ebce6731b85d2ca0ab36f6fc127075dd572620811eae19b043a326952a84636324c347c94b6825bd02f3daf2da07e8bf4ff2526f1fab30ae579f4072c5769378abad194288b20bc2246771f94993ebe11237fa62e6dfb901308b16d686d9e250b56ff11b5901ded5d693b5a21c4bcf7c6fc351a23a8c8644c1a78656f04d2e7097b1e313015d7552c4aa8ff6de0fb46b2f906cb42dc09d3bedda358c716b210157bc225e8d707daf36f470cf7ca6029cd2f8f88e8bb7b2a66d2a144ae492734afa8157c812c7b8c52bcd4b029d6f09b947a439308a728f7f948691a5846740d0a2e8e21a4b694e5af5b89e28ebdd4c5eede562531bf9cc30dabb20d450f003ce46f1f4e0d00e3aff8b6e918489f7b0a5bd44ae86975a86ce5c1c7b0874eb15c42876f11779e9e8372005b80a36a767a2656f3553232912a0a558446ea77031f0f492a0d5b0e0f396fcf4b43f3c068b12281431ac45576e55c0d6b4fad21a653c6ace5bf19d1d6d96b3e6a132125abddffba06e9a1691d9159fc173dfdde28306f9745679024e3e7f28f044eeffbb3d1b01294c666702446bf23c105b4eaff5d3dfab546beae395573c1a6fa125f9d59e43bc26f9f6faf47ad3690cec59246b75f899db220df81ba9306314b2c66229fdae4256cca44020aa5aa4f32ac9e86dd752811516ab11d36a1ee8dd29cd077713c0da00c4669e0458ef54720118471ba0020686215771bf4f94ae830c3aaebc227eea3adec9fb121f46eec7f8b9c2b94df58761be1ec73ce64f69d4524efdf9f449d6ba5a1a9d9b90208e26a021a766aee74e9d9cc7d1b188b8051dff4f1d24930ca346c046d3e3753c7b26ac061d5fbd7eab032d0a4453875855e942eb2bcb2ce2df93a77d17a9f2a770c6462b9e30659e5e3c7368e4de7ea315802c545a960d47276415927841fa345dbaf2c008cd77d8abb3b12ccd5db56c0db8ee702c6314ac4dbc34a91d2bf2ea674021b368e89a8dfd7fec0574fcfdb000510c18ad18f407fc4e66d4a4c1f4046d7ed25730624154ef15b2bc40c3d8a4502a4fed7d15679d8bba3d29e0808343e4087856a069cdcf01f1d7aa70b3ef0c4ab88864ab0a4b689646cbc029862d158fa88362fe332a37cfe5fed937e5d90fc9508e4424e3887c092f6cead2ebb5983758b175ec9d58e404ac6ee89d478a9d3b4be9152397e51a5e3b8b277e54e9d7911ebcdd89dec9146d2b3daaa685e79c588952fe2772599c322984b60b9802b2ee7d6500aba29962736adb5c23e6b0e5be8f830827f4ec954ef6fcddd6bc713cdb5174234c3c26e772fc7c0a3d977b7b9940c646b6f74f27bcd69aacf4762912c4b77fefde1e5d99ddef03a4ccdc34616971e2d30fb80533db7b0496e1786d05bf82fc6e5e677a4896a584c0c2b9c8dec0891b32d76addd99b80131e7505d98705e739cba482fb7e611fdba3552dd28d5376f78484377f9a7fab7068436913d033114e136d95a1a258cc91eaa56cbc7efbe5b92e4d558c24e771eaf1bd655cc4d37c616d0cd1823ce2cb5cc548a4c8a637e8d212df73922e498093e9a4608fd35f154c7e7bef20a516037d845b7550c928260f8a31c00a66711f1375daf0c2361d3b187f684dc2df1b87b12d92e26583949b07ba343645e2a7b72c8a2864c827ebf8280a194b50e3a1ac78f506af5109c3778e6d808434ebdc26c2648374894787ee2534eefb20a1989d66378bd6cb5b4d6d988d3454462d7811f03a50872bc51899261cadedda447f6612bfb2f59dd059047a1405082f269a819bfd244ad8f6e9656e5ab3de3862</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">该文章已被加密</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              <h3 id="一、">一、</h3>
+<p>问题：给定定点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与定线段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>，以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 为圆心，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 为半径作 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\odot P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>. 问下列每一种情况中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 的取值范围：</p>
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\odot P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与线段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 有且仅有两个交点；</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\odot P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与线段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 有且仅有一个交点；</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\odot P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与线段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 无交点；</li>
+</ol>
+<p>针对这个问题，我们给出一种<strong>极其套路化</strong>的方法。联结 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>A</mi><mo separator="true">,</mo><mi>P</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">PA, PB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">PB</span></span></span></span>. 记 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>P</mi><mi>A</mi><mo separator="true">,</mo><mi>P</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mi>u</mi><mo separator="true">,</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>P</mi><mi>A</mi><mo separator="true">,</mo><mi>P</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">\min(PA, PB) = u, \max(PA, PB) = v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">PB</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">PB</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span>. 再求出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 所在直线的距离 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>. 则有：</p>
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&lt;</mo><mi>r</mi><mo>&lt;</mo><mi>u</mi></mrow><annotation encoding="application/x-tex">d &lt; r &lt; u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇔</mo></mrow><annotation encoding="application/x-tex">\Leftrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">⇔</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\odot P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">⊙</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> 与线段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 有且仅有两个交点；</li>
+<li></li>
+</ol>
+<blockquote>
+<p><strong>例题 1.</strong> 在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">t</mi></mrow><mi mathvariant="normal">△</mi><mi>A</mi><mi>B</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\mathrm{Rt}\triangle ABC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathrm">Rt</span></span><span class="mord">△</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.07153em;">BC</span></span></span></span> 中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>9</mn><msup><mn>0</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">C = 90 ^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6741em;"></span><span class="mord">9</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6741em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>C</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">AC = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>C</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">BC = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">BC</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>. 现以点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 为圆心，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 为半径作</p>
+</blockquote>
+
             </div>
             <hr>
             <div>
@@ -435,7 +460,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+                      <a class="hover-with-bg" href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/">文化课</a>
                     
                   </div>
                 
@@ -443,7 +468,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93%E5%8F%8D%E6%80%9D/">总结反思</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AF%BE%E5%86%85%E6%95%B0%E5%AD%A6/">课内数学</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BA%94%E8%AF%95%E6%8A%80%E5%B7%A7/">应试技巧</a>
                     
                   </div>
                 
@@ -455,29 +482,6 @@
                   
                 </p>
               
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/08/30/hello-world/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/">
-                        <span class="hidden-mobile">状态压缩技巧</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
@@ -496,7 +500,7 @@
         var options = Object.assign(
           {"clientID":"716ae20c881ca3d84fb8","clientSecret":"0c7c8e3cd7deb964335f06ed76eca352957098f4","repo":"ret2libc-pwned.github.io","owner":"ret2libc-pwned","admin":["ret2libc-pwned"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '459a07c34c7b9c07f7ba8e490320fb84'
+            id: '8d8deaf8b226490580f7cdf1102123f5'
           }
         )
         var gitalk = new Gitalk(options);
