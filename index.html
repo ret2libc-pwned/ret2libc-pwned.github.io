@@ -25,15 +25,21 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>OI-Cheatsheet</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -42,15 +48,31 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
@@ -195,8 +217,13 @@
   clickEffect();
   </script>
   <!-- hexo injector body_begin end -->
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>OI-Cheatsheet</strong>
@@ -219,7 +246,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -231,7 +258,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -243,7 +270,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -255,7 +282,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -267,7 +294,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -279,7 +306,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -292,7 +319,7 @@
               <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="iconfont icon-exp-fill"></i>
-                实验室
+                <span>实验室</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 
@@ -301,7 +328,7 @@
                   
                   <a class="dropdown-item" href="/txedu-helper/">
                     <i class="iconfont icon-book"></i>
-                    腾讯课堂小助手
+                    <span>腾讯课堂小助手</span>
                   </a>
                 
                   
@@ -309,7 +336,7 @@
                   
                   <a class="dropdown-item" href="/html/flower/">
                     <i class="iconfont icon-music"></i>
-                    17English 鲜花大盗
+                    <span>17English 鲜花大盗</span>
                   </a>
                 
               </div>
@@ -323,7 +350,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/msg-board/">
                 <i class="iconfont icon-comment"></i>
-                留言板
+                <span>留言板</span>
               </a>
             </li>
           
@@ -331,14 +358,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -346,34 +375,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello, the cruel world.">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Hello, the cruel world."></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -392,12 +427,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2023/05/21/%E8%AF%AD%E6%96%87-5-%E6%9C%88%E6%9C%88%E8%80%83%E5%A4%8D%E4%B9%A0/" target="_self">
-          
-          Here&#39;s something encrypted, password is required to continue reading.
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/21/%E8%AF%AD%E6%96%87-5-%E6%9C%88%E6%9C%88%E8%80%83%E5%A4%8D%E4%B9%A0/" target="_self">
+        <div>
+          Here's something encrypted, password is required to continue reading.
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -409,11 +444,25 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/">文化课</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/" class="category-chain-item">文化课</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -432,12 +481,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/10/15/OI%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" target="_self">
-          
-          这也是暑假没填的坑…… 数学复习 运算优化 快速幂 整数可以表达为若干个 2 的整数次幂之和, 即 可以&quot;二进制拆分&quot;. (该性质应用广泛, 例如树状数组). 同样的道理, 我们也能拆分指数, 实现快速幂. 形式化地说: $a^b&#x3D;\sum _{i&#x3D;0} ^{k-1} a^{{c_i}\cdot 2i}\ \ \  (k &#x3D;  \lceil\log (b + 1)\rceil). (Hexo渲染不
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/15/OI%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" target="_self">
+        <div>
+          这也是暑假没填的坑…… 数学复习 运算优化 快速幂 整数可以表达为若干个 2 的整数次幂之和, 即 可以"二进制拆分". (该性质应用广泛, 例如树状数组). 同样的道理, 我们也能拆分指数, 实现快速幂. 形式化地说: $a^b=\sum _{i=0} ^{k-1} a^{{c_i}\cdot 2i}\ \ \  (k =  \lceil\log (b + 1)\rceil). (Hexo渲染不
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -449,18 +498,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
             
           </div>
         
@@ -479,12 +542,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/10/15/%E6%9A%91%E5%81%87OI%E5%8D%81%E6%97%A5%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/15/%E6%9A%91%E5%81%87OI%E5%8D%81%E6%97%A5%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" target="_self">
+        <div>
           暑假里曾经心血来潮想练 OI , 计划着每天花一下午练习然后在这个文档里打卡记录, 记了十天然后发现 Typora 太卡了, 自己效率还很低, 就没坚持下去. 这个文档还有很多题目没补完! 我现在 OI 还什么都不会, 就是因为三分钟热度, 学得太少、练得太少, 还走了很多弯路. 今天把这个文档从旧电脑里翻出来放在 Cheatsheet 上面提醒一下自己, 不能再这样了!!! 下面是文档原文, 计
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -496,11 +559,25 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -519,12 +596,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/10/01/%E5%88%9D%E4%B8%89%E4%B8%80%E6%A8%A1%E6%95%B0%E5%AD%A6%E7%BB%83%E4%B9%A0%E4%B8%80/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/01/%E5%88%9D%E4%B8%89%E4%B8%80%E6%A8%A1%E6%95%B0%E5%AD%A6%E7%BB%83%E4%B9%A0%E4%B8%80/" target="_self">
+        <div>
           数学一模练习一 一模将至，博主提供练习。 试卷共 10 题，100 分，题目均是原题。 进入试卷
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -536,20 +613,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/">文化课</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/" class="category-chain-item">文化课</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E8%AF%BE%E5%86%85%E6%95%B0%E5%AD%A6/">课内数学</a>
+              <a href="/tags/%E8%AF%BE%E5%86%85%E6%95%B0%E5%AD%A6/">#课内数学</a>
             
-              <a href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/">平面几何</a>
+              <a href="/tags/%E5%B9%B3%E9%9D%A2%E5%87%A0%E4%BD%95/">#平面几何</a>
             
           </div>
         
@@ -568,12 +659,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/10/01/%E7%94%B5%E8%84%91%E6%8D%A2%E6%96%B0/" target="_self">
-          
-          终于换新电脑了，hexo博客迁移成功！ 我的第一台电脑是 ThinkPad E450。 ![旧的 Thinkpad E450](.&#x2F;bandicam 2022-10-15 22-57-33-970.jpg) 这台 E450 给五年前的我打开一扇窗口，我开始对关于计算机的许多方面产生兴趣。从刚开始看教程研究手机越狱，折腾各种操作系统和应用软件，到装一大堆工具，煞有其事地成为“安全大神”逆向分析，再到
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/01/%E7%94%B5%E8%84%91%E6%8D%A2%E6%96%B0/" target="_self">
+        <div>
+          终于换新电脑了，hexo博客迁移成功！ 我的第一台电脑是 ThinkPad E450。 ![旧的 Thinkpad E450](./bandicam 2022-10-15 22-57-33-970.jpg) 这台 E450 给五年前的我打开一扇窗口，我开始对关于计算机的许多方面产生兴趣。从刚开始看教程研究手机越狱，折腾各种操作系统和应用软件，到装一大堆工具，煞有其事地成为“安全大神”逆向分析，再到
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -585,11 +676,25 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -608,12 +713,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/08/30/%E6%A0%91%E5%BD%A2DP/" target="_self">
-          
-          树形DP 例题 没有上司的舞会 使用dp(u,0&#x2F;1)dp(u, 0&#x2F;1)dp(u,0&#x2F;1)表示以uuu来或不来时uuu为根结点子树的快乐指数总和. 则: dp(u,0)&#x3D;∑max⁡v∈u.son{dp(v,0),dp(v,1)}dp(u,1)&#x3D;dp(v,0)dp(u, 0) &#x3D; \sum \max_{v \in u.\mathrm{son}} \{dp(v, 0), dp(v, 1)\}\\ d
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/30/%E6%A0%91%E5%BD%A2DP/" target="_self">
+        <div>
+          树形DP 例题 没有上司的舞会 使用dp(u,0/1)dp(u, 0/1)dp(u,0/1)表示以uuu来或不来时uuu为根结点子树的快乐指数总和. 则: dp(u,0)=∑max⁡v∈u.son{dp(v,0),dp(v,1)}dp(u,1)=dp(v,0)dp(u, 0) = \sum \max_{v \in u.\mathrm{son}} \{dp(v, 0), dp(v, 1)\}\\ d
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -625,20 +730,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a>
             
-              <a href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a>
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/">#图论</a>
             
           </div>
         
@@ -657,12 +776,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/08/30/trie/" target="_self">
-          
-          字典树 定义 应用 像查字典一样&quot;检索&quot;字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N &#x3D; 1e6;using n
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/30/trie/" target="_self">
+        <div>
+          字典树 定义 应用 像查字典一样"检索"字符串 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;string&gt;const int N = 1e6;using n
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -674,18 +793,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
             
           </div>
         
@@ -704,12 +837,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/08/30/hello-world/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/30/hello-world/" target="_self">
+        <div>
           如题, 这是我的第一篇文章.
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -721,11 +854,25 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -744,12 +891,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/" target="_self">
-          
-          状态压缩 状态压缩, 是将 0&#x2F;1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 xxxxxxxxxx120&amp;nbsp;1&#x2F;&#x2F; 最短路模板三合一2&#x2F;&#x2F; TODO: SPFA3#include 4#include 5#in
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/29/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E6%8A%80%E5%B7%A7/" target="_self">
+        <div>
+          状态压缩 状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、bitset) 表示的技巧. 例如在数组 [1, 8, 7, 2, 5, 3] 中, 一个状态表示选取子序列 [1, 7, 5] , 它就可以表示为 0b10100 . 注意事项 xxxxxxxxxx120&nbsp;1// 最短路模板三合一2// TODO: SPFA3#include 4#include 5#in
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -761,18 +908,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a>
+              <a href="/tags/%E6%8A%80%E5%B7%A7/">#技巧</a>
             
           </div>
         
@@ -791,12 +952,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" target="_self">
+        <div>
           深度优先搜索 (DFS) 本质是将状态的集合表达为一棵搜索树, 自顶向下地递归求解子问题 (抽象为图就是: 每一层为一个阶段, 每一个结点表示一个决策. 深度优先遍历每一棵子树).              该方法可能会多次重复递归求解相同子问题 (表现为 dfs 函数多次在调用时传入相同参数) , 效率较低. 此时可以使用 记忆化搜索 (自顶向下、带备忘录的方法) 或 动态规划 (自底向上方法)
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -808,18 +969,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
+              <a href="/tags/%E6%90%9C%E7%B4%A2/">#搜索</a>
             
           </div>
         
@@ -864,56 +1039,58 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
@@ -932,10 +1109,52 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/?c=i',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/?c=i:', error);
+            }
+            typing(text);
+          }
+        })
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -945,73 +1164,25 @@
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://v1.hitokoto.cn/?c=i',
-        headers: {},
-        dataType: 'json',
-        success: function(result) {
-          var text;
-          if (result) {
-            var keys = 'hitokoto'.split(',');
-            if (result instanceof Array) {
-              result = result[0];
-            }
-            for (const k of keys) {
-              var value = result[k];
-              if (typeof value === 'string') {
-                text = value;
-                break;
-              } else if (value instanceof Object) {
-                result = value;
-              }
-            }
-          }
-          text ? typing(text) : typing(title);
-        },
-        error: function() {
-          typing(title);
-        }
-      })
-      
-    })(window, document);
-  </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <!-- hexo injector body_end start -->
   <div id="aplayer"></div>
   <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />

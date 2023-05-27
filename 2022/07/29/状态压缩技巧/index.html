@@ -30,30 +30,29 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>状态压缩技巧 - OI-Cheatsheet</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -62,15 +61,31 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
@@ -215,8 +230,13 @@
   clickEffect();
   </script>
   <!-- hexo injector body_begin end -->
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>OI-Cheatsheet</strong>
@@ -239,7 +259,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -251,7 +271,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -263,7 +283,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -275,7 +295,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -287,7 +307,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -299,7 +319,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -312,7 +332,7 @@
               <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="iconfont icon-exp-fill"></i>
-                实验室
+                <span>实验室</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 
@@ -321,7 +341,7 @@
                   
                   <a class="dropdown-item" href="/txedu-helper/">
                     <i class="iconfont icon-book"></i>
-                    腾讯课堂小助手
+                    <span>腾讯课堂小助手</span>
                   </a>
                 
                   
@@ -329,7 +349,7 @@
                   
                   <a class="dropdown-item" href="/html/flower/">
                     <i class="iconfont icon-music"></i>
-                    17English 鲜花大盗
+                    <span>17English 鲜花大盗</span>
                   </a>
                 
               </div>
@@ -343,7 +363,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/msg-board/">
                 <i class="iconfont icon-comment"></i>
-                留言板
+                <span>留言板</span>
               </a>
             </li>
           
@@ -351,14 +371,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -366,70 +388,84 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="状态压缩技巧">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      ret2libc-pwned
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-07-29 16:53" pubdate>
-        2022年7月29日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      3k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      17 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="状态压缩技巧"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        ret2libc-pwned
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-29 16:53" pubdate>
+          2022年7月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -438,16 +474,22 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">状态压缩技巧</h1>
             
-            <div class="markdown-body">
-              <h2 id="状态压缩">状态压缩</h2>
+            
+              <div class="markdown-body">
+                
+                <h2 id="状态压缩">状态压缩</h2>
 <p>状态压缩, 是将 0/1 状态构成的集合用空间占用较小的载体 (如整数、<code>bitset</code>) 表示的技巧. 例如在数组 <code>[1, 8, 7, 2, 5, 3]</code> 中, 一个状态表示选取子序列 <code>[1, 7, 5]</code> , 它就可以表示为 <code>0b10100</code> .</p>
 <h2 id="注意事项">注意事项</h2>
 <h3 id="xxxxxxxxxx120-1-最短路模板三合一2-TODO-SPFA3-include-iostream-4-include-cstring-5-include-ctime-6-include-queue-7-include-cstdio-8-include-cstdlib-9enum-Algo-DIJKSTRA-0-FLOYD-1-BELLMAN-FORD-2-10const-int-N-1e6-10-INF-0x3f3f3f3f-11using-namespace-std-12int-h-N-e-N-to-N-ne-N-tot-1-13int-n-m-s-14inline-void-add-int-u-int-v-int-w-15-ne-tot-h-u-h-u-tot-e-tot-w-to-tot-v-16-17namespace-Dijkstra-18-int-dis-N-head-tail-19-bool-vis-N-20-struct-Node-21-int-u-dis-22-inline-bool-operator-const-Node-b-const-23-return-dis-b-dis-24-25-26-priority-queue-Node-vector-Node-greater-Node-q-27-void-work-int-n-int-s-28-memset-dis-INF-sizeof-dis-dis-s-0-29-q-push-s-n-30-while-q-empty-31-int-u-q-top-u-q-pop-32-if-vis-u-continue-33-vis-u-true-34-for-int-i-h-u-i-i-ne-i-35-int-v-to-i-w-e-i-36-if-dis-v-dis-u-w-37-dis-v-dis-u-w-q-push-v-dis-v-38-39-40-41-42-namespace-Dijkstra43namespace-Floyd-44-int-dis-1001-1001-n-m-45-void-pre-int-n-int-m-46-n-n-m-m-47-memset-dis-INF-sizeof-dis-48-for-int-i-1-i-n-i-dis-i-i-0-49-50-void-read-51-for-int-i-1-i-m-i-52-int-u-v-w-cin-u-v-w-53-dis-u-v-min-dis-u-v-w-54-55-56-void-work-57-for-int-k-1-k-n-k-58-for-int-i-1-i-n-i-59-for-int-j-1-j-n-j-60-dis-i-j-min-dis-i-j-dis-i-k-dis-k-j-61-62-63-64-65-namespace-Floyd66namespace-Bellman-Ford-67-int-dis-N-68-bool-work-int-n-int-s-判定s为源点路径是否有负环69-memset-dis-INF-sizeof-dis-70-dis-s-0-71-bool-fl-72-for-int-i-1-i-n-i-73-fl-false-74-for-int-u-1-u-n-u-75-if-dis-u-INF-continue-76-for-int-j-h-u-j-j-ne-j-77-int-v-to-j-w-e-j-78-if-dis-v-dis-u-w-79-dis-v-dis-u-w-fl-true-80-81-82-83-if-fl-break-84-85-return-fl-86-87-namespace-Bellman-Ford88int-main-89-srand-unsigned-time-0-memset-h-1-sizeof-h-90-cin-n-m-s-91-enum-Algo-magic-enum-Algo-rand-3-92-printf-“Magic-d-n”-magic-93-if-magic-FLOYD-94-Floyd-pre-n-m-Floyd-read-Floyd-work-95-for-int-i-1-i-n-i-cout-Floyd-dis-s-i-“-96-puts-”“-97-else-98-for-int-i-1-i-m-i-99-int-u-v-w-cin-u-v-w-100-add-u-v-w-101-102-switch-magic-103-case-DIJKSTRA-104-Dijkstra-work-n-s-105-for-int-i-1-i-n-i-106-cout-Dijkstra-dis-i-“-107-108-puts-””-109-break-110-case-BELLMAN-FORD-111-bool-neg-ring-Bellman-Ford-work-n-s-112-for-int-i-1-i-n-i-113-cout-Bellman-Ford-dis-i-“-114-115-puts-”-116-break-117-118-119-return-0-120-cpp">xxxxxxxxxx120&nbsp;1// 最短路模板三合一2// TODO: SPFA3#include <iostream>4#include <cstring>5#include <ctime>6#include <queue>7#include <cstdio>8#include <cstdlib>9enum Algo { DIJKSTRA = 0, FLOYD = 1, BELLMAN_FORD = 2 };10const int N = 1e6 + 10, INF = 0x3f3f3f3f;11using namespace std;12int h[N], e[N], to[N], ne[N], tot = -1;13int n, m, s;14inline void add(int u, int v, int w) {15    ne[++tot] = h[u], h[u] = tot, e[tot] = w, to[tot] = v;16}17namespace Dijkstra {18    int dis[N], head, tail;19    bool vis[N];20    struct Node {21        int u, dis;22        inline bool operator &gt;(const Node&amp; b) const {23            return dis &gt; b.dis;24        }25    };26    priority_queue&lt;Node, vector<node>, greater<node> &gt; q;27    void work(int n, int s) {28        memset(dis, INF, sizeof dis); dis[s] = 0;29        q.push({s, n});30        while(!q.empty()) {31            int u = q.top().u; q.pop();32            if(vis[u]) continue;33            vis[u] = true;34            for(int i = h[u]; ~i; i = ne[i]) {35                int v = to[i], w = e[i];36                if(dis[v] &gt; dis[u] + w) {37                    dis[v] = dis[u] + w; q.push({v, dis[v]});38                }39            }40        }41    }42} // namespace Dijkstra43namespace Floyd {44    int dis[1001][1001], n, m;45    void pre(int _n, int _m) {46        n = _n, m = _m;47        memset(dis, INF, sizeof dis);48        for(int i = 1; i &lt;= n; ++i) dis[i][i] = 0;49    }50    void read() {51        for(int i = 1; i &lt;= m; ++i) {52            int u, v, w; cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;53            dis[u][v] = min(dis[u][v], w);54        }55    }56    void work() {57        for(int k = 1; k &lt;= n; ++k) {58            for(int i = 1; i &lt;= n; ++i) {59                for(int j = 1; j &lt;= n; ++j) {60                    dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);61                }62            }63        }64    }65} // namespace Floyd66namespace Bellman_Ford {67    int dis[N];68    bool work(int n, int s) {               // 判定s为源点路径是否有负环69        memset(dis, INF, sizeof dis);70        dis[s] = 0;71        bool fl;72        for(int i = 1; i &lt;= n; ++i)  {73            fl = false;74            for(int u = 1; u &lt;= n; ++u) {75                if(dis[u] == INF) continue;76                for(int j = h[u]; ~j; j = ne[j]) {77                    int v = to[j], w = e[j];78                    if(dis[v] &gt; dis[u] + w) {79                        dis[v] = dis[u] + w; fl = true;80                    }81                }82            }83            if(!fl) break;84        }85        return fl;          86    }87} // namespace Bellman_Ford88int main() {89    srand((unsigned)time(0)); memset(h, -1, sizeof h);90    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;91    enum Algo magic = (enum Algo)(rand() % 3);92    // printf(“Magic = %d\n”, magic);93    if(magic == FLOYD) {94        Floyd::pre(n, m); Floyd::read(); Floyd::work();95        for(int i = 1; i &lt;= n; ++i) cout &lt;&lt; Floyd::dis[s][i] &lt;&lt; " “;96        puts(”“);97    } else {98        for(int i = 1; i &lt;= m; ++i) {99            int u, v, w; cin &gt;&gt; u &gt;&gt; v &gt;&gt; w; 100            add(u, v, w);101        }102        switch(magic) {103            case DIJKSTRA:104                Dijkstra::work(n, s);105                for(int i = 1; i &lt;= n; ++i) {106                    cout &lt;&lt; Dijkstra::dis[i] &lt;&lt; " “;107                }108                puts(””);109                break;110            case BELLMAN_FORD:111                bool neg_ring = Bellman_Ford::work(n, s);112                for(int i = 1; i &lt;= n; ++i) {113                    cout &lt;&lt; Bellman_Ford::dis[i] &lt;&lt; " “;114                }115                puts(”");116                break;117        }118    }119    return 0;120}cpp</node></node></cstdlib></cstdio></queue></ctime></cstring></iostream></h3>
@@ -484,40 +526,96 @@
 <h4 id=""></h4>
 <h3 id="动态规划中-表示状态">(动态规划中) 表示状态</h3>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/OI%E7%AC%94%E8%AE%B0/">OI笔记</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OI%E7%AC%94%E8%AE%B0/" class="category-chain-item">OI笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E5%B7%A7/">#技巧</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>状态压缩技巧</div>
+      <div>https://ret2libc-pwned.github.io/2022/07/29/状态压缩技巧/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ret2libc-pwned</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/30/hello-world/">
+                      <a href="/2022/08/30/hello-world/" title="Hello World">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">上一篇</span>
@@ -527,7 +625,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/">
+                      <a href="/2022/06/24/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/" title="搜索算法入门">
                         <span class="hidden-mobile">搜索算法入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -539,12 +637,10 @@
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="gitalk-container"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#gitalk-container', function() {
@@ -564,25 +660,79 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
 
 
     
@@ -607,56 +757,58 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
@@ -675,10 +827,22 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -688,73 +852,118 @@
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-        typing(title);
-      
-    })(window, document);
-  </script>
 
-
-
-
-
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
-  
-
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({"theme":"default"});
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <!-- hexo injector body_end start -->
   <div id="aplayer"></div>
   <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
