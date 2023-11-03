@@ -92,144 +92,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start -->
-  <script type="text/javascript">
-  function clickEffect() {
-    let balls = [];
-    let longPressed = false;
-    let longPress;
-    let multiplier = 0;
-    let width, height;
-    let origin;
-    let normal;
-    let ctx;
-    const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-    canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
-    const pointer = document.createElement("span");
-    pointer.classList.add("pointer");
-    document.body.appendChild(pointer);
-
-    if (canvas.getContext && window.addEventListener) {
-      ctx = canvas.getContext("2d");
-      updateSize();
-      window.addEventListener('resize', updateSize, false);
-      loop();
-      window.addEventListener("mousedown", function(e) {
-        pushBalls(randBetween(10, 20), e.clientX, e.clientY);
-        document.body.classList.add("is-pressed");
-        longPress = setTimeout(function() {
-          document.body.classList.add("is-longpress");
-          longPressed = true;
-        }, 500);
-      }, false);
-      window.addEventListener("mouseup", function(e) {
-        clearInterval(longPress);
-        if (longPressed == true) {
-          document.body.classList.remove("is-longpress");
-          pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
-          longPressed = false;
-        }
-        document.body.classList.remove("is-pressed");
-      }, false);
-      window.addEventListener("mousemove", function(e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        pointer.style.top = y + "px";
-        pointer.style.left = x + "px";
-      }, false);
-    } else {
-      console.log("canvas or addEventListener is unsupported!");
-    }
-
-
-    function updateSize() {
-      canvas.width = window.innerWidth * 2;
-      canvas.height = window.innerHeight * 2;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.scale(2, 2);
-      width = (canvas.width = window.innerWidth);
-      height = (canvas.height = window.innerHeight);
-      origin = {
-        x: width / 2,
-        y: height / 2
-      };
-      normal = {
-        x: width / 2,
-        y: height / 2
-      };
-    }
-    class Ball {
-      constructor(x = origin.x, y = origin.y) {
-        this.x = x;
-        this.y = y;
-        this.angle = Math.PI * 2 * Math.random();
-        if (longPressed == true) {
-          this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
-        } else {
-          this.multiplier = randBetween(6, 12);
-        }
-        this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
-        this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
-        this.r = randBetween(8, 12) + 3 * Math.random();
-        this.color = colours[Math.floor(Math.random() * colours.length)];
-      }
-      update() {
-        this.x += this.vx - normal.x;
-        this.y += this.vy - normal.y;
-        normal.x = -2 / window.innerWidth * Math.sin(this.angle);
-        normal.y = -2 / window.innerHeight * Math.cos(this.angle);
-        this.r -= 0.3;
-        this.vx *= 0.9;
-        this.vy *= 0.9;
-      }
-    }
-
-    function pushBalls(count = 1, x = origin.x, y = origin.y) {
-      for (let i = 0; i < count; i++) {
-        balls.push(new Ball(x, y));
-      }
-    }
-
-    function randBetween(min, max) {
-      return Math.floor(Math.random() * max) + min;
-    }
-
-    function loop() {
-      ctx.fillStyle = "rgba(255, 255, 255, 0)";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.r < 0) continue;
-        ctx.fillStyle = b.color;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
-        ctx.fill();
-        b.update();
-      }
-      if (longPressed == true) {
-        multiplier += 0.2;
-      } else if (!longPressed && multiplier >= 0) {
-        multiplier -= 0.4;
-      }
-      removeBall();
-      requestAnimationFrame(loop);
-    }
-
-    function removeBall() {
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
-          balls.splice(i, 1);
-        }
-      }
-    }
-  }
-  clickEffect();
-  </script>
-  <!-- hexo injector body_begin end -->
+<body>
   
 
   <header>
@@ -394,7 +257,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.1k 字
+          2.8k 字
         
       </span>
     
@@ -406,7 +269,7 @@
         
         
           <!-- compatible with older versions-->
-          18 分钟
+          16 分钟
         
       </span>
     
@@ -462,10 +325,10 @@
 <h2 id="运算优化">运算优化</h2>
 <h3 id="快速幂">快速幂</h3>
 <p>整数可以表达为若干个 2 的整数次幂之和, 即 <strong>可以"二进制拆分"</strong>. (该性质应用广泛, 例如树状数组). 同样的道理, 我们也能拆分指数, 实现快速幂. 形式化地说: <code>$a^b=\sum _{i=0} ^{k-1} a^{{c_i}\cdot 2i}\ \ \  (k =  \lceil\log (b + 1)\rceil)</code>. (Hexo渲染不了，请自行复制到可以渲染 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span> 的地方查看) 实现过程为从低到高取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span> 二进制中的每一位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> , 若当前位是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 则将最终答案乘上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> (可以理解为把落单的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> 乘上去), 然后将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> 平方.</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> k)</span> </span>{<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">1</span> % mod;<br>    <span class="hljs-keyword">for</span>(; k; x = (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)x * x % mod, k &gt;&gt;= <span class="hljs-number">1</span>) {<br>        <span class="hljs-keyword">if</span>(k &amp; <span class="hljs-number">1</span>) res = (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)res * x;<br>    }<br>    <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pow</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> k)</span> </span>{<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">1</span> % mod;<br>    <span class="hljs-keyword">for</span>(; k; x = (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)x * x % mod, k &gt;&gt;= <span class="hljs-number">1</span>) {<br>        <span class="hljs-keyword">if</span>(k &amp; <span class="hljs-number">1</span>) res = (<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)res * x;<br>    }<br>    <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h3 id="快速乘">快速乘</h3>
 <p>类比快速幂的二进制拆分思想, 把累"乘"变成累加即可. 注意它们的区别!!! 例如 <code>res</code> 应初始为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> 等.</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function">LL <span class="hljs-title">mul</span><span class="hljs-params">(LL a, LL b, LL p)</span> </span>{<br>    <span class="hljs-comment">// a*b mod p</span><br>    LL res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(; b; a = (a &lt;&lt; <span class="hljs-number">1</span>) % p, b &gt;&gt;= <span class="hljs-number">1</span>) {<br>        <span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) res = ((LL)res + a) % p;<br>    }<br>    <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">LL <span class="hljs-title">mul</span><span class="hljs-params">(LL a, LL b, LL p)</span> </span>{<br>    <span class="hljs-comment">// a*b mod p</span><br>    LL res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(; b; a = (a &lt;&lt; <span class="hljs-number">1</span>) % p, b &gt;&gt;= <span class="hljs-number">1</span>) {<br>        <span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>) res = ((LL)res + a) % p;<br>    }<br>    <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="数论">数论</h2>
 <p>Todo.</p>
 <h2 id="线性代数">线性代数</h2>
@@ -500,7 +363,7 @@ H403z M403 1759 V0 H319 V1759 v0 v1759 h84z"></path></svg></span></span></span><
 M347 1759 V0 H263 V1759 v0 v1759 h84z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">27</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">2</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">12</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
 <p>矩阵乘法满足结合律, <strong>不满足交换律</strong>. (因为要保证第一个矩阵的列数等于第二个矩阵的行数).</p>
 <h4 id="模板代码">模板代码</h4>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZ = <span class="hljs-number">18</span>, MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Matrix</span> {</span><br>	<span class="hljs-keyword">int</span> a[SIZ][SIZ];<br>	<span class="hljs-built_in">Matrix</span>() {<br>		<span class="hljs-built_in">memset</span>(a, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> a);<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> +(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j = SIZ; ++j) {<br>				res.a[i][j] = (a[i][j] + B.a[i][j]) % MOD;<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> -(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j = SIZ; ++j) {<br>				res.a[i][j] = (a[i][j] - B.a[i][j]) % MOD;<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> *(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= SIZ; ++j) {<br>				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = <span class="hljs-number">1</span>; k &lt;= SIZ; ++k) {<br>					res.a[i][j] += (LL)(a[i][k] * B.a[k][j]);<br>					res.a[i][j] %= MOD;<br>				}<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>};<br><span class="hljs-function">Matrix <span class="hljs-title">pow</span><span class="hljs-params">(Matrix x, <span class="hljs-keyword">int</span> k)</span> </span>{<br>	Matrix res;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) res.a[i][i] = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= SIZ; ++j) {<br>			x.a[i][j] %= MOD;<br>		}<br>	} <br>	<span class="hljs-keyword">for</span>(; k; k &gt;&gt;= <span class="hljs-number">1</span>) {<br>		<span class="hljs-keyword">if</span>(k &amp; <span class="hljs-number">1</span>) res = res * x;<br>		x = x * x;<br>	}<br>	<span class="hljs-keyword">return</span> res;<br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-comment">// a * b</span><br>	Matrix a, b;<br>	<span class="hljs-keyword">int</span> n, m, q;<br>	cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; ++j) {<br>			cin &gt;&gt; a.a[i][j];<br>		}<br>	}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= q; ++j) {<br>			cin &gt;&gt; b.a[i][j];<br>		}<br>	}<br>	Matrix c = a * b;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= q; ++j) {<br>			cout &lt;&lt; c.a[i][j] &lt;&lt; <span class="hljs-string">' '</span>;<br>		}<br>		<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span> + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> SIZ = <span class="hljs-number">18</span>, MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Matrix</span> {</span><br>	<span class="hljs-keyword">int</span> a[SIZ][SIZ];<br>	<span class="hljs-built_in">Matrix</span>() {<br>		<span class="hljs-built_in">memset</span>(a, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> a);<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> +(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j = SIZ; ++j) {<br>				res.a[i][j] = (a[i][j] + B.a[i][j]) % MOD;<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> -(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j = SIZ; ++j) {<br>				res.a[i][j] = (a[i][j] - B.a[i][j]) % MOD;<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>	Matrix <span class="hljs-keyword">operator</span> *(<span class="hljs-keyword">const</span> Matrix&amp; B) {<br>		Matrix res;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= SIZ; ++j) {<br>				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = <span class="hljs-number">1</span>; k &lt;= SIZ; ++k) {<br>					res.a[i][j] += (LL)(a[i][k] * B.a[k][j]);<br>					res.a[i][j] %= MOD;<br>				}<br>			}<br>		}<br>		<span class="hljs-keyword">return</span> res;<br>	}<br>};<br><span class="hljs-function">Matrix <span class="hljs-title">pow</span><span class="hljs-params">(Matrix x, <span class="hljs-keyword">int</span> k)</span> </span>{<br>	Matrix res;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) res.a[i][i] = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= SIZ; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= SIZ; ++j) {<br>			x.a[i][j] %= MOD;<br>		}<br>	} <br>	<span class="hljs-keyword">for</span>(; k; k &gt;&gt;= <span class="hljs-number">1</span>) {<br>		<span class="hljs-keyword">if</span>(k &amp; <span class="hljs-number">1</span>) res = res * x;<br>		x = x * x;<br>	}<br>	<span class="hljs-keyword">return</span> res;<br>}<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>	<span class="hljs-comment">// a * b</span><br>	Matrix a, b;<br>	<span class="hljs-keyword">int</span> n, m, q;<br>	cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; ++j) {<br>			cin &gt;&gt; a.a[i][j];<br>		}<br>	}<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= q; ++j) {<br>			cin &gt;&gt; b.a[i][j];<br>		}<br>	}<br>	Matrix c = a * b;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) {<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= q; ++j) {<br>			cout &lt;&lt; c.a[i][j] &lt;&lt; <span class="hljs-string">' '</span>;<br>		}<br>		<span class="hljs-built_in">puts</span>(<span class="hljs-string">""</span>);<br>	}<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="矩阵加速递推">矩阵加速递推</h4>
 <h4 id="矩阵变换">矩阵变换</h4>
 <h5 id="初等行变换">初等行变换</h5>
@@ -952,61 +815,5 @@ M347 1759 V0 H263 V1759 v0 v1759 h84z"></path></svg></span></span></span><span c
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start -->
-  <div id="aplayer"></div>
-  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> -->
-  <!-- <meting-js server="netease" type="playlist" id="8435661"></meting-js> -->
-  <script defer>
-    !(function() {
-    var oldLoadAp = window.onload;
-    window.onload = function () {
-      oldLoadAp && oldLoadAp();
-
-      new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: true,
-        autoplay: false,
-        loop: 'all',
-        order: 'random',
-        theme: '#b7daff',
-        preload: 'none',
-        audio: [
-          {
-            name: 'Refrain',
-            artist: '阿南亮子',
-            cover: 'http://p2.music.126.net/L9-d4kf-D27DkJ_0Uw6rAA==/109951166455944113.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=22712173.mp3'
-          }, 
-          {
-            name: '故郷の原風景',
-            artist: '宗次郎',
-            cover: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg',
-            url: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg'
-          },
-          {
-            name: '風の住む街 (风居住的街道)',
-            artist: '磯村由紀子',
-            cover: 'https://p1.music.126.net/ap7KvRE0-V4kfThDVVor9A==/18777459579736085.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=586299.mp3'
-          },
-          {
-            name: 'Tassel',
-            artist: 'Cymophane',
-            cover: 'http://p1.music.126.net/7cYhniBuLvU3fvLjeRFeNw==/106652627910735.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=357126.mp3'
-          },
-          {
-            name: 'My Soul',
-            artist: 'July',
-            cover: 'http://p1.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=5308028.mp3'
-          }
-        ]
-      });
-    }
-  })();
-  </script>
-<!-- hexo injector body_end end --></body>
+</body>
 </html>

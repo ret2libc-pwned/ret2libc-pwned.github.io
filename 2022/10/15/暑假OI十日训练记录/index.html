@@ -93,144 +93,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start -->
-  <script type="text/javascript">
-  function clickEffect() {
-    let balls = [];
-    let longPressed = false;
-    let longPress;
-    let multiplier = 0;
-    let width, height;
-    let origin;
-    let normal;
-    let ctx;
-    const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-    canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
-    const pointer = document.createElement("span");
-    pointer.classList.add("pointer");
-    document.body.appendChild(pointer);
-
-    if (canvas.getContext && window.addEventListener) {
-      ctx = canvas.getContext("2d");
-      updateSize();
-      window.addEventListener('resize', updateSize, false);
-      loop();
-      window.addEventListener("mousedown", function(e) {
-        pushBalls(randBetween(10, 20), e.clientX, e.clientY);
-        document.body.classList.add("is-pressed");
-        longPress = setTimeout(function() {
-          document.body.classList.add("is-longpress");
-          longPressed = true;
-        }, 500);
-      }, false);
-      window.addEventListener("mouseup", function(e) {
-        clearInterval(longPress);
-        if (longPressed == true) {
-          document.body.classList.remove("is-longpress");
-          pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
-          longPressed = false;
-        }
-        document.body.classList.remove("is-pressed");
-      }, false);
-      window.addEventListener("mousemove", function(e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        pointer.style.top = y + "px";
-        pointer.style.left = x + "px";
-      }, false);
-    } else {
-      console.log("canvas or addEventListener is unsupported!");
-    }
-
-
-    function updateSize() {
-      canvas.width = window.innerWidth * 2;
-      canvas.height = window.innerHeight * 2;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.scale(2, 2);
-      width = (canvas.width = window.innerWidth);
-      height = (canvas.height = window.innerHeight);
-      origin = {
-        x: width / 2,
-        y: height / 2
-      };
-      normal = {
-        x: width / 2,
-        y: height / 2
-      };
-    }
-    class Ball {
-      constructor(x = origin.x, y = origin.y) {
-        this.x = x;
-        this.y = y;
-        this.angle = Math.PI * 2 * Math.random();
-        if (longPressed == true) {
-          this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
-        } else {
-          this.multiplier = randBetween(6, 12);
-        }
-        this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
-        this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
-        this.r = randBetween(8, 12) + 3 * Math.random();
-        this.color = colours[Math.floor(Math.random() * colours.length)];
-      }
-      update() {
-        this.x += this.vx - normal.x;
-        this.y += this.vy - normal.y;
-        normal.x = -2 / window.innerWidth * Math.sin(this.angle);
-        normal.y = -2 / window.innerHeight * Math.cos(this.angle);
-        this.r -= 0.3;
-        this.vx *= 0.9;
-        this.vy *= 0.9;
-      }
-    }
-
-    function pushBalls(count = 1, x = origin.x, y = origin.y) {
-      for (let i = 0; i < count; i++) {
-        balls.push(new Ball(x, y));
-      }
-    }
-
-    function randBetween(min, max) {
-      return Math.floor(Math.random() * max) + min;
-    }
-
-    function loop() {
-      ctx.fillStyle = "rgba(255, 255, 255, 0)";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.r < 0) continue;
-        ctx.fillStyle = b.color;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
-        ctx.fill();
-        b.update();
-      }
-      if (longPressed == true) {
-        multiplier += 0.2;
-      } else if (!longPressed && multiplier >= 0) {
-        multiplier -= 0.4;
-      }
-      removeBall();
-      requestAnimationFrame(loop);
-    }
-
-    function removeBall() {
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
-          balls.splice(i, 1);
-        }
-      }
-    }
-  }
-  clickEffect();
-  </script>
-  <!-- hexo injector body_begin end -->
+<body>
   
 
   <header>
@@ -395,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.1k 字
+          5k 字
         
       </span>
     
@@ -473,7 +336,7 @@
 <h2 id="记录">记录</h2>
 <p>此处应包含 <strong>日期、练习内容、简单题解、备注</strong> 等记录.</p>
 <p>以下是一个示例:</p>
-<figure class="highlight markdown"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section">### 1970-01-01</span><br><br><span class="hljs-section">#### 练习内容</span><br><br><span class="hljs-bullet">1.</span> P1001 A + B<br><br><span class="hljs-section">#### 简单题解</span><br><br>这是一道模拟题, 读入两个整数 $a、b$ , 输出它们的和即可.<br><br><span class="hljs-section">#### 备注</span><br><br>可以使用 <span class="hljs-code">`(a &amp; b) + (a | b)`</span> 高性能地实现.<br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">### 1970-01-01</span><br><br><span class="hljs-section">#### 练习内容</span><br><br><span class="hljs-bullet">1.</span> P1001 A + B<br><br><span class="hljs-section">#### 简单题解</span><br><br>这是一道模拟题, 读入两个整数 $a、b$ , 输出它们的和即可.<br><br><span class="hljs-section">#### 备注</span><br><br>可以使用 <span class="hljs-code">`(a &amp; b) + (a | b)`</span> 高性能地实现.<br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2022-06-30">2022-06-30</h3>
 <h4 id="练习内容">练习内容</h4>
 <ol>
@@ -624,7 +487,7 @@
 <h5 id="迷宫-回溯法模板">迷宫(回溯法模板)</h5>
 <p><strong>回溯法简述:</strong> 在搜索时, 我们有时需要给状态打上标记(如是否访问某个结点或当前状态的某个权值). 这个标记可能会影响到后续搜索. 例如这一题中在一条路径中被搜过的点在另一条路径还能走. 这时就需要在回溯时清除或修改这个标记. 因为 DFS 的回溯是自底向上的, 所以能够方便地清除搜索树中自根结点至叶结点路径上的标记.</p>
 <p>参考实现如下:</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(PII now)</span> </span>{<br>    <span class="hljs-keyword">if</span>(now == ed) {<br>        ++ans;<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i) {<br>        PII nxt = <span class="hljs-built_in">make_pair</span>(now.x + dx[i], now.y + dy[i]);<br>        <span class="hljs-keyword">if</span>(obs[nxt.x][nxt.y] || vis[nxt.x][nxt.y] || nxt.x &lt; <span class="hljs-number">1</span> || nxt.x &gt; n || nxt.y &lt; <span class="hljs-number">1</span> || nxt.y &gt; m) <span class="hljs-keyword">continue</span>;<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">dfs</span>(nxt);<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">0</span>;<br>    }<br>}<br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(PII now)</span> </span>{<br>    <span class="hljs-keyword">if</span>(now == ed) {<br>        ++ans;<br>        <span class="hljs-keyword">return</span>;<br>    }<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i) {<br>        PII nxt = <span class="hljs-built_in">make_pair</span>(now.x + dx[i], now.y + dy[i]);<br>        <span class="hljs-keyword">if</span>(obs[nxt.x][nxt.y] || vis[nxt.x][nxt.y] || nxt.x &lt; <span class="hljs-number">1</span> || nxt.x &gt; n || nxt.y &lt; <span class="hljs-number">1</span> || nxt.y &gt; m) <span class="hljs-keyword">continue</span>;<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">dfs</span>(nxt);<br>        vis[nxt.x][nxt.y] = <span class="hljs-number">0</span>;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h5 id="八皇后">八皇后</h5>
 <p>该题也是回溯法的一道例题. 难点在于如何判定对角线与平行线是否摆了棋子. 设列为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> , 行为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> . 则对角线和平行线的方程为:</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub><mo>:</mo><mi>y</mi><mo>=</mo><mo>−</mo><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>2</mn></msub><mo>:</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub></mrow></mstyle></mtd></mtr></mtable></mrow><mo>⇒</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>b</mi><mn>2</mn></msub><mo>=</mo><mi>y</mi><mo>−</mo><mi>x</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\begin{cases}\ell_1: y=-x+b_1,\\\ell_2: y=x+b_2\\\end{cases}
@@ -652,11 +515,11 @@
 <p><strong>(构造)</strong> 可以发现异或运算的性质: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>⊕</mo><mi>x</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo>⊕</mo><mi>x</mi><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x \oplus x = 0, 0 \oplus x = x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>. 可以构造出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\dfrac n 2, 0, 0\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mopen">{</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">}</span></span></span></span> 或者是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo separator="true">,</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\dfrac n 2, \dfrac n 2, 0\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mopen">{</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">}</span></span></span></span>.</p>
 <h5 id="B-Almost-Ternary-Matrix">B. Almost Ternary Matrix</h5>
 <p><strong>(构造)</strong> 答案是如下的矩阵 <strong>旋转</strong> 而成的:</p>
-<figure class="highlight basic"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">0</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">1</span><br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight basic"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">0</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">1</span><br></code></pre></td></tr></tbody></table></figure>
 <p>所以可以构造出下图的矩阵来:</p>
 <img src="https://codeforces.com/predownloaded/75/c4/75c46e19cc3cf6f890139b0e74774c3a6fc387db.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
 <p>注：赛时想到的如下：</p>
-<figure class="highlight apache"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br></code></pre></div></td></tr></tbody></table></figure>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><span class="hljs-attribute">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br></code></pre></td></tr></tbody></table></figure>
 <h5 id="C-The-Third-Problem">C. The Third Problem</h5>
 <p>根据定义, 有: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">MEX</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">{</mo><msub><mi mathvariant="normal">∁</mi><msup><mi mathvariant="double-struck">N</mi><mo>∗</mo></msup></msub><mi>P</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\operatorname{MEX}(P) = \min\{\complement_{\mathbb N^*} P\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">MEX</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.075em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">{</span><span class="mord"><span class="mord amsrm">∁</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3322em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathbb mtight">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6183em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">}</span></span></span></span>.</p>
 <h4 id="备注-8">备注</h4>
@@ -1092,61 +955,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start -->
-  <div id="aplayer"></div>
-  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> -->
-  <!-- <meting-js server="netease" type="playlist" id="8435661"></meting-js> -->
-  <script defer>
-    !(function() {
-    var oldLoadAp = window.onload;
-    window.onload = function () {
-      oldLoadAp && oldLoadAp();
-
-      new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: true,
-        autoplay: false,
-        loop: 'all',
-        order: 'random',
-        theme: '#b7daff',
-        preload: 'none',
-        audio: [
-          {
-            name: 'Refrain',
-            artist: '阿南亮子',
-            cover: 'http://p2.music.126.net/L9-d4kf-D27DkJ_0Uw6rAA==/109951166455944113.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=22712173.mp3'
-          }, 
-          {
-            name: '故郷の原風景',
-            artist: '宗次郎',
-            cover: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg',
-            url: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg'
-          },
-          {
-            name: '風の住む街 (风居住的街道)',
-            artist: '磯村由紀子',
-            cover: 'https://p1.music.126.net/ap7KvRE0-V4kfThDVVor9A==/18777459579736085.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=586299.mp3'
-          },
-          {
-            name: 'Tassel',
-            artist: 'Cymophane',
-            cover: 'http://p1.music.126.net/7cYhniBuLvU3fvLjeRFeNw==/106652627910735.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=357126.mp3'
-          },
-          {
-            name: 'My Soul',
-            artist: 'July',
-            cover: 'http://p1.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=5308028.mp3'
-          }
-        ]
-      });
-    }
-  })();
-  </script>
-<!-- hexo injector body_end end --></body>
+</body>
 </html>

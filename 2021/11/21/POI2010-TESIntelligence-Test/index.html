@@ -92,144 +92,7 @@
 </head>
 
 
-<body><!-- hexo injector body_begin start -->
-  <script type="text/javascript">
-  function clickEffect() {
-    let balls = [];
-    let longPressed = false;
-    let longPress;
-    let multiplier = 0;
-    let width, height;
-    let origin;
-    let normal;
-    let ctx;
-    const colours = ["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D"];
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-    canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
-    const pointer = document.createElement("span");
-    pointer.classList.add("pointer");
-    document.body.appendChild(pointer);
-
-    if (canvas.getContext && window.addEventListener) {
-      ctx = canvas.getContext("2d");
-      updateSize();
-      window.addEventListener('resize', updateSize, false);
-      loop();
-      window.addEventListener("mousedown", function(e) {
-        pushBalls(randBetween(10, 20), e.clientX, e.clientY);
-        document.body.classList.add("is-pressed");
-        longPress = setTimeout(function() {
-          document.body.classList.add("is-longpress");
-          longPressed = true;
-        }, 500);
-      }, false);
-      window.addEventListener("mouseup", function(e) {
-        clearInterval(longPress);
-        if (longPressed == true) {
-          document.body.classList.remove("is-longpress");
-          pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
-          longPressed = false;
-        }
-        document.body.classList.remove("is-pressed");
-      }, false);
-      window.addEventListener("mousemove", function(e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        pointer.style.top = y + "px";
-        pointer.style.left = x + "px";
-      }, false);
-    } else {
-      console.log("canvas or addEventListener is unsupported!");
-    }
-
-
-    function updateSize() {
-      canvas.width = window.innerWidth * 2;
-      canvas.height = window.innerHeight * 2;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.scale(2, 2);
-      width = (canvas.width = window.innerWidth);
-      height = (canvas.height = window.innerHeight);
-      origin = {
-        x: width / 2,
-        y: height / 2
-      };
-      normal = {
-        x: width / 2,
-        y: height / 2
-      };
-    }
-    class Ball {
-      constructor(x = origin.x, y = origin.y) {
-        this.x = x;
-        this.y = y;
-        this.angle = Math.PI * 2 * Math.random();
-        if (longPressed == true) {
-          this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
-        } else {
-          this.multiplier = randBetween(6, 12);
-        }
-        this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
-        this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
-        this.r = randBetween(8, 12) + 3 * Math.random();
-        this.color = colours[Math.floor(Math.random() * colours.length)];
-      }
-      update() {
-        this.x += this.vx - normal.x;
-        this.y += this.vy - normal.y;
-        normal.x = -2 / window.innerWidth * Math.sin(this.angle);
-        normal.y = -2 / window.innerHeight * Math.cos(this.angle);
-        this.r -= 0.3;
-        this.vx *= 0.9;
-        this.vy *= 0.9;
-      }
-    }
-
-    function pushBalls(count = 1, x = origin.x, y = origin.y) {
-      for (let i = 0; i < count; i++) {
-        balls.push(new Ball(x, y));
-      }
-    }
-
-    function randBetween(min, max) {
-      return Math.floor(Math.random() * max) + min;
-    }
-
-    function loop() {
-      ctx.fillStyle = "rgba(255, 255, 255, 0)";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.r < 0) continue;
-        ctx.fillStyle = b.color;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
-        ctx.fill();
-        b.update();
-      }
-      if (longPressed == true) {
-        multiplier += 0.2;
-      } else if (!longPressed && multiplier >= 0) {
-        multiplier -= 0.4;
-      }
-      removeBall();
-      requestAnimationFrame(loop);
-    }
-
-    function removeBall() {
-      for (let i = 0; i < balls.length; i++) {
-        let b = balls[i];
-        if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
-          balls.splice(i, 1);
-        }
-      }
-    }
-  }
-  clickEffect();
-  </script>
-  <!-- hexo injector body_begin end -->
+<body>
   
 
   <header>
@@ -394,7 +257,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          978 字
         
       </span>
     
@@ -406,7 +269,7 @@
         
         
           <!-- compatible with older versions-->
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -457,7 +320,7 @@
             
               <div class="markdown-body">
                 
-                <figure class="highlight c++"><table><tbody><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> YES puts(<span class="hljs-meta-string">"TAK"</span>)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NO puts(<span class="hljs-meta-string">"NIE"</span>);</span><br><br><span class="hljs-keyword">int</span> len, tc;<br>vector&lt;<span class="hljs-keyword">int</span>&gt; nxt[N];<br><br><span class="hljs-comment">//思路 开二维vector存一堆指针 nxt[x][y]就是数字x出现的第y次的位置.</span><br><span class="hljs-comment">//vector动态开内存 不会爆空间.</span><br><span class="hljs-comment">//二分去找"数字k出现第x次的位置", 实现"快速跳转".</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num, <span class="hljs-keyword">int</span> expected_pos)</span> </span>{<br>    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = nxt[num].<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, res = len + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(l &lt;= r) {<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(nxt[num][mid] &gt; expected_pos) {<br>            r = mid - <span class="hljs-number">1</span>;<br>            res = mid;<br>        } <span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-comment">//return nxt[num][res];</span><br>    <span class="hljs-keyword">return</span> (res == len + <span class="hljs-number">1</span> ? res : nxt[num][res]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; len;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) {<br>        <span class="hljs-keyword">int</span> tmp;<br>        cin &gt;&gt; tmp;<br>        nxt[tmp].<span class="hljs-built_in">push_back</span>(i);<br>    }<br><br>    cin &gt;&gt; tc;<br>    <span class="hljs-keyword">while</span>(tc--) {<br>        <span class="hljs-keyword">int</span> l, a[N];<br>        cin &gt;&gt; l;<br>        <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>; <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) cin &gt;&gt; a[i];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) {<br>            pos = <span class="hljs-built_in">bsearch</span>(a[i], pos);<br>            <span class="hljs-comment">//fprintf(stderr, "a[%d] = %d,\tpos = %d\n", i, a[i], pos);</span><br>            <span class="hljs-keyword">if</span>(pos &gt; len) { flag = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>; }<br>        }<br>        <br>        flag ? YES : NO;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br></code></pre></div></td></tr></tbody></table></figure>
+                <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> YES puts(<span class="hljs-meta-string">"TAK"</span>)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NO puts(<span class="hljs-meta-string">"NIE"</span>);</span><br><br><span class="hljs-keyword">int</span> len, tc;<br>vector&lt;<span class="hljs-keyword">int</span>&gt; nxt[N];<br><br><span class="hljs-comment">//思路 开二维vector存一堆指针 nxt[x][y]就是数字x出现的第y次的位置.</span><br><span class="hljs-comment">//vector动态开内存 不会爆空间.</span><br><span class="hljs-comment">//二分去找"数字k出现第x次的位置", 实现"快速跳转".</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num, <span class="hljs-keyword">int</span> expected_pos)</span> </span>{<br>    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = nxt[num].<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, res = len + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(l &lt;= r) {<br>        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(nxt[num][mid] &gt; expected_pos) {<br>            r = mid - <span class="hljs-number">1</span>;<br>            res = mid;<br>        } <span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;<br>    }<br>    <span class="hljs-comment">//return nxt[num][res];</span><br>    <span class="hljs-keyword">return</span> (res == len + <span class="hljs-number">1</span> ? res : nxt[num][res]);<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    ios_base::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>); cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin &gt;&gt; len;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= len; i++) {<br>        <span class="hljs-keyword">int</span> tmp;<br>        cin &gt;&gt; tmp;<br>        nxt[tmp].<span class="hljs-built_in">push_back</span>(i);<br>    }<br><br>    cin &gt;&gt; tc;<br>    <span class="hljs-keyword">while</span>(tc--) {<br>        <span class="hljs-keyword">int</span> l, a[N];<br>        cin &gt;&gt; l;<br>        <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>; <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) cin &gt;&gt; a[i];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= l; i++) {<br>            pos = <span class="hljs-built_in">bsearch</span>(a[i], pos);<br>            <span class="hljs-comment">//fprintf(stderr, "a[%d] = %d,\tpos = %d\n", i, a[i], pos);</span><br>            <span class="hljs-keyword">if</span>(pos &gt; len) { flag = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>; }<br>        }<br>        <br>        flag ? YES : NO;<br>    }<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 
                 
               </div>
@@ -891,61 +754,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start -->
-  <div id="aplayer"></div>
-  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> -->
-  <!-- <meting-js server="netease" type="playlist" id="8435661"></meting-js> -->
-  <script defer>
-    !(function() {
-    var oldLoadAp = window.onload;
-    window.onload = function () {
-      oldLoadAp && oldLoadAp();
-
-      new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: true,
-        autoplay: false,
-        loop: 'all',
-        order: 'random',
-        theme: '#b7daff',
-        preload: 'none',
-        audio: [
-          {
-            name: 'Refrain',
-            artist: '阿南亮子',
-            cover: 'http://p2.music.126.net/L9-d4kf-D27DkJ_0Uw6rAA==/109951166455944113.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=22712173.mp3'
-          }, 
-          {
-            name: '故郷の原風景',
-            artist: '宗次郎',
-            cover: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg',
-            url: 'http://p1.music.126.net/ygxAeYxxXPONww041tylMw==/5996736418028563.jpg'
-          },
-          {
-            name: '風の住む街 (风居住的街道)',
-            artist: '磯村由紀子',
-            cover: 'https://p1.music.126.net/ap7KvRE0-V4kfThDVVor9A==/18777459579736085.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=586299.mp3'
-          },
-          {
-            name: 'Tassel',
-            artist: 'Cymophane',
-            cover: 'http://p1.music.126.net/7cYhniBuLvU3fvLjeRFeNw==/106652627910735.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=357126.mp3'
-          },
-          {
-            name: 'My Soul',
-            artist: 'July',
-            cover: 'http://p1.music.126.net/NFl1s5Hl3E37dCaFIDHfNw==/727876697598920.jpg?param=130y130',
-            url: 'http://music.163.com/song/media/outer/url?id=5308028.mp3'
-          }
-        ]
-      });
-    }
-  })();
-  </script>
-<!-- hexo injector body_end end --></body>
+</body>
 </html>
