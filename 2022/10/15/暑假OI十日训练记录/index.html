@@ -93,7 +93,34 @@
 </head>
 
 
-<body>
+<body><!-- hexo injector body_begin start -->
+<script>
+const SITE_URL = location.href.split('/')[1]
+let loc = location.href.split('/').slice(3);
+
+const prefix = 'https://misaka10987.github.io/';
+const suffix = [
+	'/archive/2023/10/powerset-of-natural-number.pdf',
+	'/efz/2023/语文/1116-1.html',
+	'/efz/2023/语文/1116-2.html',
+	'/efz/2023/语文/1123.html',
+	'/efz/2023/语文/1204.html',
+	'/efz/2023/语文/1212.html',
+	'/efz/2023/语文/1215.html',
+	'/efz/2023/语文/1226.html',
+	'/frc/2023/1222-pid-control.html'
+]
+
+
+if((new Date()) < (new Date(1718144430000))) {
+	if(!loc[0].length && confirm("请先收藏 Misaka 10987 的 Github Pages 再访问本站！")) {
+	location.href = SITE_URL + '/links'
+	for(i in suffix) {
+		window.open(prefix + suffix[i], "_blank");
+	}
+}
+</script>
+<!-- hexo injector body_begin end -->
   
 
   <header>
