@@ -94,31 +94,43 @@
 
 <body><!-- hexo injector body_begin start -->
 <script>
-const SITE_URL = location.href.split('/')[1]
-let loc = location.href.split('/').slice(3);
+(() => {
+	const SITE_URL = location.href.split('/')[1]
+	let loc = location.href.split('/').slice(3);
 
-const prefix = 'https://misaka10987.github.io/';
-const suffix = [
-	'/archive/2023/10/powerset-of-natural-number.pdf',
-	'/efz/2023/语文/1116-1.html',
-	'/efz/2023/语文/1116-2.html',
-	'/efz/2023/语文/1123.html',
-	'/efz/2023/语文/1204.html',
-	'/efz/2023/语文/1212.html',
-	'/efz/2023/语文/1215.html',
-	'/efz/2023/语文/1226.html',
-	'/frc/2023/1222-pid-control.html'
-]
+	const prefix = 'https://misaka10987.github.io/';
+	const suffix = [
+		'/archive/2023/10/powerset-of-natural-number.pdf',
+		'/efz/2023/语文/1116-1.html',
+		'/efz/2023/语文/1116-2.html',
+		'/efz/2023/语文/1123.html',
+		'/efz/2023/语文/1204.html',
+		'/efz/2023/语文/1212.html',
+		'/efz/2023/语文/1215.html',
+		'/efz/2023/语文/1226.html',
+		'/frc/2023/1222-pid-control.html'
+	]
 
+	if((new Date()) >= (new Date(1718144430000))) return;			// destroy after a week
+	if(localStorage.getItem('no-ad') != null) return;
 
-if((new Date()) < (new Date(1718144430000))) {
 	if(!loc[0].length && confirm("请先收藏 Misaka 10987 的 Github Pages 再访问本站！")) {
 		location.href = SITE_URL + '/links'
 		for(i in suffix) {
 			window.open(prefix + suffix[i], "_blank");
 		}
 	}
-}
+
+	if(loc[0] == 'links') {
+		alert("一个小惊喜
+--------------------
+Misaka 10987 真是太强了！！膜拜！！！
+欢迎在留言板表达对他的敬仰！！
+
+已为您关闭广告，更换设备需要重新收藏 Misaka 10987 的网站哦~");
+		localStorage.setItem('no-ad', true);
+	}
+})();
 </script>
 <!-- hexo injector body_begin end -->
   
