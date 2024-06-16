@@ -1,0 +1,935 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ret2libc-pwned">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 \ce{H2}、\ce{CO} 等还原 \ce{Fe2O3} （黑色）、\ce{Fe3O4}（红棕色） \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}  铁单质 与氯溴碘单质反应，可以被氧化到 +3、+2（\ce{I2}）.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="必修一元素化学复习笔记">
+<meta property="og:url" content="https://ret2libc-pwned.github.io/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%85%83%E7%B4%A0%E5%8C%96%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="OI-Cheatsheet">
+<meta property="og:description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 \ce{H2}、\ce{CO} 等还原 \ce{Fe2O3} （黑色）、\ce{Fe3O4}（红棕色） \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}  铁单质 与氯溴碘单质反应，可以被氧化到 +3、+2（\ce{I2}）.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-16T10:26:41.000Z">
+<meta property="article:modified_time" content="2024-06-16T10:56:35.193Z">
+<meta property="article:author" content="ret2libc-pwned">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>必修一元素化学复习笔记 - OI-Cheatsheet</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ret2libc-pwned.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
+</head>
+
+
+<body><!-- hexo injector body_begin start -->
+<script>
+(() => {
+	const SITE_URL = location.href.split('/')[1]
+	let loc = location.href.split('/').slice(3);
+
+	const prefix = 'https://misaka10987.github.io/';
+	const suffix = [
+		'/archive/2023/10/powerset-of-natural-number.pdf',
+		'/efz/2023/语文/1116-1.html',
+		'/efz/2023/语文/1116-2.html',
+		'/efz/2023/语文/1123.html',
+		'/efz/2023/语文/1204.html',
+		'/efz/2023/语文/1212.html',
+		'/efz/2023/语文/1215.html',
+		'/efz/2023/语文/1226.html',
+		'/frc/2023/1222-pid-control.html'
+	]
+
+	if((new Date()) >= (new Date(1718144430000))) return;			// destroy after a week
+	if(localStorage.getItem('no-ad') != null) return;
+
+	if(!loc[0].length && confirm("请先收藏 Misaka 10987 的 Github Pages 再访问本站！")) {
+		location.href = SITE_URL + '/links'
+		for(i in suffix) {
+			window.open(prefix + suffix[i], "_blank");
+		}
+	}
+
+	if(loc[0] == 'links') {
+		alert("Misaka 10987 真是太强了！！膜拜！！！欢迎在留言板表达对他的敬仰！！(已为您关闭广告，更换设备需要重新收藏 Misaka 10987 的网站哦~)");
+		localStorage.setItem('no-ad', true);
+	}
+})();
+</script>
+<!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>OI-Cheatsheet</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/msg-board/">
+                <i class="iconfont icon-comment"></i>
+                <span>留言板</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="必修一元素化学复习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        ret2libc-pwned
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-16 18:26" pubdate>
+          2024年6月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">必修一元素化学复习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言">前言</h2>
+<p>要考试了，笔者化学一点还不会。因此有了这份笔记。</p>
+<h2 id="Fe">Fe</h2>
+<p>过渡金属元素。核电荷数 26，相对原子质量 56.<br>
+制备：高炉炼铁。通过还原剂 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{H2}">\ce{H2}</span>、<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{CO}">\ce{CO}</span> 等还原 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe2O3}">\ce{Fe2O3}</span> （黑色）、<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4}">\ce{Fe3O4}</span>（红棕色）</p>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4 + 4CO ->…">\ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}
+</p>
+<h3 id="铁单质">铁单质</h3>
+<p>与氯溴碘单质反应，可以被氧化到 +3、+2（<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{I2}">\ce{I2}</span>）. 其中氯需要点燃，溴、碘需要加热。<br>
+在纯的氧气中点燃，剧烈燃烧火星四射生成黑色粉末。四氧化三铁。<br>
+与 S 反应，加热。生成硫化亚铁。<br>
+==与水蒸气反应== (Zn, Fe, Sn)，<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{3Fe + 4H2O(g) …">\ce{3Fe + 4H2O(g) -&gt;[高温] Fe3O4 + 4H2 ^}</span> 生成四氧化三铁。<br>
+与非氧化性酸反应。HCl、稀硫酸，被氧化成亚铁离子，置换反应生成氢气。</p>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 2H+ -> Fe…">\ce{Fe + 2H+ -&gt; Fe^{2+} + H2 ^}
+</p>
+<p>与强氧化性剂反应。如浓硫酸、硝酸、溴单质、氯气。</p>
+<ul>
+<li>常温下，生成致密的氧化膜。钝化。</li>
+<li>加热时，直接氧化成最高价态。<br>
+与酸反应：需要注意不同酸的用量下，铁单质的还原性的体现。</li>
+</ul>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 6HNO3(浓) …">\ce{Fe + 6HNO3(浓) -&gt;[\triangle] Fe(NO3)3 + 3NO2 ^ + 3H2O}
+</p>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 4HNO3(稀) …">\ce{Fe + 4HNO3(稀) -&gt;[\triangle] Fe(NO3)3 + NO ^ + 2H2O}
+</p>
+<p>一般地，铁过量，铁盐；酸过量，亚铁盐。<br>
+与一些盐溶液反应。置换反应。</p>
+<h3 id="铁的氧化物">铁的氧化物</h3>
+<p>通性：==氧化性== (容易被煤气、氢气等还原剂还原为铁单质，即高炉炼铁)、==碱性氧化物== (特别地，亚铁盐与强氧化性酸反应生成铁离子)。</p>
+<ul>
+<li>氧化亚铁，黑色粉末。</li>
+<li>四氧化三铁，可以认为是 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{FeO\cdot Fe2O3…">\ce{FeO\cdot Fe2O3}</span> i.e. 有 +2 有 +3 价铁。黑色晶体。有磁性。</li>
+<li>三氧化二铁。红棕色粉末。a.k.a. 铁红。<br>
+稳定性：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4 > Fe2O3,…">\ce{Fe3O4 &gt; Fe2O3, FeO}</span>。后者可以在加热条件下被氧气氧化为四氧化三铁。前者在高温下分解成氧气与四氧化三铁。</li>
+</ul>
+<h3 id="铁的氢氧化物">铁的氢氧化物</h3>
+<p>通性：碱性氢氧化物。（与氧化性酸反应、与还原性酸反应？）</p>
+<ul>
+<li>氢氧化亚铁，白色</li>
+<li>氢氧化铁，红褐色<br>
+热稳定性：受热分解，生成水。(Fe(OH)<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 需要隔绝氧气)</li>
+</ul>
+<h3 id="亚铁盐">亚铁盐</h3>
+<p>氧化性。<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Zn + Fe^{2+} -…">\ce{Zn + Fe^{2+} -&gt; Zn^{2+} + Fe}</span>，亚铁离子大于锌离子。<br>
+还原性 (易被强氧化剂氧化为 +3 价)。</p>
+<h3 id="铁盐">铁盐</h3>
+<p>氧化性：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cl2 > Br2 > Fe…">\ce{Cl2 &gt; Br2 &gt; Fe^{3+} &gt; I2 &gt; S}</span><br>
+<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cu^{2+} > Fe^{…">\ce{Cu^{2+} &gt; Fe^{3+}}</span>。验证：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Fe + 3Cu^{2+}…">\ce{2Fe + 3Cu^{2+} -&gt; 2Fe^{3+} + 3Cu}</span>。</p>
+<h2 id="Na">Na</h2>
+<p>第一主族金属元素，核电荷数 11.<br>
+制备：电解熔融 NaCl。</p>
+<p>化学性质活泼 (还原性强)。常温下容易被氧化 (<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O}">\ce{Na2O}</span>)。点燃后剧烈燃烧 (<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O2}">\ce{Na2O2}</span>)。可以与水发生剧烈反应 （会融化成小球、浮在水面、无规则游动，发出响声，因为 Na 密度比水小、生成氢气）。<br>
+因此，钠单质应该存放在煤油或石蜡中。<br>
+因为 Na 性质很活泼，一般先与溶液中的水反应。可以认为水能部分电离出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">H^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>，是很弱的酸 (当然也能认为是很弱的碱)，所以与酸溶液反应会先与酸反应。</p>
+<h3 id="Na-的氧化物">Na 的氧化物</h3>
+<p>通性：碱性氧化物；可以与水、酸、酸性氧化物反应。</p>
+<ul>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O}">\ce{Na2O}</span> 氧化钠 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{4Na + O2 -> 2N…">\ce{4Na + O2 -&gt; 2Na2O}</span> (Na 在空气中缓慢氧化生成氧化钠)
+<ul>
+<li>-1 价 O 既有氧化性又有还原性 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-2, 6]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6</span><span class="mclose">]</span></span></span></span>。主要表现为氧化性 (-1 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> -2)。</li>
+<li>与氧气反应 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Na2O + O2 ->[…">\ce{2Na2O + O2 -&gt;[\triangle] 2Na2O2}</span></li>
+</ul>
+</li>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na_2O_2}">\ce{Na_2O_2}</span> 过氧化钠 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Na + O2 ->[点燃…">\ce{2Na + O2 -&gt;[点燃] Na2O2}</span> (Na 在空气中猛烈燃烧生成过氧化钠)
+<ul>
+<li>同理，既有氧化性又有还原性，主要表现为氧化性。</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="钠盐">钠盐</h3>
+<ul>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2CO3}">\ce{Na2CO3}</span></li>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{NaHCO3}">\ce{NaHCO3}</span><br>
+性质：</li>
+</ul>
+<ol>
+<li>溶液均呈碱性。（纯碱、小苏打）</li>
+<li>碳酸氢根可电离出 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{H+}">\ce{H+}</span>。(与碱反应)<br>
+补充：碳酸根与碳酸氢根<br>
+初中知识，大理石块上滴加稀盐酸</li>
+</ol>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{CO3^{2-} + H+ …">\ce{CO3^{2-} + H+ -&gt; HCO3-}
+</p>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{HCO3- + H+ -> …">\ce{HCO3- + H+ -&gt; H2O + CO2 ^}
+</p>
+<p>碳酸氢根可以电离出氢离子（与碱反应）。</p>
+<h2 id="Al">Al</h2>
+<p>第三主族金属元素，核电荷数 13.<br>
+制备方法：电解熔融 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3}">\ce{Al2O3}</span>。</p>
+<ul>
+<li>电解熔融氧化铝 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Al2O3 ->[电解] …">\ce{2Al2O3 -&gt;[电解] 4Al + 3O2^}</span> 离子化合物</li>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{AlCl3}">\ce{AlCl3}</span> 共价化合物，不能电解<br>
+铝热反应。Al 与 O 反应放出大量的热，有助于驱动 Al 将其它金属从其氧化物中置换出来。<br>
+e.g.</li>
+</ul>
+<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2 Al + Fe2O3 -…">\ce{2 Al + Fe2O3 -&gt;[高温] Al2O3 + 2Fe}
+</p>
+<h3 id="单质：两性金属。">单质：两性金属。</h3>
+<ul>
+<li>酸：置换出 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al^{3+}}">\ce{Al^{3+}}</span></li>
+<li>NaOH：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{NaOH + Al = Na…">\ce{NaOH + Al = Na[Al(OH)4] + 3 H2 ^}</span>，生成<strong>四羟基合铝酸钠</strong>与氢气。</li>
+</ul>
+<h3 id="Al-的氧化物">Al 的氧化物</h3>
+<ul>
+<li>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3}">\ce{Al2O3}</span>​ 两性氧化物。</p>
+<ul>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3 + 6H+ ->…">\ce{Al2O3 + 6H+ -&gt; 2Al^{3+} + 3H2O}</span></li>
+<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3 + 2OH- +…">\ce{Al2O3 + 2OH- + 3H2O -&gt; 2[Al(OH)4]-}</span></li>
+</ul>
+</li>
+<li>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al(OH)3}">\ce{Al(OH)3}</span>​​ 两性氢氧化物</p>
+<ul>
+<li>没写过方程式，到时候再看</li>
+</ul>
+</li>
+</ul>
+<h2 id="S">S</h2>
+<p>第五主族元素，核电荷数 16，相对原子质量 32。</p>
+<h3 id="硫单质">硫单质</h3>
+<p>氧化性。能将金属单质氧化到较低价态 (氧化性 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cl2 > S}">\ce{Cl2 &gt; S}</span>)。与铁、铜、氢气反应需要加热；与银、汞反应常温下即可。</p>
+<p>还原性。硫在空气 / 氧气内燃烧。</p>
+<p>歧化反应，<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{3S + 6NaOH ->[…">\ce{3S + 6NaOH -&gt;[\triangle] 2Na2S + Na2SO3 + 3H2O}</span>​</p>
+<h3 id="硫化氢-氢硫酸">硫化氢 (氢硫酸)</h3>
+<p>酸性。二元弱酸。</p>
+<p>还原性。除了文末列举的强氧化剂还能和 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe}^{3+}">\ce{Fe}^{3+}</span> 反应。与氧气反应：久置变浑浊 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{S v}">\ce{S v}</span>。</p>
+<p>不稳定性。受热分解为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>2</mn></msub><mo>+</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">H_2 + S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span></p>
+<p>可燃性，在空气 / 氧气中燃烧，生成水、硫单质或二氧化硫。</p>
+<p>TODO</p>
+<h2 id="N">N</h2>
+<p>TODO</p>
+<h2 id="卤素">卤素</h2>
+<p>卤族元素。氟、氯、溴、碘。<br>
+常见化合价 -1，特别地，O、F 没有最高正价。<br>
+卤素单质具有很强的氧化性。</p>
+<h2 id="杂项">杂项</h2>
+<p>强氧化剂：氧气、氯气、溴单质、过氧化氢、高锰酸钾、强氧化性酸 (高氯酸、硝酸、浓硫酸、高氯酸，盐酸不是)<br>
+金属活动性顺序表，K &gt; Ca &gt; Na &gt; … &gt; Au，从前到后，</p>
+<ul>
+<li>单质还原性递减</li>
+<li>最高价阳离子氧化性递增<br>
+通过置换反应 (非氧化还原，因此可以直接找想要的离子带进去不会变价) 易证。不知道怎么快速判断哪个氧化性 / 还原性强？套失氧还原剂降得还氧化剂即可，无需每次用定义考虑。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/" class="category-chain-item">文化课</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>必修一元素化学复习笔记</div>
+      <div>https://ret2libc-pwned.github.io/2024/06/16/必修一元素化学复习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ret2libc-pwned</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%8C%96%E5%AD%A6%E5%8F%8D%E5%BA%94%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="必修一化学反应原理复习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">必修一化学反应原理复习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/01/%E7%BB%84%E5%90%88%E7%AC%94%E8%AE%B0/" title="组合笔记">
+                        <span class="hidden-mobile">组合笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"716ae20c881ca3d84fb8","clientSecret":"0c7c8e3cd7deb964335f06ed76eca352957098f4","repo":"ret2libc-pwned.github.io","owner":"ret2libc-pwned","admin":["ret2libc-pwned"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '30e4d1643752ee20487039bc8b9bc8f5'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>ret2libc-pwned</span> <i class="iconfont icon-love"></i> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a><span> + </span><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
