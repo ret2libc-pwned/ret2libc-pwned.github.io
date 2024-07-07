@@ -16,15 +16,15 @@
   <meta name="author" content="ret2libc-pwned">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 \ce{H2}、\ce{CO} 等还原 \ce{Fe2O3} （黑色）、\ce{Fe3O4}（红棕色） \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}  铁单质 与氯溴碘单质反应，可以被氧化到 +3、+2（\ce{I2}）.">
+    <meta name="description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 $\ce{H2}$、$\ce{CO}$ 等还原 $\ce{Fe2O3}$ （黑色）、$\ce{Fe3O4}$（红棕色） $$ \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^} $$ 铁单质 与氯溴碘单质反应，可以被氧化到 +3、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="必修一元素化学复习笔记">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%85%83%E7%B4%A0%E5%8C%96%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 \ce{H2}、\ce{CO} 等还原 \ce{Fe2O3} （黑色）、\ce{Fe3O4}（红棕色） \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}  铁单质 与氯溴碘单质反应，可以被氧化到 +3、+2（\ce{I2}）.">
+<meta property="og:description" content="前言 要考试了，笔者化学一点还不会。因此有了这份笔记。 Fe 过渡金属元素。核电荷数 26，相对原子质量 56. 制备：高炉炼铁。通过还原剂 $\ce{H2}$、$\ce{CO}$ 等还原 $\ce{Fe2O3}$ （黑色）、$\ce{Fe3O4}$（红棕色） $$ \ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^} $$ 铁单质 与氯溴碘单质反应，可以被氧化到 +3、">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-16T10:26:41.000Z">
-<meta property="article:modified_time" content="2024-06-16T10:56:35.193Z">
+<meta property="article:modified_time" content="2024-07-07T01:41:07.629Z">
 <meta property="article:author" content="ret2libc-pwned">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -43,6 +43,8 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
 
 
 
@@ -83,13 +85,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.css" integrity="sha384-ThssJ7YtjywV52Gj4JE/1SQEDoMEckXyhkFVwaf4nDSm5OBlXeedVYjuuUd0Yua+" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.js" integrity="sha384-Bi8OWqMXO1ta+a4EPkZv7bYGIes7C3krGSZoTGNTAnAn5eYQc7IIXrJ/7ck1drAi" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/contrib/mhchem.min.js" integrity="sha384-LIgAiYlGSAdpNC9+YDjDPF6JeS/RRIumtNo0CmyQERZ/+g0h9MbuYQwf/5pQ4Y4M" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-      onload="renderMathInElement(document.body);"></script>
-	<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
 </head>
@@ -295,7 +291,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.6k 字
+          2.7k 字
         
       </span>
     
@@ -362,66 +358,70 @@
 <p>要考试了，笔者化学一点还不会。因此有了这份笔记。</p>
 <h2 id="Fe">Fe</h2>
 <p>过渡金属元素。核电荷数 26，相对原子质量 56.<br>
-制备：高炉炼铁。通过还原剂 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{H2}">\ce{H2}</span>、<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{CO}">\ce{CO}</span> 等还原 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe2O3}">\ce{Fe2O3}</span> （黑色）、<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4}">\ce{Fe3O4}</span>（红棕色）</p>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4 + 4CO ->…">\ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}
-</p>
+制备：高炉炼铁。通过还原剂 $\ce{H2}$、$\ce{CO}$ 等还原 $\ce{Fe2O3}$ （黑色）、$\ce{Fe3O4}$（红棕色）<br>
+$$<br>
+\ce{Fe3O4 + 4CO -&gt;[高温] 3Fe + 4CO2 ^}<br>
+$$</p>
 <h3 id="铁单质">铁单质</h3>
-<p>与氯溴碘单质反应，可以被氧化到 +3、+2（<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{I2}">\ce{I2}</span>）. 其中氯需要点燃，溴、碘需要加热。<br>
+<p>与氯溴碘单质反应，可以被氧化到 +3、+2（$\ce{I2}$）. 其中氯需要点燃，溴、碘需要加热。<br>
 在纯的氧气中点燃，剧烈燃烧火星四射生成黑色粉末。四氧化三铁。<br>
 与 S 反应，加热。生成硫化亚铁。<br>
-==与水蒸气反应== (Zn, Fe, Sn)，<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{3Fe + 4H2O(g) …">\ce{3Fe + 4H2O(g) -&gt;[高温] Fe3O4 + 4H2 ^}</span> 生成四氧化三铁。<br>
-与非氧化性酸反应。HCl、稀硫酸，被氧化成亚铁离子，置换反应生成氢气。</p>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 2H+ -> Fe…">\ce{Fe + 2H+ -&gt; Fe^{2+} + H2 ^}
-</p>
-<p>与强氧化性剂反应。如浓硫酸、硝酸、溴单质、氯气。</p>
+==与水蒸气反应== (Zn, Fe, Sn)，$\ce{3Fe + 4H2O(g) -&gt;[高温] Fe3O4 + 4H2 ^}$ 生成四氧化三铁。<br>
+与非氧化性酸反应。HCl、稀硫酸，被氧化成亚铁离子，置换反应生成氢气。<br>
+$$<br>
+\ce{Fe + 2H+ -&gt; Fe^{2+} + H2 ^}<br>
+$$<br>
+与强氧化性剂反应。如浓硫酸、硝酸、溴单质、氯气。</p>
 <ul>
 <li>常温下，生成致密的氧化膜。钝化。</li>
 <li>加热时，直接氧化成最高价态。<br>
 与酸反应：需要注意不同酸的用量下，铁单质的还原性的体现。</li>
 </ul>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 6HNO3(浓) …">\ce{Fe + 6HNO3(浓) -&gt;[\triangle] Fe(NO3)3 + 3NO2 ^ + 3H2O}
-</p>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe + 4HNO3(稀) …">\ce{Fe + 4HNO3(稀) -&gt;[\triangle] Fe(NO3)3 + NO ^ + 2H2O}
-</p>
+<p>$$<br>
+\ce{Fe + 6HNO3(浓) -&gt;[\triangle] Fe(NO3)3 + 3NO2 ^ + 3H2O}<br>
+$$</p>
+<p>$$<br>
+\ce{Fe + 4HNO3(稀) -&gt;[\triangle] Fe(NO3)3 + NO ^ + 2H2O}<br>
+$$</p>
 <p>一般地，铁过量，铁盐；酸过量，亚铁盐。<br>
 与一些盐溶液反应。置换反应。</p>
 <h3 id="铁的氧化物">铁的氧化物</h3>
 <p>通性：==氧化性== (容易被煤气、氢气等还原剂还原为铁单质，即高炉炼铁)、==碱性氧化物== (特别地，亚铁盐与强氧化性酸反应生成铁离子)。</p>
 <ul>
 <li>氧化亚铁，黑色粉末。</li>
-<li>四氧化三铁，可以认为是 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{FeO\cdot Fe2O3…">\ce{FeO\cdot Fe2O3}</span> i.e. 有 +2 有 +3 价铁。黑色晶体。有磁性。</li>
+<li>四氧化三铁，可以认为是 $\ce{FeO\cdot Fe2O3}$ i.e. 有 +2 有 +3 价铁。黑色晶体。有磁性。</li>
 <li>三氧化二铁。红棕色粉末。a.k.a. 铁红。<br>
-稳定性：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe3O4 > Fe2O3,…">\ce{Fe3O4 &gt; Fe2O3, FeO}</span>。后者可以在加热条件下被氧气氧化为四氧化三铁。前者在高温下分解成氧气与四氧化三铁。</li>
+稳定性：$\ce{Fe3O4 &gt; Fe2O3, FeO}$。后者可以在加热条件下被氧气氧化为四氧化三铁。前者在高温下分解成氧气与四氧化三铁。</li>
 </ul>
 <h3 id="铁的氢氧化物">铁的氢氧化物</h3>
 <p>通性：碱性氢氧化物。（与氧化性酸反应、与还原性酸反应？）</p>
 <ul>
 <li>氢氧化亚铁，白色</li>
 <li>氢氧化铁，红褐色<br>
-热稳定性：受热分解，生成水。(Fe(OH)<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 需要隔绝氧气)</li>
+热稳定性：受热分解，生成水。(Fe(OH)$_2$ 需要隔绝氧气)</li>
 </ul>
 <h3 id="亚铁盐">亚铁盐</h3>
-<p>氧化性。<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Zn + Fe^{2+} -…">\ce{Zn + Fe^{2+} -&gt; Zn^{2+} + Fe}</span>，亚铁离子大于锌离子。<br>
+<p>氧化性。$\ce{Zn + Fe^{2+} -&gt; Zn^{2+} + Fe}$，亚铁离子大于锌离子。<br>
 还原性 (易被强氧化剂氧化为 +3 价)。</p>
 <h3 id="铁盐">铁盐</h3>
-<p>氧化性：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cl2 > Br2 > Fe…">\ce{Cl2 &gt; Br2 &gt; Fe^{3+} &gt; I2 &gt; S}</span><br>
-<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cu^{2+} > Fe^{…">\ce{Cu^{2+} &gt; Fe^{3+}}</span>。验证：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Fe + 3Cu^{2+}…">\ce{2Fe + 3Cu^{2+} -&gt; 2Fe^{3+} + 3Cu}</span>。</p>
+<p>氧化性：$\ce{Cl2 &gt; Br2 &gt; Fe^{3+} &gt; I2 &gt; S}$<br>
+$\ce{Cu^{2+} &gt; Fe^{3+}}$。验证：$\ce{2Fe + 3Cu^{2+} -&gt; 2Fe^{3+} + 3Cu}$。</p>
 <h2 id="Na">Na</h2>
 <p>第一主族金属元素，核电荷数 11.<br>
 制备：电解熔融 NaCl。</p>
-<p>化学性质活泼 (还原性强)。常温下容易被氧化 (<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O}">\ce{Na2O}</span>)。点燃后剧烈燃烧 (<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O2}">\ce{Na2O2}</span>)。可以与水发生剧烈反应 （会融化成小球、浮在水面、无规则游动，发出响声，因为 Na 密度比水小、生成氢气）。<br>
+<p>化学性质活泼 (还原性强)。常温下容易被氧化 ($\ce{Na2O}$)。点燃后剧烈燃烧 ($\ce{Na2O2}$)。可以与水发生剧烈反应 （会融化成小球、浮在水面、无规则游动，发出响声，因为 Na 密度比水小、生成氢气）。<br>
 因此，钠单质应该存放在煤油或石蜡中。<br>
-因为 Na 性质很活泼，一般先与溶液中的水反应。可以认为水能部分电离出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">H^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>，是很弱的酸 (当然也能认为是很弱的碱)，所以与酸溶液反应会先与酸反应。</p>
+因为 Na 性质很活泼，一般先与溶液中的水反应。可以认为水能部分电离出 $H^+$，是很弱的酸 (当然也能认为是很弱的碱)，所以与酸溶液反应会先与酸反应。</p>
 <h3 id="Na-的氧化物">Na 的氧化物</h3>
 <p>通性：碱性氧化物；可以与水、酸、酸性氧化物反应。</p>
 <ul>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O}">\ce{Na2O}</span> 氧化钠 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{4Na + O2 -> 2N…">\ce{4Na + O2 -&gt; 2Na2O}</span> (Na 在空气中缓慢氧化生成氧化钠)
+<li>$\ce{Na2O}$ 氧化钠 $\ce{4Na + O2 -&gt; 2Na2O}$ (Na 在空气中缓慢氧化生成氧化钠)
 <ul>
-<li>-1 价 O 既有氧化性又有还原性 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-2, 6]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6</span><span class="mclose">]</span></span></span></span>。主要表现为氧化性 (-1 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> -2)。</li>
-<li>与氧气反应 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Na2O + O2 ->[…">\ce{2Na2O + O2 -&gt;[\triangle] 2Na2O2}</span></li>
+<li>-1 价 O 既有氧化性又有还原性 $[-2, 6]$。主要表现为氧化性 (-1 $\to$ -2)。</li>
+<li>与氧气反应 $\ce{2Na2O + O2 -&gt;[\triangle] 2Na2O2}$</li>
 </ul>
 </li>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na_2O_2}">\ce{Na_2O_2}</span> 过氧化钠 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Na + O2 ->[点燃…">\ce{2Na + O2 -&gt;[点燃] Na2O2}</span> (Na 在空气中猛烈燃烧生成过氧化钠)
+<li>$\ce{Na_2O_2}$ 过氧化钠 $\ce{2Na + O2 -&gt;[点燃] Na2O2}$ (Na 在空气中猛烈燃烧生成过氧化钠)
 <ul>
 <li>同理，既有氧化性又有还原性，主要表现为氧化性。</li>
 <li></li>
@@ -430,48 +430,51 @@
 </ul>
 <h3 id="钠盐">钠盐</h3>
 <ul>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2CO3}">\ce{Na2CO3}</span></li>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{NaHCO3}">\ce{NaHCO3}</span><br>
+<li>$\ce{Na2CO3}$</li>
+<li>$\ce{NaHCO3}$<br>
 性质：</li>
 </ul>
 <ol>
 <li>溶液均呈碱性。（纯碱、小苏打）</li>
-<li>碳酸氢根可电离出 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{H+}">\ce{H+}</span>。(与碱反应)<br>
+<li>碳酸氢根可电离出 $\ce{H+}$。(与碱反应)<br>
 补充：碳酸根与碳酸氢根<br>
 初中知识，大理石块上滴加稀盐酸</li>
 </ol>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{CO3^{2-} + H+ …">\ce{CO3^{2-} + H+ -&gt; HCO3-}
-</p>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{HCO3- + H+ -> …">\ce{HCO3- + H+ -&gt; H2O + CO2 ^}
-</p>
+<p>$$<br>
+\ce{CO3^{2-} + H+ -&gt; HCO3-}<br>
+$$</p>
+<p>$$<br>
+\ce{HCO3- + H+ -&gt; H2O + CO2 ^}<br>
+$$</p>
 <p>碳酸氢根可以电离出氢离子（与碱反应）。</p>
 <h2 id="Al">Al</h2>
 <p>第三主族金属元素，核电荷数 13.<br>
-制备方法：电解熔融 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3}">\ce{Al2O3}</span>。</p>
+制备方法：电解熔融 $\ce{Al2O3}$。</p>
 <ul>
-<li>电解熔融氧化铝 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2Al2O3 ->[电解] …">\ce{2Al2O3 -&gt;[电解] 4Al + 3O2^}</span> 离子化合物</li>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{AlCl3}">\ce{AlCl3}</span> 共价化合物，不能电解<br>
+<li>电解熔融氧化铝 $\ce{2Al2O3 -&gt;[电解] 4Al + 3O2^}$ 离子化合物</li>
+<li>$\ce{AlCl3}$ 共价化合物，不能电解<br>
 铝热反应。Al 与 O 反应放出大量的热，有助于驱动 Al 将其它金属从其氧化物中置换出来。<br>
 e.g.</li>
 </ul>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{2 Al + Fe2O3 -…">\ce{2 Al + Fe2O3 -&gt;[高温] Al2O3 + 2Fe}
-</p>
+<p>$$<br>
+\ce{2 Al + Fe2O3 -&gt;[高温] Al2O3 + 2Fe}<br>
+$$</p>
 <h3 id="单质：两性金属。">单质：两性金属。</h3>
 <ul>
-<li>酸：置换出 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al^{3+}}">\ce{Al^{3+}}</span></li>
-<li>NaOH：<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{NaOH + Al = Na…">\ce{NaOH + Al = Na[Al(OH)4] + 3 H2 ^}</span>，生成<strong>四羟基合铝酸钠</strong>与氢气。</li>
+<li>酸：置换出 $\ce{Al^{3+}}$</li>
+<li>NaOH：$\ce{NaOH + Al = Na[Al(OH)4] + 3 H2 ^}$，生成<strong>四羟基合铝酸钠</strong>与氢气。</li>
 </ul>
 <h3 id="Al-的氧化物">Al 的氧化物</h3>
 <ul>
 <li>
-<p><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3}">\ce{Al2O3}</span>​ 两性氧化物。</p>
+<p>$\ce{Al2O3}$​ 两性氧化物。</p>
 <ul>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3 + 6H+ ->…">\ce{Al2O3 + 6H+ -&gt; 2Al^{3+} + 3H2O}</span></li>
-<li><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al2O3 + 2OH- +…">\ce{Al2O3 + 2OH- + 3H2O -&gt; 2[Al(OH)4]-}</span></li>
+<li>$\ce{Al2O3 + 6H+ -&gt; 2Al^{3+} + 3H2O}$</li>
+<li>$\ce{Al2O3 + 2OH- + 3H2O -&gt; 2[Al(OH)4]-}$</li>
 </ul>
 </li>
 <li>
-<p><span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Al(OH)3}">\ce{Al(OH)3}</span>​​ 两性氢氧化物</p>
+<p>$\ce{Al(OH)3}$​​ 两性氢氧化物</p>
 <ul>
 <li>没写过方程式，到时候再看</li>
 </ul>
@@ -480,13 +483,13 @@ e.g.</li>
 <h2 id="S">S</h2>
 <p>第五主族元素，核电荷数 16，相对原子质量 32。</p>
 <h3 id="硫单质">硫单质</h3>
-<p>氧化性。能将金属单质氧化到较低价态 (氧化性 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Cl2 > S}">\ce{Cl2 &gt; S}</span>)。与铁、铜、氢气反应需要加热；与银、汞反应常温下即可。</p>
+<p>氧化性。能将金属单质氧化到较低价态 (氧化性 $\ce{Cl2 &gt; S}$)。与铁、铜、氢气反应需要加热；与银、汞反应常温下即可。</p>
 <p>还原性。硫在空气 / 氧气内燃烧。</p>
-<p>歧化反应，<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{3S + 6NaOH ->[…">\ce{3S + 6NaOH -&gt;[\triangle] 2Na2S + Na2SO3 + 3H2O}</span>​</p>
+<p>歧化反应，$\ce{3S + 6NaOH -&gt;[\triangle] 2Na2S + Na2SO3 + 3H2O}$​</p>
 <h3 id="硫化氢-氢硫酸">硫化氢 (氢硫酸)</h3>
 <p>酸性。二元弱酸。</p>
-<p>还原性。除了文末列举的强氧化剂还能和 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Fe}^{3+}">\ce{Fe}^{3+}</span> 反应。与氧气反应：久置变浑浊 <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{S v}">\ce{S v}</span>。</p>
-<p>不稳定性。受热分解为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>2</mn></msub><mo>+</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">H_2 + S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span></p>
+<p>还原性。除了文末列举的强氧化剂还能和 $\ce{Fe}^{3+}$ 反应。与氧气反应：久置变浑浊 $\ce{S v}$。</p>
+<p>不稳定性。受热分解为 $H_2 + S$</p>
 <p>可燃性，在空气 / 氧气中燃烧，生成水、硫单质或二氧化硫。</p>
 <p>TODO</p>
 <h2 id="N">N</h2>
@@ -582,29 +585,6 @@ e.g.</li>
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%8C%96%E5%AD%A6%E5%8F%8D%E5%BA%94%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="必修一化学反应原理复习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">必修一化学反应原理复习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/06/01/%E7%BB%84%E5%90%88%E7%AC%94%E8%AE%B0/" title="组合笔记">
-                        <span class="hidden-mobile">组合笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
@@ -681,6 +661,11 @@ e.g.</li>
 
 
   
+
+
+  
+  
+
 
 
 

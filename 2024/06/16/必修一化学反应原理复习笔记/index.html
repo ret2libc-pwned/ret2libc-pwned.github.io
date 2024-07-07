@@ -16,15 +16,15 @@
   <meta name="author" content="ret2libc-pwned">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言 马上要考试了，无奈笔者的化学还是一点都不会。于是有了这篇笔记。 原子结构 原子呈电中性。 记号为 _Z^A\ce{R}  其中 AAA 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。 核外电子排布 一般地，  第 nnn 层电子最多容纳 2n22n^22n2 个电子，该数列前几项为 2，8，18，32 最外层电子最多容纳 8 个电">
+    <meta name="description" content="前言 马上要考试了，无奈笔者的化学还是一点都不会。于是有了这篇笔记。 原子结构 原子呈电中性。 记号为 $$ _Z^A\ce{R} $$ 其中 $A$ 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。 核外电子排布 一般地，  第 $n$ 层电子最多容纳 $2n^2$ 个电子，该数列前几项为 2，8，18，32 最外层电子最多容纳 8 个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="必修一化学反应原理复习笔记">
 <meta property="og:url" content="https://ret2libc-pwned.github.io/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%8C%96%E5%AD%A6%E5%8F%8D%E5%BA%94%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="OI-Cheatsheet">
-<meta property="og:description" content="前言 马上要考试了，无奈笔者的化学还是一点都不会。于是有了这篇笔记。 原子结构 原子呈电中性。 记号为 _Z^A\ce{R}  其中 AAA 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。 核外电子排布 一般地，  第 nnn 层电子最多容纳 2n22n^22n2 个电子，该数列前几项为 2，8，18，32 最外层电子最多容纳 8 个电">
+<meta property="og:description" content="前言 马上要考试了，无奈笔者的化学还是一点都不会。于是有了这篇笔记。 原子结构 原子呈电中性。 记号为 $$ _Z^A\ce{R} $$ 其中 $A$ 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。 核外电子排布 一般地，  第 $n$ 层电子最多容纳 $2n^2$ 个电子，该数列前几项为 2，8，18，32 最外层电子最多容纳 8 个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-16T10:55:47.000Z">
-<meta property="article:modified_time" content="2024-06-16T10:56:23.909Z">
+<meta property="article:modified_time" content="2024-07-07T01:41:23.100Z">
 <meta property="article:author" content="ret2libc-pwned">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -43,6 +43,8 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
 
 
 
@@ -83,13 +85,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.css" integrity="sha384-ThssJ7YtjywV52Gj4JE/1SQEDoMEckXyhkFVwaf4nDSm5OBlXeedVYjuuUd0Yua+" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.js" integrity="sha384-Bi8OWqMXO1ta+a4EPkZv7bYGIes7C3krGSZoTGNTAnAn5eYQc7IIXrJ/7ck1drAi" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/contrib/mhchem.min.js" integrity="sha384-LIgAiYlGSAdpNC9+YDjDPF6JeS/RRIumtNo0CmyQERZ/+g0h9MbuYQwf/5pQ4Y4M" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
-      onload="renderMathInElement(document.body);"></script>
-	<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="OI-Cheatsheet" type="application/atom+xml">
 </head>
@@ -295,7 +291,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.6k 字
+          1.5k 字
         
       </span>
     
@@ -362,15 +358,15 @@
 <p>马上要考试了，无奈笔者的化学还是一点都不会。于是有了这篇笔记。</p>
 <h2 id="原子结构">原子结构</h2>
 <p>原子呈电中性。<br>
-记号为</p>
-<p class="katex-block katex-error " title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 5: _Z^A\̲c̲e̲{R}
-">_Z^A\ce{R}
-</p>
-<p>其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。</p>
+记号为<br>
+$$<br>
+_Z^A\ce{R}<br>
+$$<br>
+其中 $A$ 表示质量数，为质子数与中子数之和。质子数相同的一类原子统称为元素，质子数相同中子数不同的几种核素互为同位素。</p>
 <h3 id="核外电子排布">核外电子排布</h3>
 <p>一般地，</p>
 <ul>
-<li>第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 层电子最多容纳 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 个电子，该数列前几项为 2，8，18，32</li>
+<li>第 $n$ 层电子最多容纳 $2n^2$ 个电子，该数列前几项为 2，8，18，32</li>
 <li>最外层电子最多容纳 8 个电子、次外层最多 18 个、倒数第三层最多 32 个。<br>
 TODO：</li>
 <li>描述电子能量的四个参量：能层、能级、轨道、自旋。</li>
@@ -387,10 +383,11 @@ TODO：</li>
 <ul>
 <li>同一族，周期序数递增。电子层数递增，原子半径增大。原子核对核外电子的吸引力减小。</li>
 <li>同一周期，族序数递增。核电荷数递增，带正电的质子对核外电子吸引力增大。<br>
-定量地解释如下：令元电荷为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span>。根据库伦定律，可得质子数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span></span></span></span> 的原子核对最外层电子的吸引力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>∝</mo><mn>1</mn><mi mathvariant="normal">/</mi><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">F \propto 1/R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</li>
+定量地解释如下：令元电荷为 $e$。根据库伦定律，可得质子数为 $Z$ 的原子核对最外层电子的吸引力 $F \propto 1/R^2$。</li>
 </ul>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mo>=</mo><mi>k</mi><mfrac><mrow><mi>Z</mi><mi>e</mi><mo>⋅</mo><mi>e</mi></mrow><msup><mi>R</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">F = k \frac{Ze\cdot e}{R^2}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>$$<br>
+F = k \frac{Ze\cdot e}{R^2}<br>
+$$</p>
 <p>元素容易失去电子的性质称为金属性 (金属单质容易失去电子，被氧化为阳离子)。因此，金属性从左下到右上依次递减。<br>
 对角线法则。根据上式与元素周期律，可得元素周期表中右上-左下的元素得失电子的难易程度类似，一般具有相似的性质。</p>
 <h2 id="化学键">化学键</h2>
@@ -398,8 +395,8 @@ TODO：</li>
 化学键具有能量。化学变化实质上是化学键断开重组的过程，断开化学键的过程需要吸收外部的能量，产生新的化学键会释放能量。可以通过是否需要更为严格的反应条件来判别这个能量的大小。</p>
 <h3 id="离子键">离子键</h3>
 <p><strong>阴阳离子</strong>之间的静电作用。<br>
-常见离子化合物：活泼金属氧化物（<span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2O, Na2O2, C…">\ce{Na2O, Na2O2, CaO}</span> 等）；<br>
-大多数的盐（NaCl, <span class="katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \ce at position 1: \̲c̲e̲{Na2SO4}">\ce{Na2SO4}</span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>H</mi><mn>4</mn></msub><mi>C</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">NH_4Cl</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.01968em;">Cl</span></span></span></span>等）；强碱（NaOH等）</p>
+常见离子化合物：活泼金属氧化物（$\ce{Na2O, Na2O2, CaO}$ 等）；<br>
+大多数的盐（NaCl, $\ce{Na2SO4}$, $NH_4Cl$等）；强碱（NaOH等）</p>
 <h4 id="离子化合物">离子化合物</h4>
 <p>以离子键结合的化合物叫做离子化合物。<br>
 离子化合物一定是电解质。<br>
@@ -517,23 +514,6 @@ TODO。</li>
 
 
               
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/06/16/%E5%BF%85%E4%BF%AE%E4%B8%80%E5%85%83%E7%B4%A0%E5%8C%96%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="必修一元素化学复习笔记">
-                        <span class="hidden-mobile">必修一元素化学复习笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
 
             
@@ -610,6 +590,11 @@ TODO。</li>
 
 
   
+
+
+  
+  
+
 
 
 
